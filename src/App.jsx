@@ -7,10 +7,14 @@ import Services from './pages/Services';
 import Work from './pages/Work';
 import InsightsPage from './pages/Insights';
 import Contact from './pages/Contact';
+import CustomCursor from './components/ui/CustomCursor';
+import ParticleBackground from './components/ui/ParticleBackground';
 
 function App() {
   return (
-    <ReactLenis root>
+    <ReactLenis root options={{ lerp: 0.08, duration: 1.4, smoothWheel: true }}>
+      <CustomCursor />
+      <ParticleBackground />
       <Router>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -28,3 +32,4 @@ function App() {
 }
 
 export default App;
+

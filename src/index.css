@@ -16,12 +16,40 @@
 }
 
 @layer base {
+  html {
+    /* Prevent white flash during page transitions */
+    background-color: #050505;
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-primary antialiased selection:bg-accent selection:text-white;
+    background-color: #050505 !important;
+    /* Remove any default margin/padding that causes white gaps */
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Hide default cursor on non-touch devices — CustomCursor handles it */
+  @media (pointer: fine) {
+    *, *::before, *::after {
+      cursor: none !important;
+    }
   }
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-display tracking-tight;
+  }
+
+  /* Prevent white background flash on any element */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  /* Remove any white gaps in sections */
+  section {
+    position: relative;
+    background-color: transparent;
   }
 }
 
@@ -36,6 +64,26 @@
 
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Scroll-driven neon progress bar at top of page */
+  .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
+    transform-origin: left;
+    z-index: 9999;
+    pointer-events: none;
+  }
+
+  /* Floating section separator — replaces white gap */
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #27272a, transparent);
   }
 }
 

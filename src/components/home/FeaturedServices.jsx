@@ -4,6 +4,7 @@ import { Code, Cpu, PenTool, TrendingUp, ArrowRight } from 'lucide-react';
 import Container from '../ui/Container';
 import SectionHeading from '../common/SectionHeading';
 import Button from '../ui/Button';
+import TiltCard from '../ui/TiltCard';
 
 const serviceData = [
   {
@@ -58,79 +59,82 @@ const FeaturedServices = () => {
               const Icon = category.icon;
               
               return (
-                <button
-                  key={category.id}
-                  onClick={() => setActiveTab(category.id)}
-                  className={`text-left p-6 rounded-2xl transition-all duration-300 border ${
-                    isActive 
-                      ? 'bg-surface border-border shadow-lg' 
-                      : 'bg-transparent border-transparent hover:bg-surface/50'
-                  }`}
-                >
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-4">
-                      <div className={`p-3 rounded-lg ${isActive ? 'bg-white text-background' : 'bg-surface text-secondary'}`}>
-                        <Icon size={24} />
+                <TiltCard key={category.id} intensity={5} glare={false} className="rounded-2xl">
+                  <button
+                    onClick={() => setActiveTab(category.id)}
+                    className={`w-full text-left p-6 rounded-2xl transition-all duration-300 border ${
+                      isActive 
+                        ? 'bg-surface border-border shadow-lg' 
+                        : 'bg-transparent border-transparent hover:bg-surface/50'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-4">
+                        <div className={`p-3 rounded-lg ${isActive ? 'bg-white text-background' : 'bg-surface text-secondary'}`}>
+                          <Icon size={24} />
+                        </div>
+                        <h3 className={`text-xl font-medium ${isActive ? 'text-white' : 'text-secondary'}`}>
+                          {category.title}
+                        </h3>
                       </div>
-                      <h3 className={`text-xl font-medium ${isActive ? 'text-white' : 'text-secondary'}`}>
-                        {category.title}
-                      </h3>
+                      {isActive && (
+                        <motion.div layoutId="indicator" className="w-2 h-2 rounded-full bg-accent" />
+                      )}
                     </div>
-                    {isActive && (
-                      <motion.div layoutId="indicator" className="w-2 h-2 rounded-full bg-accent" />
-                    )}
-                  </div>
-                  <p className={`text-sm leading-relaxed ${isActive ? 'text-secondary' : 'text-secondary/60'}`}>
-                    {category.description}
-                  </p>
-                </button>
+                    <p className={`text-sm leading-relaxed ${isActive ? 'text-secondary' : 'text-secondary/60'}`}>
+                      {category.description}
+                    </p>
+                  </button>
+                </TiltCard>
               );
             })}
           </div>
 
           {/* Content Area */}
           <div className="lg:col-span-7 lg:pl-12">
-            <div className="glass-card h-full p-8 md:p-12 relative overflow-hidden flex flex-col">
-              <div className="absolute top-0 right-0 p-32 bg-accent/5 rounded-full blur-[100px] -mr-16 -mt-16 pointer-events-none" />
-              
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeTab}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.3 }}
-                  className="flex-grow flex flex-col"
-                >
-                  <h3 className="text-3xl font-display font-medium mb-8 pb-8 border-b border-border/50">
-                    {activeData.title}
-                  </h3>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 mb-12 flex-grow">
-                    {activeData.services.map((service, i) => (
-                      <motion.div
-                        key={service}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 + (i * 0.05) }}
-                        className="flex items-center gap-3 group"
-                      >
-                        <div className="w-6 h-px bg-border group-hover:w-10 group-hover:bg-white transition-all duration-300" />
-                        <span className="text-secondary group-hover:text-white transition-colors">
-                          {service}
-                        </span>
-                      </motion.div>
-                    ))}
-                  </div>
+            <TiltCard intensity={3} className="h-full">
+              <div className="glass-card h-full p-8 md:p-12 relative overflow-hidden flex flex-col">
+                <div className="absolute top-0 right-0 p-32 bg-accent/5 rounded-full blur-[100px] -mr-16 -mt-16 pointer-events-none" />
+                
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeTab}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.3 }}
+                    className="flex-grow flex flex-col"
+                  >
+                    <h3 className="text-3xl font-display font-medium mb-8 pb-8 border-b border-border/50">
+                      {activeData.title}
+                    </h3>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 mb-12 flex-grow">
+                      {activeData.services.map((service, i) => (
+                        <motion.div
+                          key={service}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.1 + (i * 0.05) }}
+                          className="flex items-center gap-3 group"
+                        >
+                          <div className="w-6 h-px bg-border group-hover:w-10 group-hover:bg-white transition-all duration-300" />
+                          <span className="text-secondary group-hover:text-white transition-colors">
+                            {service}
+                          </span>
+                        </motion.div>
+                      ))}
+                    </div>
 
-                  <div className="mt-auto">
-                    <Button variant="ghost" className="!pl-0 group" icon={ArrowRight}>
-                      Explore {activeData.title}
-                    </Button>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
+                    <div className="mt-auto">
+                      <Button variant="ghost" className="!pl-0 group" icon={ArrowRight}>
+                        Explore {activeData.title}
+                      </Button>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </TiltCard>
           </div>
         </div>
       </Container>
