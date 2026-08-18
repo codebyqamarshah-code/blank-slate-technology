@@ -42,9 +42,9 @@ const TypewriterText = ({ words = [], typingSpeed = 100, deletingSpeed = 60, pau
   }, [currentText, isDeleting, currentWordIndex, words, typingSpeed, deletingSpeed, pauseTime]);
 
   return (
-    <span className="relative inline-block">
+    <span className="relative inline">
       {currentText}
-      <span className="absolute -right-2 top-0 md:top-1 w-[3px] h-[85%] bg-accent animate-pulse" />
+      <span className="inline-block w-[2px] h-[0.85em] bg-white/70 align-middle ml-[2px] animate-pulse" style={{ verticalAlign: 'middle' }} />
     </span>
   );
 };

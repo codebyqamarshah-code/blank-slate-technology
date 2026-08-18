@@ -43,7 +43,7 @@ const FeaturedServices = () => {
   const activeData = serviceData.find(s => s.id === activeTab);
 
   return (
-    <section className="py-24 md:py-32 bg-surface/20">
+    <section className="py-16 md:py-20 bg-surface/20">
       <Container>
         <SectionHeading 
           eyebrow="Our Expertise"

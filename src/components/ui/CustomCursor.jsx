@@ -56,8 +56,8 @@ const CustomCursor = () => {
           `translate(${pos.current.x - 4}px, ${pos.current.y - 4}px)`;
       }
       if (ringRef.current) {
-        ring.current.x += (pos.current.x - ring.current.x) * 0.35;
-        ring.current.y += (pos.current.y - ring.current.y) * 0.35;
+        ring.current.x += (pos.current.x - ring.current.x) * 0.85;
+        ring.current.y += (pos.current.y - ring.current.y) * 0.85;
         ringRef.current.style.transform =
           `translate(${ring.current.x - 20}px, ${ring.current.y - 20}px)`;
       }

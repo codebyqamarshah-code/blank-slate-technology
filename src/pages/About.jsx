@@ -6,6 +6,7 @@ import SectionHeading from '../components/common/SectionHeading';
 import Values from '../components/home/Values';
 import Team from '../components/home/Team';
 import CTA from '../components/home/CTA';
+import ZigzagHeroBackground from '../components/ui/ZigzagHeroBackground';
 
 const About = () => {
   const { scrollYProgress } = useScroll();
@@ -15,20 +16,12 @@ const About = () => {
   return (
     <PageTransition>
       <div className="w-full">
-        {/* Parallax Hero */}
+        {/* Zigzag Animated Hero */}
         <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
-          <motion.div 
-            style={{ y, opacity }}
-            className="absolute inset-0 z-0"
-          >
-            <div className="absolute inset-0 bg-background/80 z-10" />
-            <img 
-              src="/images/big2.png" 
-              alt="About Blank Slate" 
-              className="w-full h-full object-cover"
-              onError={(e) => { e.target.src = '/images/team3.jpeg'; }}
-            />
-          </motion.div>
+          {/* Animated zigzag background — replaces image */}
+          <ZigzagHeroBackground />
+          {/* Subtle dark overlay so text stays readable */}
+          <div className="absolute inset-0 z-10 bg-gradient-to-b from-background/30 via-transparent to-background/60" />
 
           <Container className="relative z-20 text-center">
             <motion.h1
@@ -37,7 +30,7 @@ const About = () => {
               transition={{ duration: 0.8 }}
               className="text-5xl md:text-7xl font-display font-medium tracking-tight mb-6"
             >
-              Building the <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-white">future.</span>
+              Building the <span className="text-transparent bg-clip-text" style={{ backgroundImage: 'linear-gradient(90deg, #ffffff 0%, #B9B9BA 60%, #7a7a7c 100%)' }}>future.</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -51,7 +44,7 @@ const About = () => {
         </section>
 
         {/* Story Section */}
-        <section className="py-24 md:py-32">
+        <section className="py-16 md:py-20">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
               <div>
@@ -90,7 +83,7 @@ const About = () => {
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                   className="absolute -bottom-8 -left-8 bg-surface/80 backdrop-blur-md border border-border p-6 rounded-2xl shadow-xl hidden md:block"
                 >
-                  <div className="text-4xl font-display font-bold text-white mb-1">10+</div>
+                  <div className="text-4xl font-display font-bold text-white mb-1">15+</div>
                   <div className="text-secondary text-sm uppercase tracking-wider">Years of Excellence</div>
                 </motion.div>
               </div>

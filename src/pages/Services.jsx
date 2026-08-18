@@ -2,23 +2,33 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import PageTransition from '../components/layout/PageTransition';
 import Container from '../components/ui/Container';
-import SectionHeading from '../components/common/SectionHeading';
 import FeaturedServices from '../components/home/FeaturedServices';
 import Process from '../components/home/Process';
 import CTA from '../components/home/CTA';
+import TypewriterText from '../components/ui/TypewriterText';
 
 const Services = () => {
   return (
     <PageTransition>
       <div className="w-full pt-16">
-        <Container className="py-24 text-center max-w-4xl">
+        <Container className="py-16 text-center max-w-4xl">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-5xl md:text-7xl font-display font-medium mb-8"
+            className="text-4xl sm:text-5xl md:text-6xl font-display font-medium mb-8 leading-[1.1]"
           >
-            Digital solutions for <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-white">modern challenges.</span>
+            Digital solutions for <br />
+            <span
+              className="inline-block bg-clip-text text-transparent"
+              style={{ backgroundImage: 'linear-gradient(90deg, #ffffff 0%, #B9B9BA 60%, #7a7a7c 100%)' }}
+            >
+              <TypewriterText
+                words={['modern challenges.', 'ambitious brands.', 'global markets.']}
+                typingSpeed={65}
+                pauseTime={2800}
+              />
+            </span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

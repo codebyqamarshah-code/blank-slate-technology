@@ -7,7 +7,7 @@ import Button from '../ui/Button';
 
 const CTA = () => {
   return (
-    <section className="py-32 relative overflow-hidden">
+    <section className="py-16 md:py-20 relative overflow-hidden">
       {/* Background Glow */}
       <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
         <div className="w-[800px] h-[800px] bg-accent/10 rounded-full blur-[120px]" />

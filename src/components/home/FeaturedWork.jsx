@@ -109,7 +109,7 @@ const ProjectCard = ({ project, index }) => {
 
 const FeaturedWork = () => {
   return (
-    <section className="py-24 md:py-32 relative">
+    <section className="py-16 md:py-20 relative">
       <Container>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 md:mb-24">
           <SectionHeading 

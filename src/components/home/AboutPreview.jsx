@@ -24,7 +24,7 @@ const AboutPreview = () => {
   const textY = useTransform(scrollYProgress, [0, 1], [50, -50]);
 
   return (
-    <section ref={sectionRef} className="py-24 md:py-40 overflow-hidden perspective-[1200px]">
+    <section ref={sectionRef} className="py-16 md:py-20 overflow-hidden perspective-[1200px]">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           

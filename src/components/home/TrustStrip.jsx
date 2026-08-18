@@ -4,7 +4,7 @@ import Container from '../ui/Container';
 
 const TrustStrip = () => {
   return (
-    <section className="py-20 border-y border-border bg-surface/30">
+    <section className="py-12 border-y border-border bg-surface/30">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div

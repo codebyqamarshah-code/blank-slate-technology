@@ -17,7 +17,7 @@ const Values = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
-    <section className="py-24 md:py-32">
+    <section className="py-16 md:py-20">
       <Container>
         <div className="flex flex-col md:flex-row gap-16 lg:gap-24">
           <div className="md:w-1/3">

@@ -14,8 +14,8 @@ const Navbar = () => {
     { label: 'About', path: '/about' },
     { label: 'Services', path: '/services' },
     { label: 'Work', path: '/work' },
+    { label: 'Institute', path: '/institute' },
     { label: 'Insights', path: '/insights' },
-    { label: 'Contact', path: '/contact' },
   ];
 
   useEffect(() => {
