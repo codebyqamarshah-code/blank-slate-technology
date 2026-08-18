@@ -181,9 +181,8 @@ const Contact = () => {
   };
 
   const contactInfo = [
-    { icon: MapPin, label: 'Location', text: '123 Innovation Drive, Tech City' },
-    { icon: Mail, label: 'Email', text: 'hello@blankslatetechnology.com' },
-    { icon: Phone, label: 'Phone', text: '+1 (555) 123-4567' },
+    { icon: MapPin, label: 'Location', text: '+923320901442' },
+    
   ];
 
   return (
