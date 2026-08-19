@@ -159,6 +159,9 @@ const Apply = () => {
   const [step, setStep] = useState(1);
   const [dir, setDir] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [appId, setAppId] = useState('');
   const [form, setForm] = useState({
     name: '', fatherName: '', dob: '', cnic: '', gender: '',
     address: '', email: '', phone: '', qualification: '',
@@ -169,7 +172,31 @@ const Apply = () => {
 
   const next = () => { setDir(1); setStep((s) => s + 1); };
   const prev = () => { setDir(-1); setStep((s) => s - 1); };
-  const submit = (e) => { e.preventDefault(); setSubmitted(true); };
+
+  const submit = async (e) => {
+    e.preventDefault();
+    if (!form.program) { setError('Please select a program.'); return; }
+    setLoading(true);
+    setError('');
+    try {
+      const res = await fetch('http://localhost:5000/api/applications', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setAppId(data.data.applicationId);
+        setSubmitted(true);
+      } else {
+        setError(data.message || 'Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      setError('Could not connect to server. Please make sure the server is running.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <PageTransition>

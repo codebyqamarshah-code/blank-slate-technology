@@ -174,10 +174,30 @@ const SuccessState = () => (
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError('');
+    try {
+      const res = await fetch('http://localhost:5000/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSubmitted(true);
+      } else {
+        setError(data.message || 'Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      setError('Could not connect to server. Please try again later.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const contactInfo = [
@@ -356,10 +376,21 @@ const Contact = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.75 }}
                       >
-                        <MagneticButton type="submit">
-                          Send Message
+                        <MagneticButton type="submit" disabled={loading}>
+                          {loading ? 'Sending…' : 'Send Message'}
                         </MagneticButton>
                       </motion.div>
+
+                      {/* Error message */}
+                      {error && (
+                        <motion.p
+                          initial={{ opacity: 0, y: 6 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="text-center text-xs text-red-400 mt-1"
+                        >
+                          {error}
+                        </motion.p>
+                      )}
 
                       <motion.p
                         className="text-center text-[10px] uppercase tracking-widest text-[#444] mt-1"
