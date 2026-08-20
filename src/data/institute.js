@@ -120,14 +120,14 @@ export const instructors = [
     name: 'Saqib Mughal',
     role: 'CTO',
     experience: '8+ years experience',
-    image: '/images/team2.jpg'
+    image: '/images/team 2.jpg'
   },
   {
     id: 3,
     name: 'Wasi Shah',
     role: 'Graphic Designer',
     experience: '5+ years experience',
-    image: '/images/team3.jpeg'
+    image: '/images/team 3.jpg'
   }
 ];
 
@@ -138,7 +138,7 @@ export const testimonials = [
     name: 'Hamza Ali',
     role: 'Frontend Developer',
     company: 'TechCo',
-    image: '/images/team1.jpeg'
+    image: '/images/team.jpg'
   },
   {
     id: 2,
@@ -146,7 +146,7 @@ export const testimonials = [
     name: 'Ayesha Malik',
     role: 'UI/UX Designer',
     company: 'DesignHub',
-    image: '/images/team2.jpeg'
+    image: '/images/team.jpg'
   },
   {
     id: 3,
@@ -154,7 +154,7 @@ export const testimonials = [
     name: 'Bilal Ahmad',
     role: 'Backend Developer',
     company: 'Softify',
-    image: '/images/team3.jpeg'
+    image: '/images/team.jpg'
   }
 ];
 

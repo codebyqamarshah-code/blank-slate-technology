@@ -100,7 +100,7 @@ const HeroScrollAnimation = ({ prefersReducedMotion }) => {
   const activeStage = stages[currentIndex];
 
   return (
-    <div className="relative w-full h-[380px] sm:h-[440px] md:h-[500px] lg:h-[580px] rounded-[1.75rem] sm:rounded-[2.5rem] border border-white/[0.07] overflow-hidden bg-[#050505]">
+    <div className="relative w-full h-[380px] sm:h-[440px] md:h-[500px] lg:h-[580px] overflow-visible">
       
       {/* 3D WebGL Canvas Layer */}
       <HeroScene3D smoothProgress={smoothProgress} prefersReducedMotion={prefersReducedMotion} />
@@ -152,9 +152,6 @@ const HeroScrollAnimation = ({ prefersReducedMotion }) => {
       </AnimatePresence>
 
       <ProgressDots currentIndex={currentIndex} onDotClick={setCurrentIndex} />
-      
-      {/* Subtle glass reflection overlay */}
-      <div className="absolute inset-0 rounded-[inherit] border border-white/5 pointer-events-none z-40 bg-gradient-to-br from-white/[0.03] to-transparent" />
     </div>
   );
 };

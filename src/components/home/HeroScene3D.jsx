@@ -290,7 +290,7 @@ export default function HeroScene3D({ smoothProgress, prefersReducedMotion }) {
   }, [prefersReducedMotion]);
 
   const isMobile      = typeof window !== 'undefined' && window.innerWidth < 768;
-  const particleCount = isMobile ? 40 : 130;
+  const particleCount = isMobile ? 25 : 80; // reduced from 40/130
 
   // ── Pointer / Drag handlers ──────────────────────────────────────────────
   const onPointerDown = useCallback((e) => {
@@ -325,7 +325,7 @@ export default function HeroScene3D({ smoothProgress, prefersReducedMotion }) {
       >
         <Canvas
           camera={{ position: [0, 0, 8], fov: 45 }}
-          dpr={[1, Math.min(typeof window !== 'undefined' ? window.devicePixelRatio : 1, 2)]}
+          dpr={[1, Math.min(typeof window !== 'undefined' ? window.devicePixelRatio : 1, 1.5)]}
           gl={{ antialias: !isMobile, alpha: true, powerPreference: 'high-performance' }}
         >
           <React.Suspense fallback={null}>

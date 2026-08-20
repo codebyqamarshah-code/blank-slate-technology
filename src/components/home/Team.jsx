@@ -15,13 +15,13 @@ const team = [
   {
     name: 'Saqib Mughal',
     role: 'CTO',
-    image: '/images/team2.jpg',
+    image: '/images/team 2.jpg',
     bio: 'Technical mastermind architecting robust, high-performance systems and leading advanced engineering initiatives.'
   },
   {
     name: 'Wasi Ahmad',
     role: 'Graphic Designer',
-    image: '/images/team3.jpeg',
+    image: '/images/team 3.jpg',
     bio: 'Creative powerhouse crafting stunning visual identities and immersive, conversion-driven user experiences.'
   },
 ];
