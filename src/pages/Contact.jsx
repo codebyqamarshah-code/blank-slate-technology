@@ -165,7 +165,8 @@ const SuccessState = () => (
       transition={{ delay: 0.35 }}
       className="text-[#ADADAE] text-sm leading-relaxed"
     >
-      Thank you for reaching out. We'll get back to you within 24 hours.
+      Opening WhatsApp... <br />
+      Thank you for reaching out. We'll connect with you shortly.
     </motion.p>
   </motion.div>
 );
@@ -177,27 +178,25 @@ const Contact = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError('');
-    try {
-      const res = await fetch('http://localhost:5000/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-      const data = await res.json();
-      if (data.success) {
-        setSubmitted(true);
-      } else {
-        setError(data.message || 'Something went wrong. Please try again.');
-      }
-    } catch (err) {
-      setError('Could not connect to server. Please try again later.');
-    } finally {
-      setLoading(false);
-    }
+    
+    // Construct WhatsApp message
+    const phoneNumber = "923320901442";
+    const text = `*New Inquiry from Website*%0A%0A*Name:* ${formData.name}%0A*Email:* ${formData.email}%0A%0A*Message:*%0A${formData.message}`;
+    const waUrl = `https://wa.me/${phoneNumber}?text=${text}`;
+
+    // Open WhatsApp in new tab immediately to bypass popup blockers
+    window.open(waUrl, '_blank');
+
+    // Save to database in the background (fire and forget)
+    fetch('http://localhost:5000/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    }).catch(console.error);
+
+    setSubmitted(true);
   };
 
   const contactInfo = [

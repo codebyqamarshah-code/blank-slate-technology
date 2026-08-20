@@ -6,21 +6,21 @@ import SectionHeading from '../common/SectionHeading';
 import Button from '../ui/Button';
 
 const team = [
-  { 
-    name: 'Talha Mughal', 
-    role: 'CEO', 
+  {
+    name: 'Talha Mughal',
+    role: 'CEO',
     image: '/images/team.jpg',
     bio: 'Visionary leader driving digital innovation and scaling technology solutions for forward-thinking businesses.'
   },
-  { 
-    name: 'Saqib Mughal', 
-    role: 'CTO', 
+  {
+    name: 'Saqib Mughal',
+    role: 'CTO',
     image: '/images/team2.jpg',
     bio: 'Technical mastermind architecting robust, high-performance systems and leading advanced engineering initiatives.'
   },
-  { 
-    name: 'Wasi Shah', 
-    role: 'Graphic Designer', 
+  {
+    name: 'Wasi Ahmad',
+    role: 'Graphic Designer',
     image: '/images/team3.jpeg',
     bio: 'Creative powerhouse crafting stunning visual identities and immersive, conversion-driven user experiences.'
   },
@@ -31,7 +31,7 @@ const Team = () => {
     <section className="py-16 md:py-20 bg-surface/20 border-y border-border">
       <Container>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 md:mb-24">
-          <SectionHeading 
+          <SectionHeading
             eyebrow="Leadership"
             title="The minds behind the technology."
             className="mb-0 max-w-xl"
@@ -52,21 +52,21 @@ const Team = () => {
               className="group cursor-pointer perspective-[1200px] h-[450px]"
             >
               {/* Card Container - Handles the 3D flip */}
-              <div 
+              <div
                 className="relative w-full h-full transition-all duration-700 ease-out shadow-xl rounded-2xl group-hover:shadow-accent/20"
-                style={{ 
-                  transformStyle: 'preserve-3d', 
+                style={{
+                  transformStyle: 'preserve-3d',
                   transform: 'rotateY(0deg)'
                 }}
               >
                 {/* ── FRONT OF CARD ── */}
-                <div 
+                <div
                   className="absolute inset-0 w-full h-full bg-surface rounded-2xl overflow-hidden backface-hidden group-hover:[transform:rotateY(180deg)] transition-all duration-700 ease-out"
                   style={{ backfaceVisibility: 'hidden' }}
                 >
-                  <img 
-                    src={member.image} 
-                    alt={member.name} 
+                  <img
+                    src={member.image}
+                    alt={member.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 grayscale group-hover:grayscale-0"
                     onError={(e) => { e.target.src = '/images/big1.png'; }}
                   />
@@ -78,13 +78,13 @@ const Team = () => {
                 </div>
 
                 {/* ── BACK OF CARD ── */}
-                <div 
+                <div
                   className="absolute inset-0 w-full h-full rounded-2xl p-8 flex flex-col justify-center items-center text-center bg-surface border border-border/50 shadow-2xl backface-hidden [transform:rotateY(-180deg)] group-hover:[transform:rotateY(0deg)] transition-all duration-700 ease-out overflow-hidden"
                   style={{ backfaceVisibility: 'hidden' }}
                 >
                   {/* Back glow */}
                   <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-purple-500/10 pointer-events-none" />
-                  
+
                   <div className="relative z-10 flex flex-col items-center h-full justify-between">
                     <div>
                       <div className="w-16 h-16 rounded-full bg-accent/20 flex items-center justify-center mb-6 mx-auto text-accent shadow-[0_0_20px_rgba(59,130,246,0.3)]">

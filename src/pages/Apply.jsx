@@ -32,7 +32,7 @@ const PROGRAMS = [
 ───────────────────────────────────────────────────────── */
 const Field = ({ label, icon: Icon, type = 'text', value, onChange, required, placeholder, options }) => {
   const [focused, setFocused] = useState(false);
-  const isActive = focused || (value && value.length > 0);
+  const isActive = focused || (value && value.length > 0) || type === 'date';
 
   const baseInputClass = `
     w-full bg-transparent text-white outline-none transition-all duration-300
@@ -303,7 +303,7 @@ const Apply = () => {
                       transition={{ delay: 0.45 }}
                       className="mt-8 px-6 py-2 rounded-full text-xs uppercase tracking-widest text-[#3366ff] border border-[#3366ff]/30 bg-[#3366ff]/10"
                     >
-                      Application ID: BST-{Date.now().toString().slice(-6)}
+                      Application ID: {appId}
                     </motion.div>
                   </motion.div>
                 ) : (
@@ -484,24 +484,37 @@ const Apply = () => {
                             </span>
                           </motion.button>
                         ) : (
-                          <motion.button
-                            type="submit"
-                            disabled={!form.program}
-                            whileHover={{ scale: form.program ? 1.03 : 1 }}
-                            whileTap={{ scale: form.program ? 0.97 : 1 }}
-                            className="relative flex-1 py-3.5 rounded-xl font-semibold text-sm tracking-widest uppercase text-white overflow-hidden"
-                            style={{
-                              background: form.program
-                                ? 'linear-gradient(135deg, #1a2fff 0%, #0a1acc 100%)'
-                                : 'rgba(255,255,255,0.05)',
-                              boxShadow: form.program ? '0 0 30px rgba(51,102,255,0.3), 0 8px 32px rgba(0,0,0,0.35)' : 'none',
-                              cursor: form.program ? 'pointer' : 'not-allowed',
-                            }}
-                          >
-                            <span className="flex items-center justify-center gap-2">
-                              Submit Application <Send size={15} />
-                            </span>
-                          </motion.button>
+                          <div className="flex-1">
+                            <motion.button
+                              type="submit"
+                              disabled={!form.program || loading}
+                              whileHover={{ scale: (form.program && !loading) ? 1.03 : 1 }}
+                              whileTap={{ scale: (form.program && !loading) ? 0.97 : 1 }}
+                              className="relative w-full py-3.5 rounded-xl font-semibold text-sm tracking-widest uppercase text-white overflow-hidden"
+                              style={{
+                                background: form.program
+                                  ? 'linear-gradient(135deg, #1a2fff 0%, #0a1acc 100%)'
+                                  : 'rgba(255,255,255,0.05)',
+                                boxShadow: form.program ? '0 0 30px rgba(51,102,255,0.3), 0 8px 32px rgba(0,0,0,0.35)' : 'none',
+                                cursor: (form.program && !loading) ? 'pointer' : 'not-allowed',
+                                opacity: loading ? 0.7 : 1,
+                              }}
+                            >
+                              <span className="flex items-center justify-center gap-2">
+                                {loading ? 'Submitting...' : 'Submit Application'} {!loading && <Send size={15} />}
+                              </span>
+                            </motion.button>
+                            {/* Error message */}
+                            {error && (
+                              <motion.p
+                                initial={{ opacity: 0, y: 6 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className="text-center text-xs text-red-400 mt-2"
+                              >
+                                {error}
+                              </motion.p>
+                            )}
+                          </div>
                         )}
                       </div>
 

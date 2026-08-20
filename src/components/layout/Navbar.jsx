@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Container from '../ui/Container';
@@ -8,6 +8,7 @@ import Button from '../ui/Button';
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   const navLinks = [
     { label: 'Home', path: '/' },
@@ -45,15 +46,25 @@ const Navbar = () => {
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
             <div className="flex items-center gap-6 text-sm font-medium">
-              {navLinks.map((link) => (
-                <Link 
-                  key={link.label} 
-                  to={link.path}
-                  className="text-secondary hover:text-white transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = location.pathname === link.path;
+                return (
+                  <Link 
+                    key={link.label} 
+                    to={link.path}
+                    className={`relative transition-colors ${isActive ? 'text-white' : 'text-secondary hover:text-white'}`}
+                  >
+                    {link.label}
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeNavLine"
+                        className="absolute -bottom-1.5 left-0 right-0 h-[2px] bg-[#3366ff] rounded-full"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </Link>
+                );
+              })}
             </div>
             <Link to="/contact">
               <Button variant="primary" className="!px-6 !py-2.5 text-sm">
@@ -83,22 +94,29 @@ const Navbar = () => {
             className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl pt-24 px-6 md:hidden flex flex-col"
           >
             <div className="flex flex-col gap-6 text-2xl font-display">
-              {navLinks.map((link, i) => (
-                <motion.div
-                  key={link.label}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                >
-                  <Link 
-                    to={link.path}
-                    className="block text-white/80 hover:text-white"
-                    onClick={() => setIsMobileMenuOpen(false)}
+              {navLinks.map((link, i) => {
+                const isActive = location.pathname === link.path;
+                return (
+                  <motion.div
+                    key={link.label}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.1 }}
                   >
-                    {link.label}
-                  </Link>
-                </motion.div>
-              ))}
+                    <Link 
+                      to={link.path}
+                      className={`block pl-4 border-l-2 transition-all ${
+                        isActive 
+                          ? 'text-white border-[#3366ff]' 
+                          : 'text-white/60 hover:text-white border-transparent'
+                      }`}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                );
+              })}
             </div>
             <motion.div 
               className="mt-auto mb-12"
