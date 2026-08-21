@@ -1,45 +1,36 @@
-import React, { Suspense, lazy } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ReactLenis } from 'lenis/react';
 import Layout from './components/layout/Layout';
 import CustomCursor from './components/ui/CustomCursor';
 
-// Lazy load pages — each page loads only when visited
-const Home         = lazy(() => import('./pages/Home'));
-const About        = lazy(() => import('./pages/About'));
-const Services     = lazy(() => import('./pages/Services'));
-const Work         = lazy(() => import('./pages/Work'));
-const Institute    = lazy(() => import('./pages/Institute'));
-const InsightsPage = lazy(() => import('./pages/Insights'));
-const Contact      = lazy(() => import('./pages/Contact'));
-const Apply        = lazy(() => import('./pages/Apply'));
-
-// Minimal spinner — shown while a page chunk is loading
-const PageLoader = () => (
-  <div className="w-full h-screen flex items-center justify-center bg-[#050505]">
-    <div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin" />
-  </div>
-);
+// Direct imports for immediate loading
+import Home from './pages/Home';
+import About from './pages/About';
+import Services from './pages/Services';
+import Work from './pages/Work';
+import Institute from './pages/Institute';
+import InsightsPage from './pages/Insights';
+import Contact from './pages/Contact';
+import Apply from './pages/Apply';
 
 function App() {
   return (
     <ReactLenis root options={{ lerp: 0.1, duration: 1.2, smoothWheel: true }}>
       <CustomCursor />
       <Router>
-        <Suspense fallback={<PageLoader />}>
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index        element={<Home />} />
-              <Route path="about"     element={<About />} />
-              <Route path="services"  element={<Services />} />
-              <Route path="work"      element={<Work />} />
-              <Route path="institute" element={<Institute />} />
-              <Route path="insights"  element={<InsightsPage />} />
-              <Route path="contact"   element={<Contact />} />
-              <Route path="apply"     element={<Apply />} />
-            </Route>
-          </Routes>
-        </Suspense>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index        element={<Home />} />
+            <Route path="about"     element={<About />} />
+            <Route path="services"  element={<Services />} />
+            <Route path="work"      element={<Work />} />
+            <Route path="institute" element={<Institute />} />
+            <Route path="insights"  element={<InsightsPage />} />
+            <Route path="contact"   element={<Contact />} />
+            <Route path="apply"     element={<Apply />} />
+          </Route>
+        </Routes>
       </Router>
     </ReactLenis>
   );

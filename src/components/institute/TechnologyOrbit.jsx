@@ -700,10 +700,10 @@ const TechnologyOrbit = () => {
             }}
             dpr={[
               1,
-              1.75,
+              Math.min(typeof window !== 'undefined' ? window.devicePixelRatio : 1, 1.5)
             ]}
             gl={{
-              antialias: true,
+              antialias: typeof window !== 'undefined' && window.innerWidth > 768,
               alpha: true,
               powerPreference:
                 'high-performance',

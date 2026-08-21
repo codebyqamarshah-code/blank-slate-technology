@@ -1,42 +1,33 @@
-import React, { Suspense, lazy } from 'react';
+import React from 'react';
 import PageTransition from '../components/layout/PageTransition';
 import Hero from '../components/home/Hero';
 import TrustStrip from '../components/home/TrustStrip';
 
-// Lazy-load all below-the-fold sections
-const AboutPreview    = lazy(() => import('../components/home/AboutPreview'));
-const FeaturedServices = lazy(() => import('../components/home/FeaturedServices'));
-const FeaturedWork    = lazy(() => import('../components/home/FeaturedWork'));
-const Process         = lazy(() => import('../components/home/Process'));
-const Values          = lazy(() => import('../components/home/Values'));
-const Team            = lazy(() => import('../components/home/Team'));
-const Insights        = lazy(() => import('../components/home/Insights'));
-const CTA             = lazy(() => import('../components/home/CTA'));
-
-const SectionLoader = () => (
-  <div className="w-full h-40 flex items-center justify-center">
-    <div className="w-6 h-6 border-2 border-white/10 border-t-white/40 rounded-full animate-spin" />
-  </div>
-);
+// Direct imports for immediate loading
+import AboutPreview from '../components/home/AboutPreview';
+import FeaturedServices from '../components/home/FeaturedServices';
+import FeaturedWork from '../components/home/FeaturedWork';
+import Process from '../components/home/Process';
+import Values from '../components/home/Values';
+import Team from '../components/home/Team';
+import Insights from '../components/home/Insights';
+import FreeCertification from '../components/home/FreeCertification';
+import CTA from '../components/home/CTA';
 
 const Home = () => (
   <PageTransition>
     <div className="w-full">
-      {/* Above fold — loaded immediately */}
       <Hero />
       <TrustStrip />
-
-      {/* Below fold — lazy loaded */}
-      <Suspense fallback={<SectionLoader />}>
-        <AboutPreview />
-        <FeaturedServices />
-        <FeaturedWork />
-        <Process />
-        <Values />
-        <Team />
-        <Insights />
-        <CTA />
-      </Suspense>
+      <AboutPreview />
+      <FeaturedServices />
+      <FeaturedWork />
+      <Process />
+      <Values />
+      <Team />
+      <Insights />
+      <FreeCertification />
+      <CTA />
     </div>
   </PageTransition>
 );

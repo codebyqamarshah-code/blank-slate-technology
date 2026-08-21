@@ -312,8 +312,8 @@ const InstituteHero3D = () => (
     <Canvas
       shadows
       camera={{ position: [0, 0.5, 9], fov: 40 }}
-      dpr={[1, 2]}
-      gl={{ antialias: true, alpha: false }}
+      dpr={[1, Math.min(typeof window !== 'undefined' ? window.devicePixelRatio : 1, 1.5)]}
+      gl={{ antialias: typeof window !== 'undefined' && window.innerWidth > 768, alpha: false, powerPreference: 'high-performance' }}
     >
       <Scene />
       <OrbitControls
