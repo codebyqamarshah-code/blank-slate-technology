@@ -7,6 +7,7 @@ import Values from '../components/home/Values';
 import Team from '../components/home/Team';
 import CTA from '../components/home/CTA';
 import ZigzagHeroBackground from '../components/ui/ZigzagHeroBackground';
+import DirectorUK from '../components/about/DirectorUK';
 
 const About = () => {
   const { scrollYProgress } = useScroll();
@@ -83,7 +84,7 @@ const About = () => {
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                   className="absolute -bottom-8 -left-8 bg-surface/80 backdrop-blur-md border border-border p-6 rounded-2xl shadow-xl hidden md:block"
                 >
-                  <div className="text-4xl font-display font-bold text-white mb-1">15+</div>
+                  <div className="text-4xl font-display font-bold text-white mb-1">11+</div>
                   <div className="text-secondary text-sm uppercase tracking-wider">Years of Excellence</div>
                 </motion.div>
               </div>
@@ -91,6 +92,7 @@ const About = () => {
           </Container>
         </section>
 
+        <DirectorUK />
         <Values />
         <Team />
         <CTA />
