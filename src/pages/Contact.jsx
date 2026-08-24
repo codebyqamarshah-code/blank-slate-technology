@@ -180,7 +180,7 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     // Construct WhatsApp message
     const phoneNumber = "923320901442";
     const text = `*New Inquiry from Website*%0A%0A*Name:* ${formData.name}%0A*Email:* ${formData.email}%0A%0A*Message:*%0A${formData.message}`;
@@ -200,8 +200,8 @@ const Contact = () => {
   };
 
   const contactInfo = [
-    { icon: MapPin, label: 'Location', text: '+923320901442' },
-    
+    { icon: Phone, label: 'Number', text: '+92 3320901442' },
+
   ];
 
   return (
@@ -314,7 +314,7 @@ const Contact = () => {
               >
                 {/* Corner accent dots */}
                 <div className="absolute top-4 right-4 flex gap-1.5">
-                  {[1,2,3].map((d) => (
+                  {[1, 2, 3].map((d) => (
                     <motion.div
                       key={d}
                       className="w-2 h-2 rounded-full"
