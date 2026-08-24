@@ -44,7 +44,6 @@ const Footer = () => {
             <h4 className="text-white font-medium mb-6">Connect</h4>
             <ul className="space-y-4 text-sm text-secondary">
               <li><a href="#" className="hover:text-white transition-colors">LinkedIn</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Twitter</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Instagram</a></li>
               <li><a href="mailto:hello@blankslatetechnology.com" className="hover:text-white transition-colors">hello@blankslatetechnology.com</a></li>
             </ul>
