@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import {
-  SiNextdotjs,
   SiReact,
   SiNodedotjs,
   SiMongodb,
@@ -15,7 +14,6 @@ import {
 } from 'react-icons/si';
 
 const CustomCursor = () => {
-  const dotRef = useRef(null);
   const ringRef = useRef(null);
 
   const pos = useRef({
@@ -30,12 +28,6 @@ const CustomCursor = () => {
 
   const rafId = useRef(null);
 
-  const lastPath = useRef(
-    typeof window !== 'undefined'
-      ? window.location.pathname
-      : '/'
-  );
-
   const [visible, setVisible] = useState(false);
   const [clicking, setClicking] = useState(false);
   const [hovering, setHovering] = useState(false);
@@ -48,11 +40,6 @@ const CustomCursor = () => {
   */
 
   const technologies = [
-    {
-      name: 'Next.js',
-      icon: SiNextdotjs,
-      color: '#FFFFFF',
-    },
     {
       name: 'React',
       icon: SiReact,
@@ -116,8 +103,11 @@ const CustomCursor = () => {
   ==========================================================
   */
 
-  const CurrentIcon = technologies[techIndex].icon;
-  const currentColor = technologies[techIndex].color;
+  const CurrentIcon =
+    technologies[techIndex].icon;
+
+  const currentColor =
+    technologies[techIndex].color;
 
   /*
   ==========================================================
@@ -130,43 +120,15 @@ const CustomCursor = () => {
 
     const interval = setInterval(() => {
       setTechIndex((prev) => {
-        return (prev + 1) % technologies.length;
+        return (
+          (prev + 1) %
+          technologies.length
+        );
       });
     }, 2500);
 
     return () => {
       clearInterval(interval);
-    };
-  }, [isTouchDevice]);
-
-  /*
-  ==========================================================
-  CHANGE ICON WHEN PAGE CHANGES
-  ==========================================================
-  */
-
-  useEffect(() => {
-    if (isTouchDevice) return;
-
-    const checkRouteChange = () => {
-      const currentPath = window.location.pathname;
-
-      if (currentPath !== lastPath.current) {
-        lastPath.current = currentPath;
-
-        setTechIndex((prev) => {
-          return (prev + 1) % technologies.length;
-        });
-      }
-    };
-
-    const routeInterval = setInterval(
-      checkRouteChange,
-      200
-    );
-
-    return () => {
-      clearInterval(routeInterval);
     };
   }, [isTouchDevice]);
 
@@ -180,35 +142,42 @@ const CustomCursor = () => {
     if (isTouchDevice) return;
 
     /*
-    Detect hoverable elements
+    Hover Detection
     */
 
-    const checkHoverElement = (x, y) => {
-      const element = document.elementFromPoint(
-        x,
-        y
-      );
+    const checkHoverElement = (
+      x,
+      y
+    ) => {
+      const element =
+        document.elementFromPoint(
+          x,
+          y
+        );
 
       if (!element) {
         setHovering(false);
         return;
       }
 
-      const hoverTarget = element.closest(`
-        a,
-        button,
-        [data-cursor-hover],
-        .group,
-        input,
-        textarea,
-        select
-      `);
+      const hoverTarget =
+        element.closest(`
+          a,
+          button,
+          [data-cursor-hover],
+          .group,
+          input,
+          textarea,
+          select
+        `);
 
-      setHovering(Boolean(hoverTarget));
+      setHovering(
+        Boolean(hoverTarget)
+      );
     };
 
     /*
-    Mouse move
+    Mouse Move
     */
 
     const onMove = (e) => {
@@ -226,7 +195,7 @@ const CustomCursor = () => {
     };
 
     /*
-    Mouse down
+    Mouse Down
     */
 
     const onDown = () => {
@@ -234,7 +203,7 @@ const CustomCursor = () => {
     };
 
     /*
-    Mouse up
+    Mouse Up
     */
 
     const onUp = () => {
@@ -242,7 +211,7 @@ const CustomCursor = () => {
     };
 
     /*
-    Mouse leave
+    Mouse Leave
     */
 
     const onLeave = () => {
@@ -251,7 +220,7 @@ const CustomCursor = () => {
     };
 
     /*
-    Mouse enter
+    Mouse Enter
     */
 
     const onEnter = () => {
@@ -259,21 +228,7 @@ const CustomCursor = () => {
     };
 
     /*
-    Change icon on link click
-    */
-
-    const onDocumentClick = (e) => {
-      const link = e.target.closest('a');
-
-      if (link) {
-        setTechIndex((prev) => {
-          return (prev + 1) % technologies.length;
-        });
-      }
-    };
-
-    /*
-    Event listeners
+    Event Listeners
     */
 
     window.addEventListener(
@@ -291,11 +246,6 @@ const CustomCursor = () => {
       onUp
     );
 
-    document.addEventListener(
-      'click',
-      onDocumentClick
-    );
-
     document.documentElement.addEventListener(
       'mouseleave',
       onLeave
@@ -308,37 +258,29 @@ const CustomCursor = () => {
 
     /*
     ========================================================
-    SMOOTH RING
+    FAST SMOOTH CURSOR
     ========================================================
     */
 
     const tick = () => {
-      /*
-      Dot
-      */
-
-      if (dotRef.current) {
-        dotRef.current.style.transform = `
-          translate3d(
-            ${pos.current.x - 4}px,
-            ${pos.current.y - 4}px,
-            0
-          )
-        `;
-      }
-
-      /*
-      Ring
-      */
-
       if (ringRef.current) {
+
+        /*
+        Faster follow speed:
+        0.35 = fast
+        */
+
         ring.current.x +=
-          (pos.current.x - ring.current.x) *
-          0.18;
+          (
+            pos.current.x -
+            ring.current.x
+          ) * 0.35;
 
         ring.current.y +=
-          (pos.current.y - ring.current.y) *
-          0.18;
+          (
+            pos.current.y -
+            ring.current.y
+          ) * 0.35;
 
         ringRef.current.style.transform = `
           translate3d(
@@ -350,11 +292,15 @@ const CustomCursor = () => {
       }
 
       rafId.current =
-        requestAnimationFrame(tick);
+        requestAnimationFrame(
+          tick
+        );
     };
 
     rafId.current =
-      requestAnimationFrame(tick);
+      requestAnimationFrame(
+        tick
+      );
 
     /*
     Cleanup
@@ -374,11 +320,6 @@ const CustomCursor = () => {
       window.removeEventListener(
         'mouseup',
         onUp
-      );
-
-      document.removeEventListener(
-        'click',
-        onDocumentClick
       );
 
       document.documentElement.removeEventListener(
@@ -422,10 +363,10 @@ const CustomCursor = () => {
       : 60;
 
   const iconSize = clicking
-    ? 32
+    ? 30
     : hovering
-      ? 42
-      : 38;
+      ? 40
+      : 36;
 
   /*
   ==========================================================
@@ -435,31 +376,6 @@ const CustomCursor = () => {
 
   return (
     <>
-      {/* =====================================================
-          SMALL CENTER DOT
-      ====================================================== */}
-
-      <div
-        ref={dotRef}
-        className="
-          fixed
-          top-0
-          left-0
-          pointer-events-none
-          z-[99999]
-        "
-        style={{
-          width: 10,
-          height: 10,
-          borderRadius: '50%',
-          backgroundColor: '#FFFFFF',
-          opacity: visible ? 1 : 0,
-          boxShadow:
-            '0 0 16px rgba(255,255,255,0.9)',
-          willChange: 'transform',
-        }}
-      />
-
       {/* =====================================================
           TECHNOLOGY RING
       ====================================================== */}
@@ -481,22 +397,30 @@ const CustomCursor = () => {
           width: ringSize,
           height: ringSize,
 
-          marginLeft: -(ringSize / 2),
-          marginTop: -(ringSize / 2),
+          marginLeft:
+            -(ringSize / 2),
 
-          borderRadius: '50%',
+          marginTop:
+            -(ringSize / 2),
 
-          border: hovering
-            ? '1.5px solid rgba(255,255,255,0.85)'
-            : '1.5px solid rgba(255,255,255,0.5)',
+          borderRadius:
+            '50%',
 
-          background: hovering
-            ? 'rgba(255,255,255,0.07)'
-            : 'rgba(255,255,255,0.025)',
+          border:
+            hovering
+              ? '1.5px solid rgba(255,255,255,0.85)'
+              : '1.5px solid rgba(255,255,255,0.5)',
 
-          backdropFilter: 'blur(5px)',
+          background:
+            hovering
+              ? 'rgba(255,255,255,0.07)'
+              : 'rgba(255,255,255,0.025)',
 
-          opacity: visible ? 1 : 0,
+          backdropFilter:
+            'blur(5px)',
+
+          opacity:
+            visible ? 1 : 0,
 
           transition: `
             width 0.3s ease,
@@ -512,104 +436,144 @@ const CustomCursor = () => {
             0 0 50px rgba(255,255,255,0.04)
           `,
 
-          willChange: 'transform',
+          willChange:
+            'transform',
 
-          overflow: 'visible',
+          overflow:
+            'visible',
         }}
       >
+
         {/* =================================================
-            ROUND TECHNOLOGY ICON
+            TECHNOLOGY ICON
         ================================================== */}
 
-        <AnimatePresence mode="wait">
+        <AnimatePresence
+          mode="wait"
+        >
           <motion.div
-            key={technologies[techIndex].name}
+            key={
+              technologies[
+                techIndex
+              ].name
+            }
+
             initial={{
               opacity: 0,
               scale: 0.75,
             }}
+
             animate={{
               opacity: 1,
               scale: 1,
             }}
+
             exit={{
               opacity: 0,
               scale: 0.75,
             }}
+
             transition={{
               duration: 0.25,
               ease: 'easeOut',
             }}
+
             className="
               flex
               items-center
               justify-center
               pointer-events-none
             "
+
             style={{
-              width: iconSize + 8,
-              height: iconSize + 8,
-              flexShrink: 0,
+              width:
+                iconSize + 8,
+
+              height:
+                iconSize + 8,
+
+              flexShrink:
+                0,
             }}
           >
+
             {/* =============================================
-                CIRCULAR ICON BACKGROUND
+                ROUND ICON
             ============================================== */}
 
             <div
               style={{
-                width: iconSize + 6,
-                height: iconSize + 6,
+                width:
+                  iconSize + 6,
 
-                minWidth: iconSize + 6,
-                minHeight: iconSize + 6,
+                height:
+                  iconSize + 6,
 
-                borderRadius: '50%',
+                minWidth:
+                  iconSize + 6,
 
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                minHeight:
+                  iconSize + 6,
 
-                flexShrink: 0,
+                borderRadius:
+                  '50%',
 
-                background: `
-                  radial-gradient(
-                    circle at 35% 30%,
-                    rgba(255,255,255,0.14),
-                    rgba(255,255,255,0.035) 55%,
-                    rgba(0,0,0,0.35)
-                  )
-                `,
+                display:
+                  'flex',
 
-                border: `
-                  1px solid
-                  ${currentColor}55
-                `,
+                alignItems:
+                  'center',
+
+                justifyContent:
+                  'center',
+
+                flexShrink:
+                  0,
+
+                background:
+                  'rgba(0,0,0,0.45)',
+
+                border:
+                  `1px solid ${currentColor}55`,
 
                 boxShadow: `
-                  0 0 10px ${currentColor}35,
-                  inset 0 0 8px rgba(255,255,255,0.04)
+                  0 0 10px
+                  ${currentColor}35
                 `,
 
-                overflow: 'hidden',
+                overflow:
+                  'hidden',
               }}
             >
+
               <CurrentIcon
                 size={iconSize}
                 color={currentColor}
+
                 style={{
-                  display: 'block',
+                  display:
+                    'block',
 
-                  width: iconSize,
-                  height: iconSize,
+                  width:
+                    iconSize,
 
-                  minWidth: iconSize,
-                  minHeight: iconSize,
+                  height:
+                    iconSize,
 
-                  maxWidth: 'none',
-                  maxHeight: 'none',
+                  minWidth:
+                    iconSize,
 
-                  flexShrink: 0,
+                  minHeight:
+                    iconSize,
+
+                  maxWidth:
+                    'none',
+
+                  maxHeight:
+                    'none',
+
+                  flexShrink:
+                    0,
 
                   filter: `
                     drop-shadow(
@@ -619,72 +583,13 @@ const CustomCursor = () => {
                   `,
                 }}
               />
+
             </div>
+
           </motion.div>
         </AnimatePresence>
+
       </div>
-
-      {/* =====================================================
-          TECHNOLOGY NAME
-      ====================================================== */}
-
-      <AnimatePresence mode="wait">
-        {hovering && visible && (
-          <motion.div
-            key={technologies[techIndex].name}
-            initial={{
-              opacity: 0,
-              y: 6,
-              scale: 0.9,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-              scale: 1,
-            }}
-            exit={{
-              opacity: 0,
-              y: -4,
-              scale: 0.95,
-            }}
-            transition={{
-              duration: 0.2,
-            }}
-            className="
-              fixed
-              pointer-events-none
-              z-[99997]
-
-              px-3
-              py-1.5
-
-              rounded-full
-
-              bg-black/80
-              border
-              border-white/10
-
-              backdrop-blur-xl
-
-              text-[10px]
-              font-semibold
-              tracking-wide
-              text-white
-
-              whitespace-nowrap
-            "
-            style={{
-              left:
-                pos.current.x + 42,
-
-              top:
-                pos.current.y + 42,
-            }}
-          >
-            {technologies[techIndex].name}
-          </motion.div>
-        )}
-      </AnimatePresence>
     </>
   );
 };

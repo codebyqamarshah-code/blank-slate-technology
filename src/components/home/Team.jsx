@@ -8,19 +8,19 @@ import Button from '../ui/Button';
 const team = [
   {
     name: 'Talha Mughal',
-    role: 'CEO',
+    role: 'Founder & CEO',
     image: '/images/team.jpg',
     bio: 'Visionary leader driving digital innovation and scaling technology solutions for forward-thinking businesses.'
   },
   {
     name: 'Saqib Mughal',
-    role: 'CTO',
+    role: 'Full Stack Developer',
     image: '/images/team 2.jpg',
     bio: 'Technical mastermind architecting robust, high-performance systems and leading advanced engineering initiatives.'
   },
   {
     name: 'Wasi Ahmad',
-    role: 'Graphic Designer',
+    role: 'UI/UX & Graphic Designer',
     image: '/images/team 3.jpg',
     bio: 'Creative powerhouse crafting stunning visual identities and immersive, conversion-driven user experiences.'
   },
@@ -100,9 +100,6 @@ const Team = () => {
                     <div className="flex gap-4 mt-6">
                       <a href="#" className="w-10 h-10 rounded-full bg-background border border-border flex items-center justify-center text-secondary hover:text-white hover:border-accent hover:bg-accent/20 transition-all duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                      </a>
-                      <a href="#" className="w-10 h-10 rounded-full bg-background border border-border flex items-center justify-center text-secondary hover:text-white hover:border-accent hover:bg-accent/20 transition-all duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
                       </a>
                       <a href="#" className="w-10 h-10 rounded-full bg-background border border-border flex items-center justify-center text-secondary hover:text-white hover:border-accent hover:bg-accent/20 transition-all duration-300">
                         <Mail size={18} />

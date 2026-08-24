@@ -43,7 +43,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="relative z-50">
             <img
-              src="/images/logo.png"
+              src="/images/white.png"
               alt="Blank Slate Technologies"
               className={`object-contain transition-all duration-300 ${
                 isScrolled

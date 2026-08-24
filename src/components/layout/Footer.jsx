@@ -10,9 +10,9 @@ const Footer = () => {
           <div className="md:col-span-1">
             <Link to="/" className="inline-block mb-6">
               <img 
-                src="/images/logo.png" 
+                src="/images/white.png" 
                 alt="Blank Slate Technologies" 
-                className="h-10 object-contain grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-300" 
+                className="h-12 object-contain grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-300" 
               />
             </Link>
             <p className="text-secondary text-sm leading-relaxed max-w-xs">
