@@ -18,7 +18,7 @@ const About = () => {
     <PageTransition>
       <div className="w-full">
         {/* Zigzag Animated Hero */}
-        <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
+        <section className="relative h-[45vh] flex items-center justify-center overflow-hidden">
           {/* Animated zigzag background — replaces image */}
           <ZigzagHeroBackground />
           {/* Subtle dark overlay so text stays readable */}
@@ -45,7 +45,7 @@ const About = () => {
         </section>
 
         {/* Story Section */}
-        <section className="py-16 md:py-20">
+        <section className="py-10 md:py-14">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
               <div>
