@@ -15,7 +15,7 @@ const Navbar = () => {
     { label: 'About', path: '/about' },
     { label: 'Services', path: '/services' },
     { label: 'Work', path: '/work' },
-    { label: 'Institute', path: '/institute' },
+    { label: 'Institute', path: 'https://blankslateinstitute.pk/', isExternal: true },
     { label: 'Insights', path: '/insights' },
   ];
 
@@ -41,14 +41,14 @@ const Navbar = () => {
         <Container className="flex items-center justify-between">
 
           {/* Logo */}
-          <Link to="/" className="relative z-50">
+          <Link to="/" className="relative z-50 flex items-center">
             <img
-              src="/images/white.png"
+              src="/images/Blank Slate IT Logo-02.png"
               alt="Blank Slate Technologies"
               className={`object-contain transition-all duration-300 ${
                 isScrolled
-                  ? 'h-8 md:h-10'
-                  : 'h-10 md:h-12'
+                  ? 'h-10 md:h-12'
+                  : 'h-12 md:h-14'
               }`}
             />
           </Link>
@@ -57,7 +57,21 @@ const Navbar = () => {
           <nav className="hidden md:flex items-center gap-8">
             <div className="flex items-center gap-6 text-sm font-medium">
               {navLinks.map((link) => {
-                const isActive = location.pathname === link.path;
+                const isActive = !link.isExternal && location.pathname === link.path;
+
+                if (link.isExternal) {
+                  return (
+                    <a
+                      key={link.label}
+                      href={link.path}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="relative transition-colors text-secondary hover:text-white"
+                    >
+                      {link.label}
+                    </a>
+                  );
+                }
 
                 return (
                   <Link
@@ -123,7 +137,28 @@ const Navbar = () => {
           >
             <div className="flex flex-col gap-6 text-2xl font-display">
               {navLinks.map((link, i) => {
-                const isActive = location.pathname === link.path;
+                const isActive = !link.isExternal && location.pathname === link.path;
+
+                if (link.isExternal) {
+                  return (
+                    <motion.div
+                      key={link.label}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.1 }}
+                    >
+                      <a
+                        href={link.path}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block pl-4 border-l-2 transition-all text-white/60 hover:text-white border-transparent"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {link.label}
+                      </a>
+                    </motion.div>
+                  );
+                }
 
                 return (
                   <motion.div

@@ -10,9 +10,9 @@ const Footer = () => {
           <div className="md:col-span-1">
             <Link to="/" className="inline-block mb-6">
               <img 
-                src="/images/white.png" 
+                src="/images/Blank Slate IT Logo-02.png" 
                 alt="Blank Slate Technologies" 
-                className="h-12 object-contain grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-300" 
+                className="h-14 md:h-16 object-contain opacity-95 hover:opacity-100 transition-all duration-300" 
               />
             </Link>
             <p className="text-secondary text-sm leading-relaxed max-w-xs">
@@ -26,7 +26,7 @@ const Footer = () => {
               <li><Link to="/about" className="hover:text-white transition-colors">About Us</Link></li>
               <li><Link to="/services" className="hover:text-white transition-colors">Services</Link></li>
               <li><Link to="/work" className="hover:text-white transition-colors">Selected Work</Link></li>
-              <li><Link to="/institute" className="hover:text-white transition-colors">Institute</Link></li>
+              <li><a href="https://blankslateinstitute.pk/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Institute</a></li>
               <li><Link to="/insights" className="hover:text-white transition-colors">Insights</Link></li>
               <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
             </ul>
