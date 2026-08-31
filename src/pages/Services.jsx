@@ -5,15 +5,12 @@ import {
   ArrowRight, 
   Sparkles, 
   CheckCircle2, 
-  Zap,
   Building2,
   Users,
   Store,
   Wallet,
   Stethoscope,
-  GraduationCap,
-  Layers,
-  ArrowUpRight
+  GraduationCap
 } from 'lucide-react';
 import PageTransition from '../components/layout/PageTransition';
 import Container from '../components/ui/Container';
@@ -42,7 +39,7 @@ const Services = () => {
             className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs font-medium text-accent mb-6"
           >
             <Sparkles size={14} />
-            <span>Full-Suite Software House & Enterprise Systems</span>
+            <span>Full-Suite Software House & Digital Growth</span>
           </motion.div>
 
           <motion.h1
@@ -51,13 +48,13 @@ const Services = () => {
             transition={{ duration: 0.8 }}
             className="text-4xl sm:text-5xl md:text-6xl font-display font-medium mb-8 leading-[1.1]"
           >
-            Custom enterprise software for <br />
+            Engineering digital solutions for <br />
             <span
               className="inline-block bg-clip-text text-transparent"
               style={{ backgroundImage: 'linear-gradient(90deg, #ffffff 0%, #B9B9BA 60%, #7a7a7c 100%)' }}
             >
               <TypewriterText
-                words={['modern enterprises.', 'scaling businesses.', 'global industries.']}
+                words={['modern enterprises.', 'scaling businesses.', 'global brands.']}
                 typingSpeed={65}
                 pauseTime={2800}
               />
@@ -69,12 +66,12 @@ const Services = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-lg md:text-xl text-secondary max-w-3xl mx-auto"
           >
-            From custom Enterprise ERPs and Sales CRMs to high-speed Retail POS, Healthcare HMS, and AI systems, we build scalable software architectures that streamline business operations.
+            From custom web and mobile engineering to advanced AI systems, technical SEO, Google Ads, and LinkedIn B2B growth, we deliver end-to-end digital excellence.
           </motion.p>
         </Container>
 
         {/* =========================================================
-            FLAGSHIP ENTERPRISE SYSTEMS SHOWCASE
+            FLAGSHIP ENTERPRISE SYSTEMS SHOWCASE (STATIC CLEAN CARDS - NO CLICK NAVIGATION)
         ========================================================= */}
         <section className="py-16 bg-surface/20 border-y border-white/5">
           <Container>
@@ -94,28 +91,22 @@ const Services = () => {
               {enterpriseSpecialties.map((item, idx) => {
                 const ItemIcon = item.icon;
                 return (
-                  <Link
+                  <div
                     key={idx}
-                    to={`/services/${item.slug}`}
-                    className="p-7 rounded-3xl bg-surface/40 border border-white/10 hover:border-accent/40 hover:bg-surface/80 transition-all duration-300 group flex flex-col justify-between"
+                    className="p-8 rounded-3xl bg-surface/40 border border-white/10 flex flex-col justify-between select-none"
                   >
                     <div>
-                      <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-accent mb-5 group-hover:scale-110 group-hover:bg-accent group-hover:text-black transition-all">
+                      <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-accent mb-5">
                         <ItemIcon size={22} />
                       </div>
-                      <h3 className="text-xl font-display font-medium text-white mb-2 group-hover:text-accent transition-colors">
+                      <h3 className="text-xl font-display font-medium text-white mb-2">
                         {item.title}
                       </h3>
-                      <p className="text-sm text-secondary leading-relaxed mb-6">
+                      <p className="text-sm text-secondary leading-relaxed">
                         {item.desc}
                       </p>
                     </div>
-
-                    <div className="flex items-center gap-2 text-xs font-semibold text-white/80 group-hover:text-white transition-colors">
-                      <span>Explore Architecture</span>
-                      <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </Link>
+                  </div>
                 );
               })}
             </div>
@@ -123,17 +114,17 @@ const Services = () => {
         </section>
 
         {/* =========================================================
-            A-TO-Z SERVICES DIRECTORY & CATEGORY FILTERS
+            A-TO-Z SERVICES DIRECTORY & CATEGORY FILTERS (CLICKABLE DETAIL PAGES)
         ========================================================= */}
         <section className="py-20 md:py-28">
           <Container>
             <div className="text-center max-w-2xl mx-auto mb-12">
               <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent mb-2">Capabilities</p>
               <h2 className="text-3xl md:text-5xl font-display font-medium text-white mb-4">
-                All Engineering & Software Services
+                Our Services & Capabilities
               </h2>
               <p className="text-sm text-secondary">
-                Filter by category to view detailed technical specifications, tech stacks, and workflows.
+                Click any service below to explore full technical specifications, features, and workflows.
               </p>
             </div>
 
@@ -147,7 +138,7 @@ const Services = () => {
                     : 'bg-surface/60 text-secondary hover:text-white hover:bg-surface border border-white/5'
                 }`}
               >
-                All Systems & Services ({allServices.length})
+                All Services ({allServices.length})
               </button>
 
               {serviceCategories.map((cat) => (
@@ -220,7 +211,7 @@ const Services = () => {
                         </div>
 
                         <div className="flex items-center justify-between pt-4 border-t border-white/5 text-xs font-semibold text-white group-hover:text-accent transition-colors">
-                          <span>Explore System Specs</span>
+                          <span>Explore Service Specs</span>
                           <ArrowRight size={15} className="group-hover:translate-x-1.5 transition-transform" />
                         </div>
                       </Link>

@@ -15,34 +15,30 @@ import {
   Layout, 
   Palette, 
   Search, 
-  Target,
-  RefreshCw,
-  Gauge,
-  Database,
-  Building2,
-  Users,
-  Store,
-  Wallet,
-  Stethoscope,
-  GraduationCap,
-  Home,
-  CheckCircle2,
-  Sparkles,
-  Zap
+  Target, 
+  RefreshCw, 
+  Gauge, 
+  Database, 
+  Building2, 
+  Users, 
+  Store, 
+  Wallet, 
+  Stethoscope, 
+  GraduationCap, 
+  Megaphone, 
+  CheckCircle2, 
+  Sparkles, 
+  Zap,
+  Briefcase
 } from 'lucide-react';
+import { FaLinkedin } from 'react-icons/fa6';
 
 export const serviceCategories = [
   {
-    id: 'enterprise-systems',
-    title: 'Enterprise & Business Systems',
-    icon: Building2,
-    description: 'Custom ERPs, CRMs, Point of Sale (POS), Healthcare HMS, Fintech, and LMS systems built to automate entire business operations.',
-  },
-  {
     id: 'web-development',
-    title: 'Web & Software Engineering',
+    title: 'Web & Software Development',
     icon: Code,
-    description: 'Bespoke web applications, SaaS multi-tenant platforms, high-throughput microservices, and cross-platform mobile apps.',
+    description: 'High-performance bespoke web applications, SaaS multi-tenant platforms, scalable APIs, and cross-platform mobile apps.',
   },
   {
     id: 'advanced-technology',
@@ -51,10 +47,16 @@ export const serviceCategories = [
     description: 'Enterprise AI agents, private RAG pipelines, AWS/GCP cloud infrastructure, cybersecurity audits, and high-concurrency databases.',
   },
   {
-    id: 'design-growth',
-    title: 'UI/UX Design & Digital Growth',
+    id: 'design-creative',
+    title: 'UI/UX & Product Design',
     icon: PenTool,
-    description: 'Conversion-driven Figma design systems, premium brand books, technical SEO ranking, and high-ROAS marketing funnels.',
+    description: 'Conversion-driven Figma design systems, premium brand books, interactive prototypes, and modern visual identities.',
+  },
+  {
+    id: 'digital-growth',
+    title: 'Digital Marketing & Growth',
+    icon: TrendingUp,
+    description: 'Data-backed SEO ranking, Google Ads PPC management, LinkedIn B2B optimization, and high-converting marketing funnels.',
   }
 ];
 
@@ -62,438 +64,43 @@ export const enterpriseSpecialties = [
   {
     icon: Building2,
     title: 'Enterprise ERP Systems',
-    desc: 'All-in-one supply chain, inventory, accounting, and multi-branch resource management.',
-    slug: 'enterprise-erp-systems'
+    desc: 'All-in-one supply chain, inventory, accounting, and multi-branch resource management tailored to your exact business workflow.'
   },
   {
     icon: Users,
     title: 'Custom CRM Platforms',
-    desc: 'Lead pipelines, automated follow-ups, WhatsApp/Email sync, and customer lifetime value tracking.',
-    slug: 'custom-crm-systems'
+    desc: 'Lead pipelines, automated follow-ups, WhatsApp/Email sync, and sales representative performance tracking.'
   },
   {
     icon: Store,
     title: 'Point of Sale (POS) Systems',
-    desc: 'High-speed retail billing, thermal printing, barcode scanning, and multi-store inventory.',
-    slug: 'pos-retail-systems'
+    desc: 'High-speed retail billing, thermal printing, barcode scanning, multi-store stock transfers, and offline billing mode.'
   },
   {
     icon: Stethoscope,
     title: 'Hospital & Healthcare (HMS)',
-    desc: 'Patient EHR, doctor scheduling, pharmacy inventory, and lab reporting portals.',
-    slug: 'hospital-healthcare-systems'
+    desc: 'Patient EHR records, doctor appointment scheduling, pharmacy inventory, and automated diagnostic lab portals.'
   },
   {
     icon: GraduationCap,
     title: 'LMS & Education Portals',
-    desc: 'Live classrooms, video streaming, automated grading, and student certification.',
-    slug: 'lms-education-portals'
+    desc: 'DRM-encrypted video streaming, automated grading, student fee installments, and digital certificate generation.'
   },
   {
     icon: Wallet,
     title: 'Fintech & Payment Engines',
-    desc: 'Digital wallets, micro-lending platforms, multi-currency ledger, and PCI-DSS checkouts.',
-    slug: 'fintech-payment-solutions'
+    desc: 'Double-entry cryptographic ledger, digital wallets, bank webhook reconciliation, and automated KYC verification.'
   }
 ];
 
 export const allServices = [
   // ─────────────────────────────────────────────────────────────
-  // 1. ENTERPRISE & BUSINESS SYSTEMS (ERP, CRM, POS, HMS, LMS, FINTECH)
-  // ─────────────────────────────────────────────────────────────
-  {
-    slug: 'enterprise-erp-systems',
-    categoryId: 'enterprise-systems',
-    categoryName: 'Enterprise & Business Systems',
-    title: 'Enterprise ERP Systems',
-    shortDescription: 'Custom Enterprise Resource Planning systems integrating inventory, supply chain, HR, finance, and multi-warehouse operations.',
-    heroDescription: 'Off-the-shelf ERPs are rigid, expensive, and force your company to change how it works. We engineer bespoke Enterprise ERP software tailored exactly to your workflow—connecting procurement, warehouse management, automated accounting, payroll, and real-time executive analytics in one unified dashboard.',
-    icon: Building2,
-    badge: 'Enterprise Core',
-    highlights: [
-      'Multi-Branch & Multi-Warehouse Live Inventory Sync',
-      'Double-Entry Accounting, Invoicing & Tax Automation',
-      'Procurement, Vendor Portals & Supply Chain Tracking',
-      'HR Management, Attendance Biometrics & Payroll Processing'
-    ],
-    solutionsDelivered: [
-      {
-        challenge: 'Disconnected spreadsheets and disparate software causing data silos and costly inventory stockouts.',
-        solution: 'Unified centralized database linking purchase orders directly to inventory, sales channels, and general ledger.',
-        value: '100% real-time stock visibility and 40% reduction in operational waste.'
-      },
-      {
-        challenge: 'Multi-branch operations lacking consolidated financial reports and audit trails.',
-        solution: 'Role-based accounting module with automatic currency conversion, tax reporting, and branch P&L balance sheets.',
-        value: 'Instant 1-click executive financial summaries and total audit compliance.'
-      },
-      {
-        challenge: 'Slow, manual HR payroll calculation and attendance reconciliation.',
-        solution: 'Automated biometrics integration with custom overtime rules, leave management, and bank transfer exports.',
-        value: '90% faster monthly payroll processing with zero calculation errors.'
-      }
-    ],
-    capabilities: [
-      {
-        title: 'Supply Chain & Inventory Management',
-        description: 'Batch tracking, barcode scanning, minimum stock alerts, and automated vendor purchase order triggers.'
-      },
-      {
-        title: 'Financial Accounting & Invoicing',
-        description: 'Automated double-entry bookkeeping, accounts payable/receivable, bank reconciliation, and custom tax rules.'
-      },
-      {
-        title: 'HR & Payroll Automation',
-        description: 'Employee lifecycle management, biometric device syncing, tax deductions, and automated payslip generation.'
-      },
-      {
-        title: 'Executive BI Dashboard',
-        description: 'Real-time KPI visualization, forecasting charts, exportable PDF/Excel reports, and mobile executive view.'
-      }
-    ],
-    techStack: [
-      { name: 'React / Next.js', role: 'Enterprise UI' },
-      { name: 'Node.js / Express', role: 'Core Logic Engine' },
-      { name: 'PostgreSQL', role: 'ACID Relational DB' },
-      { name: 'Redis', role: 'Real-Time Caching' },
-      { name: 'Docker', role: 'Private Deployment' },
-      { name: 'Tailwind CSS', role: 'Design System' }
-    ],
-    process: [
-      { step: '01', name: 'Operational Workflow Audit', desc: 'Mapping departmental processes, chart of accounts, and data dependencies.' },
-      { step: '02', name: 'Custom Module Prototyping', desc: 'Designing custom UI screens for procurement, inventory, and finance teams.' },
-      { step: '03', name: 'Core Engine & Data Migration', desc: 'Developing business logic and securely migrating historical data from legacy systems.' },
-      { step: '04', name: 'Staff Training & On-Premise Rollout', desc: 'Conducting department-wide training sessions and launching on private cloud or on-premise servers.' }
-    ],
-    faqs: [
-      { q: 'Can this ERP be deployed on our private on-premise servers?', a: 'Yes. We support deployment on your private local servers, AWS, Google Cloud, or hybrid setups with automated local backups.' },
-      { q: 'Can we add custom modules later as our company expands?', a: 'Absolutely. Our modular architecture allows adding new departments, branches, or features without disturbing existing operations.' }
-    ]
-  },
-  {
-    slug: 'custom-crm-systems',
-    categoryId: 'enterprise-systems',
-    categoryName: 'Enterprise & Business Systems',
-    title: 'Custom CRM Platforms',
-    shortDescription: 'Tailored Customer Relationship Management systems with visual deal pipelines, WhatsApp/Email sync, and automated lead routing.',
-    heroDescription: 'Generic CRMs like Salesforce and HubSpot are bloated with features you don’t need while missing the exact sales workflows your team relies on. We build high-converting, custom CRM software that automates lead capture, tracks deals, logs customer calls, and boosts sales team closing rates.',
-    icon: Users,
-    badge: 'Sales Acceleration',
-    highlights: [
-      'Visual Drag-and-Drop Deal Pipelines & Kanban Stages',
-      'Automated Lead Assignment & Instant WhatsApp/SMS/Email Alerts',
-      'Omnichannel Chat (WhatsApp, Instagram, Web Chat in One Inbox)',
-      'Sales Rep Activity Tracking, Call Logs & Commission Calculation'
-    ],
-    solutionsDelivered: [
-      {
-        challenge: 'Leads falling through the cracks because sales reps manage inquiries across scattered WhatsApp chats and notebooks.',
-        solution: 'Unified lead capture inbox aggregating website forms, Meta ads, WhatsApp, and calls with automated routing.',
-        impact: '3x faster lead response time and zero missed inquiries.'
-      },
-      {
-        challenge: 'Lack of visibility into sales representative activities, daily calls, and conversion performance.',
-        solution: 'Automated rep activity telemetry, logged call durations, deal stage velocity, and real-time leaderboards.',
-        impact: '35% increase in sales team productivity and measurable accountability.'
-      },
-      {
-        challenge: 'Paying thousands in monthly recurring per-user license fees to third-party CRM SaaS.',
-        solution: 'Custom owned CRM platform with unlimited user accounts and zero recurring seat fees.',
-        impact: '100% software ownership and massive annual software cost savings.'
-      }
-    ],
-    capabilities: [
-      {
-        title: 'Omnichannel Lead Capture',
-        description: 'Auto-ingest leads from Google Ads, Facebook/Instagram leads, WhatsApp Business API, and website forms.'
-      },
-      {
-        title: 'Visual Deal Pipeline & Stage Automation',
-        description: 'Custom deal stages with automatic task creation, automated follow-up emails, and contract generation.'
-      },
-      {
-        title: 'Integrated WhatsApp & Telephony',
-        description: 'Direct click-to-call, recorded audio call logs, and two-way WhatsApp messaging inside the customer contact card.'
-      },
-      {
-        title: 'Customer Lifetime Value & Analytics',
-        description: 'Comprehensive reporting on customer acquisition cost (CAC), pipeline value, and rep closing ratios.'
-      }
-    ],
-    techStack: [
-      { name: 'React.js', role: 'Pipeline Interface' },
-      { name: 'Node.js', role: 'Real-Time Sync' },
-      { name: 'PostgreSQL', role: 'Contact & Deal DB' },
-      { name: 'WhatsApp Cloud API', role: 'Messaging Integration' },
-      { name: 'Twilio / VoIP', role: 'Telephony Logging' }
-    ],
-    process: [
-      { step: '01', name: 'Sales Funnel Mapping', desc: 'Analyzing lead sources, qualification stages, and team assignment rules.' },
-      { step: '02', name: 'Pipeline & Interface Design', desc: 'Creating intuitive Kanban boards, customer profiles, and quick action bars.' },
-      { step: '03', name: 'Integrations & Automation', desc: 'Wiring WhatsApp Cloud API, email marketing webhooks, and ad account pixels.' },
-      { step: '04', name: 'Team Onboarding & Go-Live', desc: 'Importing historical customer lists and conducting hands-on sales team training.' }
-    ],
-    faqs: [
-      { q: 'Is there a limit on how many sales reps can use the CRM?', a: 'No! Because you own the software, you can create unlimited sales agent and manager accounts with zero monthly subscription fees.' }
-    ]
-  },
-  {
-    slug: 'pos-retail-systems',
-    categoryId: 'enterprise-systems',
-    categoryName: 'Enterprise & Business Systems',
-    title: 'Point of Sale (POS) & Retail Systems',
-    shortDescription: 'High-speed desktop, web, and tablet POS software with barcode scanning, thermal receipt printing, and offline checkout.',
-    heroDescription: 'Retail and restaurant checkouts require split-second transaction speed and rock-solid reliability. We build custom Point of Sale (POS) systems featuring sub-second barcode lookups, thermal printer and cash drawer integration, multi-branch inventory tracking, and offline billing mode.',
-    icon: Store,
-    badge: 'High Speed Retail',
-    highlights: [
-      'Sub-Second Barcode Scanning & Express Touch Billing',
-      'Offline Billing Engine (Keeps Working When Internet Drops)',
-      'Thermal Receipt Printing & Cash Drawer Peripheral Support',
-      'Multi-Store Inventory, Transfers & End-of-Day Cash Balancing'
-    ],
-    solutionsDelivered: [
-      {
-        challenge: 'Long customer checkout queues and billing delays during peak store rush hours.',
-        solution: 'Keyboard-shortcut-driven touchscreen POS interface processing transactions in under 5 seconds.',
-        impact: '50% reduction in customer wait times and faster table/counter turnover.'
-      },
-      {
-        challenge: 'Internet outages completely freezing store billing and stopping sales.',
-        solution: 'Offline-first local SQLite engine caching all transactions and automatically syncing when reconnected.',
-        impact: '100% continuous store operation with zero downtime.'
-      },
-      {
-        challenge: 'Cash register discrepancies and shrinkage between shifts.',
-        solution: 'Blind cash drop closing, shift register balancing, and manager PIN override audit logs.',
-        impact: 'Zero unaccounted cash variance and complete shift transparency.'
-      }
-    ],
-    capabilities: [
-      {
-        title: 'Hardware Peripheral Compatibility',
-        description: 'Plug-and-play support for ESC/POS thermal printers, USB/Bluetooth barcode scanners, weighing scales, and card terminals.'
-      },
-      {
-        title: 'Multi-Store Central Cloud Sync',
-        description: 'Head office dashboard showing real-time sales across all branches, low-stock warnings, and inter-branch transfers.'
-      },
-      {
-        title: 'Customer Loyalty & Discounts',
-        description: 'Points redemption, phone-number loyalty lookup, dynamic promotional coupons, and seasonal discounts.'
-      },
-      {
-        title: 'Restaurant & Table Management (Optional)',
-        description: 'Table layout mapping, Kitchen Order Tickets (KOT) printing to kitchen, and bill splitting.'
-      }
-    ],
-    techStack: [
-      { name: 'Electron / React', role: 'Desktop / Web POS' },
-      { name: 'Node.js', role: 'Local Hardware Bridge' },
-      { name: 'SQLite / IndexedDB', role: 'Offline Storage' },
-      { name: 'PostgreSQL', role: 'Cloud Head Office DB' },
-      { name: 'WebSockets', role: 'Real-Time Sync' }
-    ],
-    process: [
-      { step: '01', name: 'Hardware & Workflow Specs', desc: 'Identifying printer models, barcode standards, and store checkout flows.' },
-      { step: '02', name: 'Touch & Shortcut UI Design', desc: 'Optimizing touch targets, product category grids, and rapid numpad actions.' },
-      { step: '03', name: 'Hardware Bridge & Sync Build', desc: 'Writing printer drivers, barcode listeners, and offline data sync protocols.' },
-      { step: '04', name: 'Store Deployment & Testing', desc: 'Deploying to store POS machines, conducting cashier dry runs, and live rollout.' }
-    ],
-    faqs: [
-      { q: 'Will this POS work with existing thermal printers and barcode scanners?', a: 'Yes! We support standard USB, Ethernet, and Bluetooth thermal printers (Epson, Xprinter, Star Micronics) and standard 1D/2D barcode scanners.' }
-    ]
-  },
-  {
-    slug: 'hospital-healthcare-systems',
-    categoryId: 'enterprise-systems',
-    categoryName: 'Enterprise & Business Systems',
-    title: 'Hospital & Healthcare Management (HMS)',
-    shortDescription: 'Electronic Health Records (EHR), OPD/IPD management, doctor appointment scheduling, pharmacy billing, and lab portals.',
-    heroDescription: 'Healthcare institutions require rigorous data accuracy, HIPAA-compliant patient confidentiality, and seamless cross-departmental coordination. We develop comprehensive Hospital Information Management Systems (HIMS) connecting reception, OPD/IPD, nursing stations, pharmacy, and diagnostic laboratories.',
-    icon: Stethoscope,
-    badge: 'HIPAA Compliant',
-    highlights: [
-      'Electronic Health Records (EHR) & Digital Patient History',
-      'Doctor Scheduling, Online Patient Booking & OPD Queue Tokens',
-      'IPD Bed Allocation, Nursing Charts & Discharge Summaries',
-      'Pharmacy Inventory & Automated Diagnostic Lab Report Generation'
-    ],
-    solutionsDelivered: [
-      {
-        challenge: 'Lost physical paper medical records and delayed patient history retrieval during emergencies.',
-        solution: 'Encrypted cloud Electronic Health Records accessible instantly by authorized doctors via Patient MR Number.',
-        impact: 'Instant patient medical history access and zero misplaced files.'
-      },
-      {
-        challenge: 'Crowded waiting rooms and chaotic patient appointment queues.',
-        solution: 'Smart token queuing display screens and online WhatsApp appointment booking integration.',
-        impact: 'Smooth patient flow and 60% reduction in reception overcrowding.'
-      },
-      {
-        challenge: 'Pharmacy medicine stock leakages and manual lab report distribution delays.',
-        solution: 'Barcode-tracked pharmacy dispensing and automatic SMS/WhatsApp download links for lab test results.',
-        impact: 'Accurate pharmacy stock balances and instant patient report delivery.'
-      }
-    ],
-    capabilities: [
-      {
-        title: 'OPD & IPD Clinical Workflow',
-        description: 'Digital prescription writing, bed status dashboards, vital signs recording, and comprehensive discharge summaries.'
-      },
-      {
-        title: 'Diagnostic Lab & Radiology Portal',
-        description: 'Custom lab test templates, normal reference ranges, pathologist digital signatures, and PDF report generation.'
-      },
-      {
-        title: 'Pharmacy Point of Sale & Expiry Tracking',
-        description: 'Medicine batch tracking, upcoming expiry alerts, supplier purchase orders, and itemized billing.'
-      },
-      {
-        title: 'Healthcare Compliance & Security',
-        description: 'Role-based doctor/nurse/cashier access privileges, patient data encryption, and audit trail logs.'
-      }
-    ],
-    techStack: [
-      { name: 'React.js', role: 'Clinical Workstation UI' },
-      { name: 'Node.js / Python', role: 'Medical Records API' },
-      { name: 'PostgreSQL', role: 'Encrypted Healthcare DB' },
-      { name: 'PDFKit', role: 'Lab & Prescription Engine' },
-      { name: 'WebSockets', role: 'Live Token Displays' }
-    ],
-    process: [
-      { step: '01', name: 'Clinical Workflow Audit', desc: 'Documenting OPD, IPD, lab testing, and billing procedures with medical staff.' },
-      { step: '02', name: 'Medical Template Customization', desc: 'Setting up custom prescription formats, doctor fees, and diagnostic test templates.' },
-      { step: '03', name: 'Departmental Integration', desc: 'Connecting reception, doctor cabins, lab, pharmacy, and central cash counters.' },
-      { step: '04', name: 'Hospital Go-Live', desc: 'Conducting staff training across shifts and launching with on-site technical support.' }
-    ],
-    faqs: [
-      { q: 'Is patient medical data secure and compliant?', a: 'Yes. All patient records are encrypted with AES-256 at rest and TLS 1.3 in transit, with granular role-based access control.' }
-    ]
-  },
-  {
-    slug: 'lms-education-portals',
-    categoryId: 'enterprise-systems',
-    categoryName: 'Enterprise & Business Systems',
-    title: 'LMS & Education Platforms',
-    shortDescription: 'Custom Learning Management Systems, student portals, secure video streaming, automated grading, and digital certifications.',
-    heroDescription: 'Institutes, universities, and corporate training companies need modern e-learning ecosystems that engage students and simplify administration. We build custom Learning Management Systems (LMS) with secure video streaming, interactive quizzes, student fee management, and automated certificate generation.',
-    icon: GraduationCap,
-    badge: 'EdTech Scalability',
-    highlights: [
-      'Encrypted DRM Video Streaming & Lecture Playlists',
-      'Automated Quizzes, Timed Exams & Instant Grading',
-      'Student Fee Collection & Installment Management',
-      'Verifiable QR-Coded Digital Certificate Generation'
-    ],
-    solutionsDelivered: [
-      {
-        challenge: 'Course video piracy and unauthorized screen recording draining creator revenues.',
-        solution: 'Encrypted dynamic video player with DRM protection and dynamic student watermark overlays.',
-        impact: '100% prevention of course piracy and unauthorized sharing.'
-      },
-      {
-        challenge: 'Instructors spending dozens of hours manually grading multiple-choice tests and assignments.',
-        solution: 'Automated assessment engine with instant score calculation and detailed student performance analytics.',
-        impact: 'Zero grading time for instructors and immediate feedback for learners.'
-      }
-    ],
-    capabilities: [
-      {
-        title: 'Curriculum & Course Builder',
-        description: 'Multi-chapter curriculum structuring, downloadable attachments, homework submission portals, and discussion boards.'
-      },
-      {
-        title: 'Fee Management & Installments',
-        description: 'Automated fee challans, online card/bank payments, scholarship discounts, and installment tracking.'
-      },
-      {
-        title: 'Live Class & Zoom/Meet Integration',
-        description: 'Schedule and launch live interactive lectures directly within the student portal with automated attendance.'
-      }
-    ],
-    techStack: [
-      { name: 'Next.js', role: 'Student Portal' },
-      { name: 'Node.js', role: 'LMS Backend' },
-      { name: 'PostgreSQL', role: 'Student Database' },
-      { name: 'AWS S3 & CloudFront', role: 'High-Speed Video CDN' },
-      { name: 'Canvas API', role: 'Certificate Generation' }
-    ],
-    process: [
-      { step: '01', name: 'Curriculum & Portal Architecture', desc: 'Structuring student, teacher, and administrator roles and learning paths.' },
-      { step: '02', name: 'Video Streaming Pipeline', desc: 'Configuring adaptive bitrate video encoding and watermark security.' },
-      { step: '03', name: 'Payment & Certification Setup', desc: 'Integrating tuition payment gateways and verifiable certificate templates.' },
-      { step: '04', name: 'Enrollment Launch', desc: 'Onboarding student batches and deploying scalable cloud streaming infrastructure.' }
-    ],
-    faqs: [
-      { q: 'Can students access courses on mobile devices?', a: 'Yes! The LMS is 100% responsive and works flawlessly on iPhones, Android smartphones, tablets, and desktops.' }
-    ]
-  },
-  {
-    slug: 'fintech-payment-solutions',
-    categoryId: 'enterprise-systems',
-    categoryName: 'Enterprise & Business Systems',
-    title: 'Fintech & Payment Gateway Solutions',
-    shortDescription: 'Digital wallets, micro-lending algorithms, automated reconciliation ledgers, and PCI-DSS compliant checkout engines.',
-    heroDescription: 'Financial technology requires zero-error transaction processing, cryptographic security, and bulletproof audit trails. We engineer custom digital wallets, peer-to-peer payout engines, loan origination systems, and custom multi-currency payment aggregators.',
-    icon: Wallet,
-    badge: 'PCI-DSS Compliant',
-    highlights: [
-      'Double-Entry Cryptographic Financial Ledger Architecture',
-      'Multi-Currency Wallet Top-Up & P2P Transfer Engines',
-      'Automated Bank Reconciliation & Webhook Settlement Pools',
-      'KYC Identity Verification & Anti-Fraud Monitoring Filters'
-    ],
-    solutionsDelivered: [
-      {
-        challenge: 'Financial ledger discrepancies caused by race conditions during concurrent fund transfers.',
-        solution: 'Immutable double-entry balance ledger with ACID transactional database locks and idempotency keys.',
-        impact: 'Zero financial discrepancies and 100% mathematical audit accuracy.'
-      },
-      {
-        challenge: 'Manual verification of customer KYC documents delaying account activation.',
-        solution: 'Automated OCR identity document scanning and biometric liveness verification API integration.',
-        impact: 'Account activation time reduced from 24 hours to under 60 seconds.'
-      }
-    ],
-    capabilities: [
-      {
-        title: 'Immutable Ledger Engine',
-        description: 'Every single debit and credit is mathematically paired, preventing unauthorized balance alterations.'
-      },
-      {
-        title: 'Payout & Disbursement Automation',
-        description: 'Batch payouts to bank accounts and mobile wallets with automated failure retry queues.'
-      },
-      {
-        title: 'Fraud Detection Algorithms',
-        description: 'Real-time transaction risk scoring detecting velocity spikes and geolocation anomalies.'
-      }
-    ],
-    techStack: [
-      { name: 'Node.js / Go', role: 'High-Speed Financial Engine' },
-      { name: 'PostgreSQL', role: 'ACID Financial Ledger' },
-      { name: 'Redis', role: 'Idempotency & Locks' },
-      { name: 'AWS KMS', role: 'Cryptographic Key Vault' }
-    ],
-    process: [
-      { step: '01', name: 'Regulatory & Ledger Architecture', desc: 'Defining ledger account hierarchies, transaction flows, and compliance requirements.' },
-      { step: '02', name: 'Idempotent Core Engine Build', desc: 'Implementing transactional locks and automated reconciliation algorithms.' },
-      { step: '03', name: 'Security & Penetration Audit', desc: 'Conducting intensive security audits and race-condition stress tests.' },
-      { step: '04', name: 'Production Cutover', desc: 'Deploying to isolated PCI-compliant cloud infrastructure.' }
-    ],
-    faqs: [
-      { q: 'How do you guarantee that money cannot be created out of thin air?', a: 'Our ledger enforces strict double-entry accounting where every transaction must balance to zero, backed by database-level constraints.' }
-    ]
-  },
-
-  // ─────────────────────────────────────────────────────────────
-  // 2. WEB & SOFTWARE ENGINEERING
+  // 1. WEB & SOFTWARE DEVELOPMENT
   // ─────────────────────────────────────────────────────────────
   {
     slug: 'custom-web-development',
     categoryId: 'web-development',
-    categoryName: 'Web & Software Engineering',
+    categoryName: 'Web & Software Development',
     title: 'Custom Web Application Engineering',
     shortDescription: 'High-performance bespoke web applications, enterprise portals, and scalable cloud platforms.',
     heroDescription: 'We engineer custom, production-grade web applications built with modern frontend frameworks and scalable backend systems tailored for mission-critical operations and high transaction throughput.',
@@ -541,7 +148,7 @@ export const allServices = [
   {
     slug: 'ecommerce-development',
     categoryId: 'web-development',
-    categoryName: 'Web & Software Engineering',
+    categoryName: 'Web & Software Development',
     title: 'E-Commerce & Multi-Vendor Marketplaces',
     shortDescription: 'Headless Shopify, custom multi-vendor platforms, and high-conversion payment checkouts.',
     heroDescription: 'We build headless Shopify, WooCommerce, and custom multi-vendor commerce engines engineered for maximum conversion, rapid product filtering, and seamless payment processing.',
@@ -582,7 +189,7 @@ export const allServices = [
   {
     slug: 'mobile-app-development',
     categoryId: 'web-development',
-    categoryName: 'Web & Software Engineering',
+    categoryName: 'Web & Software Development',
     title: 'Mobile App Engineering (iOS & Android)',
     shortDescription: 'High-performance React Native, Flutter, Swift, and Kotlin mobile apps with offline-first synchronization.',
     heroDescription: 'We build fluid, 60fps mobile applications using React Native, Flutter, Swift, and Kotlin that deliver intuitive user experiences, hardware sensor integration, and reliable offline data sync.',
@@ -623,7 +230,7 @@ export const allServices = [
   {
     slug: 'saas-enterprise-development',
     categoryId: 'web-development',
-    categoryName: 'Web & Software Engineering',
+    categoryName: 'Web & Software Development',
     title: 'SaaS & Multi-Tenant Systems',
     shortDescription: 'Multi-tenant cloud platforms, automated Stripe subscriptions, and granular role-based permissions.',
     heroDescription: 'We architect battle-tested SaaS systems with row-level tenant data isolation, automated usage-based subscriptions, audit logs, and 99.99% uptime ready for global enterprise scale.',
@@ -661,9 +268,50 @@ export const allServices = [
       { q: 'Can you build a SaaS MVP in 6-8 weeks?', a: 'Yes, using our modular blueprints we deliver full production MVPs in 6 to 8 weeks.' }
     ]
   },
+  {
+    slug: 'api-backend-development',
+    categoryId: 'web-development',
+    categoryName: 'Web & Software Development',
+    title: 'API & Cloud Backend Architecture',
+    shortDescription: 'Sub-50ms RESTful & GraphQL APIs, microservices, and asynchronous event-driven worker queues.',
+    heroDescription: 'We build bulletproof API infrastructures, event message queues, and cloud microservices that scale smoothly during peak traffic without performance degradation.',
+    icon: Server,
+    badge: 'High Throughput',
+    highlights: [
+      'RESTful & GraphQL API Engineering',
+      'Event-Driven Microservices (Kafka / RabbitMQ / BullMQ)',
+      'Database Optimization & Connection Pooling',
+      'OAuth2, JWT & API Key Security Layers'
+    ],
+    solutionsDelivered: [
+      {
+        challenge: 'Slow database queries blocking server threads and causing timeouts.',
+        solution: 'Asynchronous worker queues offloading heavy operations with sub-50ms API responses.',
+        value: '90% faster API performance.'
+      }
+    ],
+    capabilities: [
+      {
+        title: 'High-Speed API Gateways',
+        description: 'Engineered for sub-50ms response times with automated rate limiting and token validation.'
+      }
+    ],
+    techStack: [
+      { name: 'Node.js', role: 'API Server' },
+      { name: 'Go (Golang)', role: 'High-Speed Services' },
+      { name: 'Redis', role: 'Cache & Queue' }
+    ],
+    process: [
+      { step: '01', name: 'API Schema Specs', desc: 'Writing OpenAPI and GraphQL contracts.' },
+      { step: '02', name: 'Load Benchmarking', desc: 'Stress testing against thousands of concurrent requests.' }
+    ],
+    faqs: [
+      { q: 'Can you migrate legacy backends to microservices?', a: 'Yes, we use Strangler Fig patterns for zero-downtime migrations.' }
+    ]
+  },
 
   // ─────────────────────────────────────────────────────────────
-  // 3. ADVANCED AI & CLOUD TECH
+  // 2. ADVANCED AI & CLOUD TECH
   // ─────────────────────────────────────────────────────────────
   {
     slug: 'ai-solutions',
@@ -790,12 +438,12 @@ export const allServices = [
   },
 
   // ─────────────────────────────────────────────────────────────
-  // 4. UI/UX DESIGN & DIGITAL GROWTH
+  // 3. UI/UX DESIGN & BRANDING
   // ─────────────────────────────────────────────────────────────
   {
     slug: 'ui-ux-design-service',
-    categoryId: 'design-growth',
-    categoryName: 'UI/UX Design & Digital Growth',
+    categoryId: 'design-creative',
+    categoryName: 'UI/UX & Product Design',
     title: 'UI/UX Design & Usability Engineering',
     shortDescription: 'Conversion-driven Figma design systems, interactive prototypes, and frictionless user flows.',
     heroDescription: 'We design intuitive, visually striking user interfaces in Figma backed by cognitive user research and atomic design systems that turn complex workflows into effortless digital experiences.',
@@ -835,8 +483,8 @@ export const allServices = [
   },
   {
     slug: 'brand-identity',
-    categoryId: 'design-growth',
-    categoryName: 'UI/UX Design & Digital Growth',
+    categoryId: 'design-creative',
+    categoryName: 'UI/UX & Product Design',
     title: 'Brand Identity & Visual Design Systems',
     shortDescription: 'Vector logomarks, typography rules, 3D visual assets, and corporate brand books.',
     heroDescription: 'We develop authoritative visual identities, vector logomarks, typography guidelines, and 3D visual storytelling that establish instant market credibility and brand recognition.',
@@ -874,85 +522,197 @@ export const allServices = [
       { q: 'What vector formats are included?', a: 'You receive AI, EPS, SVG, PDF, and high-res PNG/JPEG files with full copyright ownership.' }
     ]
   },
+
+  // ─────────────────────────────────────────────────────────────
+  // 4. DIGITAL MARKETING & GROWTH (SEO, GOOGLE ADS, LINKEDIN)
+  // ─────────────────────────────────────────────────────────────
   {
     slug: 'seo-growth',
-    categoryId: 'design-growth',
-    categoryName: 'UI/UX Design & Digital Growth',
+    categoryId: 'digital-growth',
+    categoryName: 'Digital Marketing & Growth',
     title: 'Data-Driven Search Engine Optimization (SEO)',
-    shortDescription: 'Technical SEO, commercial keyword ranking, Core Web Vitals optimization, and authority backlinks.',
+    shortDescription: 'Technical SEO audits, high-intent keyword ranking, Core Web Vitals optimization, and authority backlink acquisition.',
     heroDescription: 'We combine deep technical SEO audits, schema structured data, high-intent commercial keyword rankings, and high-authority link outreach to turn Google search into your primary customer acquisition channel.',
     icon: Search,
-    badge: 'Organic Traffic',
+    badge: 'Organic Scale',
     highlights: [
       'Technical SEO Audits & Crawl Error Remediation',
-      'High-Intent Commercial Keyword Strategy',
-      'Schema.org Structured Data & Rich Snippets',
+      'High-Intent Commercial & Transactional Keyword Strategy',
+      'Schema.org Structured Data & Rich Snippet Domination',
       'High-Authority Digital PR & Backlink Acquisition'
     ],
     solutionsDelivered: [
       {
         challenge: 'Zero organic Google traffic forcing business to overspend on paid ads.',
         solution: 'Targeted content clustering around high-intent transactional search queries.',
-        value: '400%+ increase in qualified organic traffic.'
+        value: '400%+ increase in qualified organic search traffic.'
       }
     ],
     capabilities: [
       {
         title: 'Technical SEO & Core Web Vitals',
-        description: 'Fixing indexation errors, sitemap hierarchies, and page load speeds.'
+        description: 'Fixing indexation errors, sitemap hierarchies, canonicals, and page load speeds.'
+      },
+      {
+        title: 'On-Page Content Strategy',
+        description: 'Keyword-optimized landing pages and educational content matching commercial buyer intent.'
       }
     ],
     techStack: [
       { name: 'Google Search Console', role: 'Search Analytics' },
-      { name: 'Ahrefs & SEMrush', role: 'Keyword & Backlinks' }
+      { name: 'Ahrefs', role: 'Keyword & Backlinks' },
+      { name: 'SEMrush', role: 'Competitive Intelligence' }
     ],
     process: [
-      { step: '01', name: 'Technical Audit', desc: 'Scanning site health and indexing status.' },
-      { step: '02', name: 'Authority Push', desc: 'Publishing optimized content and securing backlinks.' }
+      { step: '01', name: 'Technical Audit', desc: 'Scanning site health and indexing bottlenecks.' },
+      { step: '02', name: 'On-Page & Schema Fixes', desc: 'Implementing structured data and speed improvements.' },
+      { step: '03', name: 'Authority Push', desc: 'Publishing optimized content clusters and securing backlinks.' }
     ],
     faqs: [
       { q: 'How long before we see SEO results?', a: 'Technical indexing improves within weeks, with substantial ranking growth compounding within 3 to 6 months.' }
     ]
   },
   {
-    slug: 'performance-marketing',
-    categoryId: 'design-growth',
-    categoryName: 'UI/UX Design & Digital Growth',
-    title: 'Performance Marketing & Conversion Funnels',
-    shortDescription: 'Data-driven Google, Meta, and LinkedIn ad campaigns with server-side tracking (CAPI) and high ROAS.',
-    heroDescription: 'We design, launch, and continuously optimize paid campaigns across Google, Meta, and LinkedIn with server-side tracking (CAPI) to deliver maximum return on ad spend and lower customer acquisition costs.',
+    slug: 'google-ads-ppc',
+    categoryId: 'digital-growth',
+    categoryName: 'Digital Marketing & Growth',
+    title: 'Google Ads & PPC Campaign Management',
+    shortDescription: 'High-intent Google Search ads, Performance Max funnels, YouTube ads, and conversion tracking.',
+    heroDescription: 'Capture buyers at the exact moment they search for your services. We architect, launch, and optimize high-converting Google Search, Shopping, and Performance Max ad campaigns that maximize return on ad spend (ROAS) and lower cost per acquisition (CPA).',
     icon: Target,
+    badge: 'High Conversion PPC',
+    highlights: [
+      'Google Search & High-Intent Keyword Bidding',
+      'Performance Max (PMax) AI-Driven Multi-Channel Campaigns',
+      'Negative Keyword Filtering & Fraud Click Protection',
+      'Server-Side Conversion Tracking & Offline Event Sync'
+    ],
+    solutionsDelivered: [
+      {
+        challenge: 'Burning advertising budget on irrelevant search terms that generate zero customer inquiries.',
+        solution: 'Strict phrase/exact match keyword targeting and daily negative keyword pruning.',
+        value: '45% reduction in wasted ad spend and higher lead quality.'
+      },
+      {
+        challenge: 'Low Quality Score causing high cost-per-click (CPC) bids.',
+        solution: 'Alignment between ad copy, search keywords, and dedicated high-converting landing pages.',
+        value: 'Higher Google Quality Score and lower click costs.'
+      }
+    ],
+    capabilities: [
+      {
+        title: 'Search & Performance Max Campaigns',
+        description: 'Structuring campaigns to dominate top search results for high-value commercial queries.'
+      },
+      {
+        title: 'Dedicated Landing Page Optimization',
+        description: 'Creating high-converting, lightning-fast landing pages tailored specifically for each ad group.'
+      }
+    ],
+    techStack: [
+      { name: 'Google Ads Manager', role: 'PPC Platform' },
+      { name: 'Google Tag Manager', role: 'Tag Management' },
+      { name: 'Google Analytics 4 (GA4)', role: 'Attribution' }
+    ],
+    process: [
+      { step: '01', name: 'Keyword & Competitor Research', desc: 'Identifying high-intent buyer keywords and competitor bid strategies.' },
+      { step: '02', name: 'Campaign & Landing Page Setup', desc: 'Writing compelling ad copy and creating high-converting landing pages.' },
+      { step: '03', name: 'Continuous Bid & Budget Optimization', desc: 'Scaling winning search queries and pruning underperforming terms daily.' }
+    ],
+    faqs: [
+      { q: 'How quickly can Google Ads generate leads?', a: 'Google Ads can start driving qualified targeted traffic and inquiries within 24 to 48 hours of campaign launch.' }
+    ]
+  },
+  {
+    slug: 'linkedin-optimization-growth',
+    categoryId: 'digital-growth',
+    categoryName: 'Digital Marketing & Growth',
+    title: 'LinkedIn Optimization & B2B Lead Generation',
+    shortDescription: 'Executive profile branding, company page authority, B2B sponsored content, and targeted InMail lead pipelines.',
+    heroDescription: 'For B2B software, corporate services, and enterprise agencies, LinkedIn is the #1 lead source. We optimize executive and corporate LinkedIn profiles, craft authoritative thought leadership content, and run precision B2B ad funnels that book meetings with decision-makers.',
+    icon: FaLinkedin,
+    badge: 'B2B Authority',
+    highlights: [
+      'Executive Profile & Corporate Page Authority Branding',
+      'Targeted B2B Decision-Maker Advertising (CEOs, CTOs, Founders)',
+      'Thought Leadership Content Strategy & Engagement Funnels',
+      'Direct InMail Outreach Pipelines & Lead Magnet Distribution'
+    ],
+    solutionsDelivered: [
+      {
+        challenge: 'Generic, unoptimized LinkedIn profile failing to build trust with prospective high-ticket enterprise clients.',
+        solution: 'Complete visual and copywriting overhaul: custom banner, compelling headline, social proof, and portfolio showcase.',
+        value: 'Instant executive authority and 3x more inbound connection acceptances.'
+      },
+      {
+        challenge: 'Struggling to reach verified decision-makers (CEOs, VPs, Directors) through standard social media.',
+        solution: 'Hyper-targeted LinkedIn Matched Audiences targeting specific company sizes, job titles, and industries.',
+        value: 'Direct access to high-budget enterprise decision-makers.'
+      }
+    ],
+    capabilities: [
+      {
+        title: 'Executive & Company Page Branding',
+        description: 'Crafting high-impact banners, positioning headlines, featured media sections, and authoritative company descriptions.'
+      },
+      {
+        title: 'B2B Sponsored Content & Lead Gen Forms',
+        description: 'Running native LinkedIn lead gen forms that auto-fill contact info for frictionless enterprise inquiries.'
+      }
+    ],
+    techStack: [
+      { name: 'LinkedIn Campaign Manager', role: 'B2B Ads' },
+      { name: 'LinkedIn Sales Navigator', role: 'Lead Prospecting' },
+      { name: 'LinkedIn Insight Tag', role: 'B2B Retargeting' }
+    ],
+    process: [
+      { step: '01', name: 'Profile & Brand Positioning Audit', desc: 'Refining executive bio, company positioning, and target persona definitions.' },
+      { step: '02', name: 'Content & Campaign Setup', desc: 'Crafting thought leadership content, ad creatives, and native lead forms.' },
+      { step: '03', name: 'Lead Pipeline Execution', desc: 'Routing qualified B2B inquiries directly into your CRM for sales follow-up.' }
+    ],
+    faqs: [
+      { q: 'Is LinkedIn effective for software and tech companies?', a: 'Yes! LinkedIn is the most effective platform for B2B tech companies to connect directly with CTOs, CEOs, and enterprise buyers.' }
+    ]
+  },
+  {
+    slug: 'performance-marketing',
+    categoryId: 'digital-growth',
+    categoryName: 'Digital Marketing & Growth',
+    title: 'Performance Marketing & Social Ad Funnels',
+    shortDescription: 'Data-driven Meta (Facebook & Instagram), TikTok, and YouTube ad campaigns with server-side tracking (CAPI) and high ROAS.',
+    heroDescription: 'We design, launch, and continuously optimize paid campaigns across Meta, TikTok, and YouTube with server-side tracking (CAPI) to deliver maximum return on ad spend and lower customer acquisition costs.',
+    icon: Megaphone,
     badge: 'High ROAS',
     highlights: [
-      'Google Search, Display & Performance Max Campaigns',
       'Meta (Facebook & Instagram) Targeted Funnels',
       'Server-Side Conversion API (CAPI) & Tracking',
+      'Short-Form Video Ad Creatives & Persuasive Copywriting',
       'A/B Tested High-Converting Landing Page Optimization'
     ],
     solutionsDelivered: [
       {
         challenge: 'Wasting ad budget on low-quality clicks that generate zero sales.',
-        solution: 'Hyper-targeted audience segmentation, negative keywords, and dedicated conversion landing pages.',
+        solution: 'Hyper-targeted audience segmentation, retargeting pools, and dedicated conversion landing pages.',
         value: '40% lower cost per acquisition (CPA).'
       }
     ],
     capabilities: [
       {
-        title: 'Full-Funnel Paid Advertising',
+        title: 'Full-Funnel Social Advertising',
         description: 'Audience targeting, ad copywriting, creative design, and retargeting funnels.'
       }
     ],
     techStack: [
-      { name: 'Google Ads', role: 'Search & Display' },
       { name: 'Meta Ads Manager', role: 'Social Ads' },
-      { name: 'Meta CAPI', role: 'Server Tracking' }
+      { name: 'Meta CAPI', role: 'Server Tracking' },
+      { name: 'Google Tag Manager', role: 'Attribution' }
     ],
     process: [
       { step: '01', name: 'Tracking Setup', desc: 'Configuring server-side pixels and conversion tracking.' },
       { step: '02', name: 'Scaling Phase', desc: 'Scaling budget on winning ad creatives.' }
     ],
     faqs: [
-      { q: 'What platforms do you advertise on?', a: 'We manage campaigns across Google Search, YouTube, Meta (Instagram/Facebook), and LinkedIn.' }
+      { q: 'What platforms do you advertise on?', a: 'We manage campaigns across Meta (Instagram/Facebook), TikTok, and YouTube.' }
     ]
   }
 ];
