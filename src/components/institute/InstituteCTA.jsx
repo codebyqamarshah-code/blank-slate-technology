@@ -3,8 +3,11 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Container from '../ui/Container';
 import Button from '../ui/Button';
+import { useNavigate } from 'react-router-dom';
 
 const InstituteCTA = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="py-24 md:py-32 bg-[#050505] relative overflow-hidden border-t border-white/5">
       {/* 3D-like Glowing Background Elements */}
@@ -38,10 +41,19 @@ const InstituteCTA = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button variant="primary" icon={ArrowRight} className="w-full sm:w-auto !px-8 !py-4 text-base shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+            <Button 
+              variant="primary" 
+              icon={ArrowRight} 
+              className="w-full sm:w-auto !px-8 !py-4 text-base shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+              onClick={() => window.scrollTo({ top: 800, behavior: 'smooth' })}
+            >
               Explore Programs
             </Button>
-            <Button variant="outline" className="w-full sm:w-auto !px-8 !py-4 text-base">
+            <Button 
+              variant="outline" 
+              className="w-full sm:w-auto !px-8 !py-4 text-base"
+              onClick={() => navigate('/apply')}
+            >
               Apply Now
             </Button>
           </div>

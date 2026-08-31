@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ReactLenis } from 'lenis/react';
 import Layout from './components/layout/Layout';
 import CustomCursor from './components/ui/CustomCursor';
@@ -29,6 +29,7 @@ function App() {
             <Route path="insights"  element={<InsightsPage />} />
             <Route path="contact"   element={<Contact />} />
             <Route path="apply"     element={<Apply />} />
+            <Route path="*"         element={<Navigate to="/" replace />} />
           </Route>
         </Routes>
       </Router>

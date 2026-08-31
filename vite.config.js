@@ -1,10 +1,28 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import fs from 'node:fs'
+import path from 'node:path'
+
+function copyStaticFilesPlugin() {
+  return {
+    name: 'copy-static-files',
+    closeBundle() {
+      const files = ['.htaccess', '_redirects'];
+      files.forEach(file => {
+        const src = path.resolve(process.cwd(), `public/${file}`);
+        const dest = path.resolve(process.cwd(), `dist/${file}`);
+        if (fs.existsSync(src)) {
+          fs.copyFileSync(src, dest);
+        }
+      });
+    }
+  };
+}
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [react(), tailwindcss(), copyStaticFilesPlugin()],
   build: {
     rollupOptions: {
       output: {
