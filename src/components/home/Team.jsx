@@ -14,7 +14,7 @@ const team = [
   },
   {
     name: 'Saqib Mughal',
-    role: 'Full Stack Developer',
+    role: 'Co-Founder & Full Stack Developer',
     image: '/images/team 2.jpg',
     bio: 'Technical mastermind architecting robust, high-performance systems and leading advanced engineering initiatives.'
   },
