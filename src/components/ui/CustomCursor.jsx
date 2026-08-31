@@ -145,53 +145,27 @@ const CustomCursor = () => {
     Hover Detection
     */
 
-    const checkHoverElement = (
-      x,
-      y
-    ) => {
-      const element =
-        document.elementFromPoint(
-          x,
-          y
-        );
-
-      if (!element) {
-        setHovering(false);
-        return;
-      }
-
-      const hoverTarget =
-        element.closest(`
-          a,
-          button,
-          [data-cursor-hover],
-          .group,
-          input,
-          textarea,
-          select
-        `);
-
-      setHovering(
-        Boolean(hoverTarget)
-      );
-    };
-
-    /*
-    Mouse Move
-    */
-
     const onMove = (e) => {
       pos.current = {
         x: e.clientX,
         y: e.clientY,
       };
+      if (!visible) setVisible(true);
+    };
 
-      setVisible(true);
-
-      checkHoverElement(
-        e.clientX,
-        e.clientY
-      );
+    const onMouseOver = (e) => {
+      const target = e.target;
+      if (!target || !target.closest) return;
+      const hoverTarget = target.closest(`
+        a,
+        button,
+        [data-cursor-hover],
+        .group,
+        input,
+        textarea,
+        select
+      `);
+      setHovering(Boolean(hoverTarget));
     };
 
     /*
@@ -233,27 +207,38 @@ const CustomCursor = () => {
 
     window.addEventListener(
       'mousemove',
-      onMove
+      onMove,
+      { passive: true }
+    );
+
+    window.addEventListener(
+      'mouseover',
+      onMouseOver,
+      { passive: true }
     );
 
     window.addEventListener(
       'mousedown',
-      onDown
+      onDown,
+      { passive: true }
     );
 
     window.addEventListener(
       'mouseup',
-      onUp
+      onUp,
+      { passive: true }
     );
 
     document.documentElement.addEventListener(
       'mouseleave',
-      onLeave
+      onLeave,
+      { passive: true }
     );
 
     document.documentElement.addEventListener(
       'mouseenter',
-      onEnter
+      onEnter,
+      { passive: true }
     );
 
     /*
@@ -267,20 +252,20 @@ const CustomCursor = () => {
 
         /*
         Faster follow speed:
-        0.35 = fast
+        0.5 = super fast
         */
 
         ring.current.x +=
           (
             pos.current.x -
             ring.current.x
-          ) * 0.35;
+          ) * 0.7;
 
         ring.current.y +=
           (
             pos.current.y -
             ring.current.y
-          ) * 0.35;
+          ) * 0.7;
 
         ringRef.current.style.transform = `
           translate3d(
@@ -310,6 +295,11 @@ const CustomCursor = () => {
       window.removeEventListener(
         'mousemove',
         onMove
+      );
+
+      window.removeEventListener(
+        'mouseover',
+        onMouseOver
       );
 
       window.removeEventListener(
@@ -413,11 +403,8 @@ const CustomCursor = () => {
 
           background:
             hovering
-              ? 'rgba(255,255,255,0.07)'
-              : 'rgba(255,255,255,0.025)',
-
-          backdropFilter:
-            'blur(5px)',
+              ? 'rgba(255,255,255,0.1)'
+              : 'rgba(255,255,255,0.05)',
 
           opacity:
             visible ? 1 : 0,

@@ -159,14 +159,13 @@ const OrbitingIcons = () => {
         const z = Math.sin(angle) * radius;
 
         return (
-          <Html key={icon.label} position={[x, yOffset, z]} center zIndexRange={[10, 0]}>
+          <Html key={icon.label} position={[x, yOffset, z]} center zIndexRange={[10, 0]} transform={false}>
             <div
               style={{
                 width: 48,
                 height: 48,
                 borderRadius: '14px',
-                background: 'rgba(6,6,15,0.7)',
-                backdropFilter: 'blur(12px)',
+                background: 'rgba(6,6,15,0.95)',
                 border: '1px solid rgba(255,255,255,0.1)',
                 boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
                 display: 'flex',
@@ -293,11 +292,13 @@ const Scene = () => (
 
     <ContactShadows
       position={[0, -2.25, 0]}
-      opacity={0.7}
+      opacity={0.6}
       scale={14}
-      blur={3}
-      far={5}
+      blur={2}
+      far={4}
       color="#000308"
+      frames={1}
+      resolution={256}
     />
 
     <Environment preset="city" />
@@ -312,7 +313,7 @@ const InstituteHero3D = () => (
     <Canvas
       shadows
       camera={{ position: [0, 0.5, 9], fov: 40 }}
-      dpr={[1, Math.min(typeof window !== 'undefined' ? window.devicePixelRatio : 1, 1.5)]}
+      dpr={1}
       gl={{ antialias: typeof window !== 'undefined' && window.innerWidth > 768, alpha: false, powerPreference: 'high-performance' }}
     >
       <Scene />

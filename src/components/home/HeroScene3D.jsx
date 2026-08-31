@@ -325,7 +325,7 @@ export default function HeroScene3D({ smoothProgress, prefersReducedMotion }) {
       >
         <Canvas
           camera={{ position: [0, 0, 8], fov: 45 }}
-          dpr={[1, Math.min(typeof window !== 'undefined' ? window.devicePixelRatio : 1, 1.5)]}
+          dpr={1}
           gl={{ antialias: !isMobile, alpha: true, powerPreference: 'high-performance' }}
         >
           <React.Suspense fallback={null}>

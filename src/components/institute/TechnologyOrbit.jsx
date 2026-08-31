@@ -133,8 +133,6 @@ const IconBadge = ({
             ? 'rgba(255,255,255,0.12)'
             : 'rgba(5,5,10,0.94)',
           border: '1px solid rgba(255,255,255,0.18)',
-          backdropFilter: 'blur(14px)',
-          WebkitBackdropFilter: 'blur(14px)',
           boxShadow:
             '0 8px 30px rgba(0,30,100,0.45), inset 0 0 20px rgba(255,255,255,0.04)',
           display: 'flex',
@@ -409,54 +407,30 @@ const CoreStar = ({
 
 const MouseController = ({ mouseX, mouseY }) => {
   const { gl } = useThree();
+  const target = useRef({ x: 0, y: 0 });
+
+  useFrame(() => {
+    mouseX.current = THREE.MathUtils.lerp(mouseX.current, target.current.x, 0.05);
+    mouseY.current = THREE.MathUtils.lerp(mouseY.current, target.current.y, 0.05);
+  });
 
   useMemo(() => {
     const element = gl.domElement;
 
     const handleMove = (event) => {
-      const rect =
-        element.getBoundingClientRect();
-
-      const x =
-        ((event.clientX - rect.left) /
-          rect.width) *
-          2 -
-        1;
-
-      const y =
-        -(
-          ((event.clientY - rect.top) /
-            rect.height) *
-            2 -
-          1
-        );
-
-      mouseX.current = THREE.MathUtils.lerp(
-        mouseX.current,
-        x,
-        0.08
-      );
-
-      mouseY.current = THREE.MathUtils.lerp(
-        mouseY.current,
-        y,
-        0.08
-      );
+      const rect = element.getBoundingClientRect();
+      const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      const y = -(((event.clientY - rect.top) / rect.height) * 2 - 1);
+      
+      target.current = { x, y };
     };
 
-    window.addEventListener(
-      'pointermove',
-      handleMove,
-      { passive: true }
-    );
+    window.addEventListener('pointermove', handleMove, { passive: true });
 
     return () => {
-      window.removeEventListener(
-        'pointermove',
-        handleMove
-      );
+      window.removeEventListener('pointermove', handleMove);
     };
-  }, [gl, mouseX, mouseY]);
+  }, [gl]);
 
   return null;
 };
@@ -670,12 +644,7 @@ const TechnologyOrbit = () => {
           3D EXPERIENCE
       ================================================= */}
 
-      <motion.div
-        style={{
-          y: canvasY,
-          scale: canvasScale,
-          opacity,
-        }}
+      <div
         className="
           relative
           mx-auto
@@ -698,10 +667,7 @@ const TechnologyOrbit = () => {
               position: [0, 3.5, 15],
               fov: 45,
             }}
-            dpr={[
-              1,
-              Math.min(typeof window !== 'undefined' ? window.devicePixelRatio : 1, 1.5)
-            ]}
+            dpr={1}
             gl={{
               antialias: typeof window !== 'undefined' && window.innerWidth > 768,
               alpha: true,
@@ -749,7 +715,7 @@ const TechnologyOrbit = () => {
             "
           />
         </div>
-      </motion.div>
+      </div>
 
       {/* =================================================
           FOOT SPACING
