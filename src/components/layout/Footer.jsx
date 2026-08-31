@@ -1,6 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn, FaTiktok } from 'react-icons/fa6';
 import Container from '../ui/Container';
+
+const socialLinks = [
+  { name: 'Facebook', icon: FaFacebookF, url: 'https://facebook.com' },
+  { name: 'Instagram', icon: FaInstagram, url: 'https://instagram.com' },
+  { name: 'YouTube', icon: FaYoutube, url: 'https://youtube.com' },
+  { name: 'LinkedIn', icon: FaLinkedinIn, url: 'https://linkedin.com' },
+  { name: 'TikTok', icon: FaTiktok, url: 'https://tiktok.com' },
+];
 
 const Footer = () => {
   return (
@@ -12,12 +21,31 @@ const Footer = () => {
               <img 
                 src="/images/Blank Slate IT Logo-02.png" 
                 alt="Blank Slate Technologies" 
-                className="h-14 md:h-16 object-contain opacity-95 hover:opacity-100 transition-all duration-300" 
+                className="h-16 md:h-20 object-contain opacity-95 hover:opacity-100 transition-all duration-300" 
               />
             </Link>
-            <p className="text-secondary text-sm leading-relaxed max-w-xs">
+            <p className="text-secondary text-sm leading-relaxed max-w-xs mb-6">
               We design and build digital products, intelligent systems, and technology solutions that help ambitious businesses move forward.
             </p>
+
+            {/* Social Icons */}
+            <div className="flex items-center gap-2.5">
+              {socialLinks.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <a
+                    key={item.name}
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={item.name}
+                    className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:border-[#3366ff] hover:bg-[#3366ff]/20 hover:scale-110 transition-all duration-300"
+                  >
+                    <Icon size={15} />
+                  </a>
+                );
+              })}
+            </div>
           </div>
           
           <div>

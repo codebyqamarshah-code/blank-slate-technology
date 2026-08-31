@@ -47,8 +47,8 @@ const Navbar = () => {
               alt="Blank Slate Technologies"
               className={`object-contain transition-all duration-300 ${
                 isScrolled
-                  ? 'h-10 md:h-12'
-                  : 'h-12 md:h-14'
+                  ? 'h-11 md:h-13'
+                  : 'h-14 md:h-17'
               }`}
             />
           </Link>
