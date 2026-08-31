@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import FloatingWhatsApp from '../ui/FloatingWhatsApp';
 
 const Layout = () => {
   const location = useLocation();
@@ -34,9 +35,13 @@ const Layout = () => {
         <Outlet />
       </main>
 
+      {/* Floating WhatsApp Quick Action Button */}
+      <FloatingWhatsApp />
+
       <Footer />
     </div>
   );
 };
 
 export default Layout;
+

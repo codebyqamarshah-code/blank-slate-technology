@@ -1,60 +1,32 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Code, Cpu, PenTool, TrendingUp, ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronRight } from 'lucide-react';
 import Container from '../ui/Container';
 import SectionHeading from '../common/SectionHeading';
 import Button from '../ui/Button';
 import TiltCard from '../ui/TiltCard';
-
-const serviceData = [
-  {
-    id: 'digital',
-    title: 'Digital Development',
-    icon: Code,
-    description: 'Scalable, high-performance software and web solutions built for the modern internet.',
-    services: ['Custom Development', 'Website Development', 'Native App Development', 'Content Management', 'E-Commerce']
-  },
-  {
-    id: 'advanced',
-    title: 'Advanced Technology',
-    icon: Cpu,
-    description: 'Intelligent systems and infrastructure that give your business a competitive edge.',
-    services: ['Machine Learning', 'Business Intelligence', 'Cloud Solutions', 'Internet of Things', 'Research & Development']
-  },
-  {
-    id: 'design',
-    title: 'Design & Creative',
-    icon: PenTool,
-    description: 'Stunning visual identities and user experiences that captivate and convert.',
-    services: ['UI/UX Design', 'Graphic Design', 'Motion Graphics', 'Corporate Identity']
-  },
-  {
-    id: 'growth',
-    title: 'Digital Growth',
-    icon: TrendingUp,
-    description: 'Strategic marketing and optimization to scale your reach and maximize ROI.',
-    services: ['SEO', 'Marketing Material', 'Digital Strategy']
-  }
-];
+import { serviceCategories, allServices } from '../../data/servicesData';
 
 const FeaturedServices = () => {
-  const [activeTab, setActiveTab] = useState(serviceData[0].id);
+  const [activeTab, setActiveTab] = useState(serviceCategories[0].id);
 
-  const activeData = serviceData.find(s => s.id === activeTab);
+  const activeCategory = serviceCategories.find(s => s.id === activeTab) || serviceCategories[0];
+  const categoryServices = allServices.filter(s => s.categoryId === activeTab);
 
   return (
-    <section className="py-16 md:py-20 bg-surface/20">
+    <section className="py-16 md:py-24 bg-surface/20 border-y border-border">
       <Container>
         <SectionHeading 
           eyebrow="Our Expertise"
           title="Engineered for the future."
-          description="A comprehensive suite of technology and design services to transform your business from the inside out."
+          description="A comprehensive suite of software development and advanced technology services to transform your business from the inside out."
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 min-h-[500px]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 min-h-[520px]">
           {/* Tabs */}
           <div className="lg:col-span-5 flex flex-col gap-4">
-            {serviceData.map((category) => {
+            {serviceCategories.map((category) => {
               const isActive = activeTab === category.id;
               const Icon = category.icon;
               
@@ -62,26 +34,26 @@ const FeaturedServices = () => {
                 <TiltCard key={category.id} intensity={5} glare={false} className="rounded-2xl">
                   <button
                     onClick={() => setActiveTab(category.id)}
-                    className={`w-full text-left p-6 rounded-2xl transition-all duration-300 border ${
+                    className={`w-full text-left p-6 rounded-2xl transition-all duration-300 border cursor-pointer ${
                       isActive 
-                        ? 'bg-surface border-border shadow-lg' 
+                        ? 'bg-surface border-border shadow-lg ring-1 ring-white/10' 
                         : 'bg-transparent border-transparent hover:bg-surface/50'
                     }`}
                   >
-                    <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center gap-4">
-                        <div className={`p-3 rounded-lg ${isActive ? 'bg-white text-background' : 'bg-surface text-secondary'}`}>
-                          <Icon size={24} />
+                        <div className={`p-3 rounded-xl transition-colors ${isActive ? 'bg-white text-black' : 'bg-surface text-secondary'}`}>
+                          <Icon size={22} />
                         </div>
-                        <h3 className={`text-xl font-medium ${isActive ? 'text-white' : 'text-secondary'}`}>
+                        <h3 className={`text-lg md:text-xl font-medium transition-colors ${isActive ? 'text-white font-semibold' : 'text-secondary'}`}>
                           {category.title}
                         </h3>
                       </div>
                       {isActive && (
-                        <motion.div layoutId="indicator" className="w-2 h-2 rounded-full bg-accent" />
+                        <motion.div layoutId="serviceTabIndicator" className="w-2.5 h-2.5 rounded-full bg-accent shadow-[0_0_10px_#3366ff]" />
                       )}
                     </div>
-                    <p className={`text-sm leading-relaxed ${isActive ? 'text-secondary' : 'text-secondary/60'}`}>
+                    <p className={`text-xs md:text-sm leading-relaxed ${isActive ? 'text-secondary' : 'text-secondary/60'}`}>
                       {category.description}
                     </p>
                   </button>
@@ -91,9 +63,9 @@ const FeaturedServices = () => {
           </div>
 
           {/* Content Area */}
-          <div className="lg:col-span-7 lg:pl-12">
+          <div className="lg:col-span-7 lg:pl-6">
             <TiltCard intensity={3} className="h-full">
-              <div className="glass-card h-full p-8 md:p-12 relative overflow-hidden flex flex-col">
+              <div className="glass-card h-full p-8 md:p-12 relative overflow-hidden flex flex-col justify-between rounded-3xl border border-white/10 shadow-2xl">
                 <div className="absolute top-0 right-0 p-32 bg-accent/5 rounded-full blur-[100px] -mr-16 -mt-16 pointer-events-none" />
                 
                 <AnimatePresence mode="wait">
@@ -103,33 +75,56 @@ const FeaturedServices = () => {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
                     transition={{ duration: 0.3 }}
-                    className="flex-grow flex flex-col"
+                    className="flex-grow flex flex-col justify-between"
                   >
-                    <h3 className="text-3xl font-display font-medium mb-8 pb-8 border-b border-border/50">
-                      {activeData.title}
-                    </h3>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 mb-12 flex-grow">
-                      {activeData.services.map((service, i) => (
-                        <motion.div
-                          key={service}
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.1 + (i * 0.05) }}
-                          className="flex items-center gap-3 group"
-                        >
-                          <div className="w-6 h-px bg-border group-hover:w-10 group-hover:bg-white transition-all duration-300" />
-                          <span className="text-secondary group-hover:text-white transition-colors">
-                            {service}
-                          </span>
-                        </motion.div>
-                      ))}
+                    <div>
+                      <div className="flex items-center justify-between pb-6 border-b border-border/50 mb-8">
+                        <div>
+                          <p className="text-xs uppercase tracking-[0.2em] text-accent mb-1">Service Suite</p>
+                          <h3 className="text-2xl md:text-3xl font-display font-medium text-white">
+                            {activeCategory.title}
+                          </h3>
+                        </div>
+                        <span className="text-xs px-3 py-1 rounded-full bg-white/5 border border-white/10 text-secondary">
+                          {categoryServices.length} Offerings
+                        </span>
+                      </div>
+                      
+                      {/* Clickable Sub-Services List */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+                        {categoryServices.map((service, i) => (
+                          <motion.div
+                            key={service.slug}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.05 + (i * 0.04) }}
+                          >
+                            <Link
+                              to={`/services/${service.slug}`}
+                              className="group/item flex items-center justify-between p-4 rounded-xl bg-white/[0.02] border border-white/5 hover:border-accent/40 hover:bg-white/[0.06] transition-all duration-300"
+                            >
+                              <div className="flex items-center gap-3">
+                                <div className="w-2 h-2 rounded-full bg-accent/60 group-hover/item:bg-accent group-hover/item:scale-125 transition-all" />
+                                <span className="text-sm font-medium text-secondary group-hover/item:text-white transition-colors">
+                                  {service.title}
+                                </span>
+                              </div>
+                              <ChevronRight size={16} className="text-secondary/40 group-hover/item:text-white group-hover/item:translate-x-1 transition-all" />
+                            </Link>
+                          </motion.div>
+                        ))}
+                      </div>
                     </div>
 
-                    <div className="mt-auto">
-                      <Button variant="ghost" className="!pl-0 group" icon={ArrowRight}>
-                        Explore {activeData.title}
-                      </Button>
+                    <div className="pt-6 border-t border-border/40 flex items-center justify-between">
+                      <p className="text-xs text-secondary hidden sm:block">
+                        Click on any service to explore full specifications & tech stacks.
+                      </p>
+                      <Link to="/services">
+                        <Button variant="ghost" className="!pl-0 group" icon={ArrowRight}>
+                          View All Services
+                        </Button>
+                      </Link>
                     </div>
                   </motion.div>
                 </AnimatePresence>
