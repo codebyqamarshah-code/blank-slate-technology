@@ -142,8 +142,23 @@ const CustomCursor = () => {
     if (isTouchDevice) return;
 
     /*
-    Hover Detection
+    Hover Detection for Clickable / Pointer Elements
     */
+    const isClickableElement = (target) => {
+      if (!target || !target.closest) return false;
+      return Boolean(
+        target.closest(`
+          a,
+          button,
+          [role="button"],
+          .cursor-pointer,
+          input[type="submit"],
+          input[type="button"],
+          select,
+          [data-cursor-hover]
+        `)
+      );
+    };
 
     const onMove = (e) => {
       pos.current = {
@@ -151,21 +166,11 @@ const CustomCursor = () => {
         y: e.clientY,
       };
       if (!visible) setVisible(true);
+      setHovering(isClickableElement(e.target));
     };
 
     const onMouseOver = (e) => {
-      const target = e.target;
-      if (!target || !target.closest) return;
-      const hoverTarget = target.closest(`
-        a,
-        button,
-        [data-cursor-hover],
-        .group,
-        input,
-        textarea,
-        select
-      `);
-      setHovering(Boolean(hoverTarget));
+      setHovering(isClickableElement(e.target));
     };
 
     /*
@@ -252,7 +257,7 @@ const CustomCursor = () => {
 
         /*
         Faster follow speed:
-        0.5 = super fast
+        0.7 = super fast
         */
 
         ring.current.x +=
@@ -378,58 +383,40 @@ const CustomCursor = () => {
           left-0
           pointer-events-none
           z-[99998]
-
-          flex
-          items-center
-          justify-center
         "
         style={{
-          width: ringSize,
-          height: ringSize,
-
-          marginLeft:
-            -(ringSize / 2),
-
-          marginTop:
-            -(ringSize / 2),
-
-          borderRadius:
-            '50%',
-
-          border:
-            hovering
-              ? '1.5px solid rgba(255,255,255,0.85)'
-              : '1.5px solid rgba(255,255,255,0.5)',
-
-          background:
-            hovering
-              ? 'rgba(255,255,255,0.1)'
-              : 'rgba(255,255,255,0.05)',
-
-          opacity:
-            visible ? 1 : 0,
-
-          transition: `
-            width 0.3s ease,
-            height 0.3s ease,
-            margin 0.3s ease,
-            opacity 0.25s ease,
-            background 0.3s ease,
-            border-color 0.3s ease
-          `,
-
-          boxShadow: `
-            0 0 25px rgba(255,255,255,0.08),
-            0 0 50px rgba(255,255,255,0.04)
-          `,
-
-          willChange:
-            'transform',
-
-          overflow:
-            'visible',
+          willChange: 'transform',
         }}
       >
+        <div
+          style={{
+            width: ringSize,
+            height: ringSize,
+
+            marginLeft: -(ringSize / 2),
+            marginTop: -(ringSize / 2),
+
+            borderRadius: '50%',
+
+            border: '1.5px solid rgba(255,255,255,0.5)',
+            background: 'rgba(255,255,255,0.05)',
+
+            opacity: visible && !hovering ? 1 : 0,
+            transform: hovering ? 'scale(0.2)' : 'scale(1)',
+
+            transition: 'opacity 0.18s ease, transform 0.18s ease, border-color 0.3s ease',
+
+            boxShadow: `
+              0 0 25px rgba(255,255,255,0.08),
+              0 0 50px rgba(255,255,255,0.04)
+            `,
+
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            overflow: 'visible',
+          }}
+        >
 
         {/* =================================================
             TECHNOLOGY ICON
@@ -576,6 +563,7 @@ const CustomCursor = () => {
           </motion.div>
         </AnimatePresence>
 
+        </div>
       </div>
     </>
   );

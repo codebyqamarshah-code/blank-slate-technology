@@ -30,10 +30,24 @@
     padding: 0;
   }
   
-  /* Hide default cursor on non-touch devices — CustomCursor handles it */
+  /* Hide default cursor on non-touch devices except when hovering interactive/clickable elements */
   @media (pointer: fine) {
     *, *::before, *::after {
-      cursor: none !important;
+      cursor: none;
+    }
+
+    a, a *,
+    button, button *,
+    [role="button"], [role="button"] *,
+    .cursor-pointer, .cursor-pointer *,
+    input[type="submit"], input[type="button"],
+    select, select *,
+    [data-cursor-hover], [data-cursor-hover] * {
+      cursor: pointer !important;
+    }
+
+    input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="tel"], textarea {
+      cursor: text !important;
     }
   }
   

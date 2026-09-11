@@ -53,7 +53,7 @@ const Footer = () => {
             <ul className="space-y-4 text-sm text-secondary">
               <li><Link to="/about" className="hover:text-white transition-colors">About Us</Link></li>
               <li><Link to="/services" className="hover:text-white transition-colors">Services</Link></li>
-              <li><Link to="/work" className="hover:text-white transition-colors">Selected Work</Link></li>
+              <li><Link to="/work" className="hover:text-white transition-colors">Work</Link></li>
               <li><a href="https://blankslateinstitute.pk/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Institute</a></li>
               <li><Link to="/insights" className="hover:text-white transition-colors">Insights</Link></li>
               <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>

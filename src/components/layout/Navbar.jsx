@@ -14,6 +14,9 @@ const Navbar = () => {
   const timeoutRef = useRef(null);
   const location = useLocation();
 
+  // On /work (or light pages), navbar should always display light theme
+  const isLightNav = isScrolled || location.pathname === '/work';
+
   // Create a quick lookup map for services by slug
   const serviceMap = useMemo(() => {
     const map = new Map();
@@ -110,7 +113,7 @@ const Navbar = () => {
       setIsScrolled(window.scrollY > 40);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll);
     handleScroll();
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -122,8 +125,8 @@ const Navbar = () => {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? 'py-3.5 bg-white/95 backdrop-blur-md shadow-md border-b border-black/10'
+          isLightNav
+            ? 'py-3 md:py-3.5 bg-white shadow-sm border-b border-neutral-200'
             : 'py-6 bg-transparent'
         }`}
       >
@@ -131,10 +134,10 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" onClick={closeAllMenus} className="relative z-50 flex items-center">
             <img
-              src={isScrolled ? '/images/logo-dark.png' : '/images/Blank Slate IT Logo-02.png'}
+              src={isLightNav ? '/images/logo-dark.png' : '/images/Blank Slate IT Logo-02.png'}
               alt="Blank Slate Technologies"
               className={`object-contain transition-all duration-300 ${
-                isScrolled ? 'h-9 md:h-11' : 'h-14 md:h-17'
+                isLightNav ? 'h-11 md:h-14' : 'h-14 md:h-17'
               }`}
             />
           </Link>
@@ -158,8 +161,8 @@ const Navbar = () => {
                         onClick={() => setIsServicesOpen((prev) => !prev)}
                         className={`flex items-center gap-1.5 transition-colors cursor-pointer ${
                           isServicesActive || isServicesOpen
-                            ? (isScrolled ? 'text-black font-semibold' : 'text-white')
-                            : (isScrolled ? 'text-neutral-600 hover:text-black' : 'text-secondary hover:text-white')
+                            ? isLightNav ? 'text-black font-semibold' : 'text-white'
+                            : isLightNav ? 'text-neutral-600 hover:text-black' : 'text-secondary hover:text-white'
                         }`}
                       >
                         <span>{link.label}</span>
@@ -167,8 +170,8 @@ const Navbar = () => {
                           size={14}
                           className={`transition-transform duration-200 ${
                             isServicesOpen
-                              ? (isScrolled ? 'rotate-180 text-black' : 'rotate-180 text-white')
-                              : (isScrolled ? 'text-neutral-500' : 'text-secondary')
+                              ? isLightNav ? 'rotate-180 text-black' : 'rotate-180 text-white'
+                              : isLightNav ? 'text-neutral-500' : 'text-secondary'
                           }`}
                         />
                       </button>
@@ -177,7 +180,7 @@ const Navbar = () => {
                         <motion.div
                           layoutId="activeNavLine"
                           className={`absolute bottom-0.5 left-0 right-0 h-[2px] rounded-full ${
-                            isScrolled ? 'bg-black' : 'bg-[#3366ff]'
+                            isLightNav ? 'bg-black' : 'bg-[#3366ff]'
                           }`}
                           transition={{
                             type: 'spring',
@@ -198,7 +201,7 @@ const Navbar = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className={`relative transition-colors ${
-                        isScrolled ? 'text-neutral-600 hover:text-black' : 'text-secondary hover:text-white'
+                        isLightNav ? 'text-neutral-600 hover:text-black' : 'text-secondary hover:text-white'
                       }`}
                     >
                       {link.label}
@@ -214,8 +217,8 @@ const Navbar = () => {
                     to={link.path}
                     className={`relative transition-colors ${
                       isActive
-                        ? (isScrolled ? 'text-black font-semibold' : 'text-white')
-                        : (isScrolled ? 'text-neutral-600 hover:text-black' : 'text-secondary hover:text-white')
+                        ? isLightNav ? 'text-black font-semibold' : 'text-white'
+                        : isLightNav ? 'text-neutral-600 hover:text-black' : 'text-secondary hover:text-white'
                     }`}
                   >
                     {link.label}
@@ -224,7 +227,7 @@ const Navbar = () => {
                       <motion.div
                         layoutId="activeNavLine"
                         className={`absolute -bottom-1.5 left-0 right-0 h-[2px] rounded-full ${
-                          isScrolled ? 'bg-black' : 'bg-[#3366ff]'
+                          isLightNav ? 'bg-black' : 'bg-[#3366ff]'
                         }`}
                         transition={{
                           type: 'spring',
@@ -242,7 +245,7 @@ const Navbar = () => {
               <Button
                 variant="primary"
                 className={`!px-6 !py-2.5 text-sm transition-all duration-300 ${
-                  isScrolled
+                  isLightNav
                     ? '!bg-black !text-white hover:!bg-neutral-800 shadow-md'
                     : '!bg-white !text-black hover:!bg-white/90'
                 }`}
@@ -266,7 +269,7 @@ const Navbar = () => {
               >
                 <div
                   className={`rounded-2xl p-6 overflow-hidden transition-all duration-300 ${
-                    isScrolled
+                    isLightNav
                       ? 'bg-white/98 backdrop-blur-2xl border border-neutral-200 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.18)]'
                       : 'bg-[#0b0b12]/98 backdrop-blur-2xl border border-white/10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.85)]'
                   }`}
@@ -277,7 +280,7 @@ const Navbar = () => {
                       <div key={col.category} className="space-y-2">
                         <div
                           className={`flex items-center gap-2 pb-2 border-b ${
-                            isScrolled ? 'border-neutral-200' : 'border-white/[0.08]'
+                            isLightNav ? 'border-neutral-200' : 'border-white/[0.08]'
                           }`}
                         >
                           <span
@@ -286,7 +289,7 @@ const Navbar = () => {
                           />
                           <span
                             className={`text-[11px] font-semibold uppercase tracking-wider ${
-                              isScrolled ? 'text-neutral-500' : 'text-white/70'
+                              isLightNav ? 'text-neutral-500' : 'text-white/70'
                             }`}
                           >
                             {col.category}
@@ -303,7 +306,7 @@ const Navbar = () => {
                                 to={`/services/${service.slug}`}
                                 onClick={closeAllMenus}
                                 className={`group/item flex items-start gap-2.5 p-2 rounded-xl border transition-all duration-150 ${
-                                  isScrolled
+                                  isLightNav
                                     ? 'hover:bg-neutral-100/90 border-transparent hover:border-neutral-200'
                                     : 'hover:bg-white/[0.05] border-transparent hover:border-white/10'
                                 }`}
@@ -311,7 +314,7 @@ const Navbar = () => {
                                 <div
                                   className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5 transition-transform duration-200 group-hover/item:scale-110"
                                   style={{
-                                    backgroundColor: isScrolled
+                                    backgroundColor: isLightNav
                                       ? `${service.brandColor || col.color}20`
                                       : `${service.brandColor || col.color}18`,
                                     color: service.brandColor || col.color,
@@ -322,7 +325,7 @@ const Navbar = () => {
                                 <div className="min-w-0 flex-1">
                                   <div
                                     className={`text-xs font-medium transition-colors truncate ${
-                                      isScrolled
+                                      isLightNav
                                         ? 'text-neutral-800 group-hover/item:text-black font-medium'
                                         : 'text-white/85 group-hover/item:text-white'
                                     }`}
@@ -332,7 +335,7 @@ const Navbar = () => {
                                   {service.badge && (
                                     <div
                                       className={`text-[10px] transition-colors truncate ${
-                                        isScrolled
+                                        isLightNav
                                           ? 'text-neutral-400 group-hover/item:text-blue-600'
                                           : 'text-white/40 group-hover/item:text-cyan-400'
                                       }`}
@@ -352,7 +355,7 @@ const Navbar = () => {
                   {/* Bottom Quick Action Bar */}
                   <div
                     className={`mt-5 pt-3.5 border-t flex items-center justify-between text-xs px-2 ${
-                      isScrolled
+                      isLightNav
                         ? 'border-neutral-200 text-neutral-600'
                         : 'border-white/[0.08] text-white/60'
                     }`}
@@ -365,7 +368,7 @@ const Navbar = () => {
                       to="/contact"
                       onClick={closeAllMenus}
                       className={`font-medium flex items-center gap-1.5 transition-colors group/cta ${
-                        isScrolled
+                        isLightNav
                           ? 'text-blue-600 hover:text-blue-700'
                           : 'text-cyan-400 hover:text-cyan-300'
                       }`}
@@ -382,7 +385,7 @@ const Navbar = () => {
           {/* Mobile Menu Toggle */}
           <button
             className={`md:hidden relative z-50 p-2 -mr-2 transition-colors ${
-              isMobileMenuOpen ? 'text-white' : (isScrolled ? 'text-black' : 'text-white')
+              isMobileMenuOpen ? 'text-white' : isLightNav ? 'text-black' : 'text-white'
             }`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >

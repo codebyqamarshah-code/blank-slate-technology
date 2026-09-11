@@ -18,9 +18,6 @@ const AboutPreview = () => {
   const imageY = useTransform(scrollYProgress, [0, 1], [40, -40]);
   const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.94, 1, 0.96]);
   const imageRotateX = useTransform(scrollYProgress, [0, 1], [10, -10]);
-  
-  const badgeY = useTransform(scrollYProgress, [0, 1], [60, -60]);
-  const badgeRotate = useTransform(scrollYProgress, [0, 1], [-25, 25]);
 
   const textY = useTransform(scrollYProgress, [0, 1], [25, -25]);
 
@@ -47,17 +44,6 @@ const AboutPreview = () => {
                   <div className="absolute inset-0 border border-white/10 rounded-3xl z-20 pointer-events-none" />
                 </div>
               </TiltCard>
-            </motion.div>
-            
-            {/* Decorative scrolling badge */}
-            <motion.div
-              style={{ y: badgeY, rotate: badgeRotate }}
-              className="absolute -bottom-6 -left-6 w-32 h-32 border border-white/15 rounded-full flex items-center justify-center backdrop-blur-xl bg-[#0c0c12]/85 z-20 hidden md:flex shadow-2xl shadow-black/80"
-            >
-              <div className="text-center transform rotate-6">
-                <span className="block text-2xl font-bold text-white drop-shadow-lg">100%</span>
-                <span className="text-[10px] text-cyan-400 tracking-widest uppercase font-semibold">Driven</span>
-              </div>
             </motion.div>
 
             {/* Background glow behind image */}
