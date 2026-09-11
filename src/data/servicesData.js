@@ -127,10 +127,381 @@ export const featuredTechServices = [
   }
 ];
 
+export const additionalEnterpriseServices = [
+  {
+    slug: 'product-engineering',
+    title: 'Product Engineering',
+    icon: Cpu,
+    brandColor: '#818CF8',
+    description: 'We provide enterprise end-to-end product development, customization, and integration to build great software solutions for your business.',
+    badge: 'Enterprise End-to-End'
+  },
+  {
+    slug: 'saas-application-development',
+    title: 'SaaS Application Development',
+    icon: Layers,
+    brandColor: '#38BDF8',
+    description: 'SaaS application development services that shape your ideas into reality giving your business the edge to stay ahead.',
+    badge: 'Multi-Tenant Scale'
+  },
+  {
+    slug: 'ecommerce-development',
+    title: 'eCommerce Development',
+    icon: ShoppingCart,
+    brandColor: '#F472B6',
+    description: 'We design and build custom eCommerce applications that give you and your customers the best experience possible.',
+    badge: 'High Conversion'
+  },
+  {
+    slug: 'cms-development',
+    title: 'CMS Development',
+    icon: Layout,
+    brandColor: '#F59E0B',
+    description: 'Our Content Management Systems empower businesses with flexibility, security and convenience. We create powerful tools for publishing web content.',
+    badge: 'Publishing Freedom'
+  },
+  {
+    slug: 'custom-application-development',
+    title: 'Application Development',
+    icon: Code,
+    brandColor: '#EC4899',
+    description: 'We are a product agency breathing tech into your ideas with our custom Application Development services.',
+    badge: 'Bespoke Software'
+  },
+  {
+    slug: 'mobile-app-development',
+    title: 'Mobile App Development',
+    icon: Smartphone,
+    brandColor: '#10B981',
+    description: 'In a mobile-first world, customers and employees want more ways to engage with your brand.',
+    badge: 'iOS & Android'
+  }
+];
+
 export const allServices = [
   // ─────────────────────────────────────────────────────────────
   // 1. PRIMARY FEATURED ENGINEERING SERVICES
   // ─────────────────────────────────────────────────────────────
+  {
+    slug: 'product-engineering',
+    categoryId: 'web-development',
+    categoryName: 'Web & Software Development',
+    title: 'Product Engineering',
+    shortDescription: 'We provide enterprise end-to-end product development, customization, and integration to build great software solutions for your business.',
+    heroDescription: 'We engineer end-to-end digital products from concept to scale. Our product engineering squads combine domain expertise, resilient system architecture, seamless 3rd-party integrations, and automated CI/CD pipelines to build market-defining software.',
+    icon: Cpu,
+    brandColor: '#818CF8',
+    badge: 'Enterprise End-to-End',
+    highlights: [
+      'Full-Lifecycle Software Engineering (Discovery to Deployment)',
+      'Decoupled Microservices & High-Availability Cloud Stacks',
+      'Rigorous Automated QA (Unit, Integration & Playwright E2E)',
+      '100% Intellectual Property & Source Code Ownership'
+    ],
+    credentials: ['React 19', 'Next.js 15', 'Node.js', 'Docker', 'AWS Cloud', 'PostgreSQL'],
+    solutionsDelivered: [
+      {
+        challenge: 'Monolithic legacy systems with severe technical debt stalling product innovation.',
+        solution: 'Modern decoupled microservices architecture with automated CI/CD and zero-downtime migration.',
+        value: '60% faster sprint delivery and 50% lower maintenance overhead.'
+      },
+      {
+        challenge: 'Misaligned engineering teams missing milestone deadlines and budget constraints.',
+        solution: 'Dedicated cross-functional engineering squads with sprint metrics and bi-weekly production drops.',
+        value: '100% on-time milestone delivery within allocated budget.'
+      }
+    ],
+    capabilities: [
+      {
+        title: 'Product Architecture & Roadmap',
+        description: 'Comprehensive technical blueprints, domain data modeling, API contracts, and technology stack selection.'
+      },
+      {
+        title: 'Custom Enterprise Engineering',
+        description: 'Clean, type-safe, modular codebases engineered for high concurrency, fault tolerance, and security.'
+      },
+      {
+        title: 'System Modernization & Migration',
+        description: 'Incremental refactoring of legacy codebases into cloud-native microservices without downtime.'
+      },
+      {
+        title: 'API & 3rd-Party Integrations',
+        description: 'Enterprise connectors for ERPs, CRMs, payment gateways, banking webhooks, and cloud data warehouses.'
+      },
+      {
+        title: 'Automated QA & Security Testing',
+        description: 'Comprehensive test suites, automated static code analysis, vulnerability scanning, and load profiling.'
+      },
+      {
+        title: 'DevOps & 24/7 Telemetry',
+        description: 'Containerized Kubernetes pipelines, Prometheus metrics, distributed tracing, and proactive SLA support.'
+      }
+    ],
+    metrics: [
+      { label: 'Release Cadence', value: '2-Week Sprints' },
+      { label: 'Code Quality', value: '100% Audited' },
+      { label: 'Test Coverage', value: '90%+ Automated' },
+      { label: 'IP Ownership', value: '100% Transferred' }
+    ],
+    techStack: [
+      { name: 'React / Next.js', role: 'Frontend' },
+      { name: 'Node / Python', role: 'Backend' },
+      { name: 'PostgreSQL', role: 'Relational DB' },
+      { name: 'Docker & K8s', role: 'DevOps' },
+      { name: 'AWS Cloud', role: 'Infrastructure' },
+      { name: 'TypeScript', role: 'Type Safety' }
+    ],
+    process: [
+      { step: '01', name: 'Product Discovery', desc: 'Technical blueprinting, data modeling, and scope validation.' },
+      { step: '02', name: 'UI/UX Prototyping', desc: 'Interactive prototypes and user journey validation before coding.' },
+      { step: '03', name: 'Agile Engineering', desc: 'Bi-weekly sprint releases with continuous testing and code audits.' },
+      { step: '04', name: 'Production & SLA', desc: 'Zero-downtime deployment, telemetry monitoring, and ongoing support.' }
+    ],
+    faqs: [
+      { q: 'What is the difference between product engineering and standard web development?', a: 'Product engineering covers the complete software lifecycle — from strategic architecture and compliance to automated CI/CD, microservices scaling, and long-term product roadmapping.' },
+      { q: 'Can our internal developers collaborate with your squad?', a: 'Yes! Our engineers seamlessly integrate into your GitHub repositories, Slack channels, and Jira sprints.' }
+    ]
+  },
+  {
+    slug: 'saas-application-development',
+    categoryId: 'web-development',
+    categoryName: 'Web & Software Development',
+    title: 'SaaS Application Development',
+    shortDescription: 'SaaS application development services that shape your ideas into reality giving your business the edge to stay ahead.',
+    heroDescription: 'We architect battle-tested, multi-tenant Software-as-a-Service (SaaS) platforms with cryptographic tenant data isolation, automated Stripe/Paddle subscriptions, granular role-based access control, and 99.99% uptime.',
+    icon: Layers,
+    brandColor: '#38BDF8',
+    badge: 'Multi-Tenant Scale',
+    highlights: [
+      'Multi-Tenant Database Architecture with Row-Level Security (RLS)',
+      'Automated Recurring Billing, Invoicing & Proration (Stripe/Paddle)',
+      'Enterprise Role-Based Access Control (RBAC) & SAML/SSO Integration',
+      'Real-Time High-Density Analytics Dashboards & Usage Metering'
+    ],
+    credentials: ['PostgreSQL RLS', 'Stripe Billing', 'Next.js 15', 'Node.js', 'Redis', 'Docker'],
+    solutionsDelivered: [
+      {
+        challenge: 'Risk of tenant data leaks and slow query latency under high concurrent SaaS accounts.',
+        solution: 'PostgreSQL Row-Level Security (RLS) with partitioned tenant schemas and distributed Redis caching.',
+        value: '100% data segregation guarantee and sub-50ms API response across all tenants.'
+      },
+      {
+        challenge: 'High churn and revenue leakage caused by failed payment webhooks and manual plan upgrades.',
+        solution: 'Automated Stripe billing engine with instant webhook reconciliation and automated dunning.',
+        value: 'Zero revenue leakage and seamless self-service customer upgrades.'
+      }
+    ],
+    capabilities: [
+      {
+        title: 'Multi-Tenant Architecture',
+        description: 'Cryptographically segregated tenant workspaces, automated subdomain routing, and database schema isolation.'
+      },
+      {
+        title: 'Recurring Billing & Metering',
+        description: 'Tiered subscription models, seat-based licenses, usage metering, discount codes, and automated tax calculations.'
+      },
+      {
+        title: 'Enterprise RBAC & SSO',
+        description: 'Single sign-on via Google, GitHub, and enterprise SAML/Okta with granular organization permissions.'
+      },
+      {
+        title: 'Real-Time SaaS Dashboards',
+        description: 'High-density charts, real-time activity feeds, exportable CSV/PDF reports, and custom data filters.'
+      },
+      {
+        title: 'Developer APIs & Webhooks',
+        description: 'Public API keys, rate-limiting gateways, and outbound webhook dispatchers empowering client integrations.'
+      },
+      {
+        title: 'Automated Onboarding & Email Funnels',
+        description: 'Interactive product walkthroughs, transactional email sequences via Resend/SendGrid, and churn monitoring.'
+      }
+    ],
+    metrics: [
+      { label: 'Uptime SLA', value: '99.99%' },
+      { label: 'Tenant Isolation', value: '100% Cryptographic' },
+      { label: 'Billing Precision', value: '100% Automated' },
+      { label: 'API Latency', value: '< 45ms' }
+    ],
+    techStack: [
+      { name: 'Next.js 15', role: 'SaaS App Core' },
+      { name: 'Node.js / Express', role: 'Microservices API' },
+      { name: 'PostgreSQL', role: 'Multi-Tenant DB' },
+      { name: 'Stripe API', role: 'Subscription Engine' },
+      { name: 'Redis', role: 'Cache & Job Queues' },
+      { name: 'AWS Cloud', role: 'Infrastructure' }
+    ],
+    process: [
+      { step: '01', name: 'Tenant Modeling', desc: 'Designing database tenancy, subscription tiers, and permission matrices.' },
+      { step: '02', name: 'Core Engine Build', desc: 'Developing authentication, workspace provisioning, and payment webhooks.' },
+      { step: '03', name: 'Concurrency Testing', desc: 'Simulating concurrent tenant load and stress testing payment failovers.' },
+      { step: '04', name: 'Launch & Expansion', desc: 'Production deployment with automated telemetry and uptime SLAs.' }
+    ],
+    faqs: [
+      { q: 'How is customer data protected in a multi-tenant SaaS application?', a: 'We implement Row-Level Security (RLS) within PostgreSQL and attach cryptographic tenant identifiers to every database query, guaranteeing that no customer can ever access another account’s records.' },
+      { q: 'Can we support free trials and self-service plan upgrades?', a: 'Yes! We build automated card verification, customizable free trials, and customer self-service portals to upgrade, cancel, or modify plans.' }
+    ]
+  },
+  {
+    slug: 'cms-development',
+    categoryId: 'web-development',
+    categoryName: 'Web & Software Development',
+    title: 'CMS Development',
+    shortDescription: 'Our Content Management Systems empower businesses with flexibility, security and convenience. We create powerful tools for publishing web content.',
+    heroDescription: 'We develop flexible, ultra-secure Content Management Systems and Headless CMS architectures that give marketing teams total publishing freedom while ensuring high performance, custom workflows, and ironclad security.',
+    icon: Layout,
+    brandColor: '#F59E0B',
+    badge: 'Publishing Freedom',
+    highlights: [
+      'Headless CMS Architecture (Strapi, Sanity, Payload, WordPress API)',
+      'Custom Drag-and-Drop Page Builders & Editorial Workflows',
+      'Sub-Second Content Delivery with Jamstack & Next.js ISR',
+      'Granular Editor Roles, Audit Trails & Multi-Language Localization'
+    ],
+    credentials: ['Strapi CMS', 'Sanity.io', 'Payload CMS', 'WordPress API', 'Next.js 15', 'Cloudflare CDN'],
+    solutionsDelivered: [
+      {
+        challenge: 'Marketing teams bottlenecked by developers for basic landing page updates and blog posts.',
+        solution: 'Headless CMS with flexible modular block builders allowing marketing to publish instantly without code.',
+        value: 'Zero developer dependency for marketing updates and 10x faster campaign turnaround.'
+      },
+      {
+        challenge: 'Slow monolithic CMS platforms vulnerable to plugins security exploits.',
+        solution: 'Decoupled headless architecture serving pre-rendered static pages via global edge CDNs.',
+        value: '100% immunity against CMS injection attacks and 95+ Google Lighthouse scores.'
+      }
+    ],
+    capabilities: [
+      {
+        title: 'Headless CMS Architecture',
+        description: 'Decoupled content engines connecting to Next.js or mobile frontends via high-speed GraphQL and REST APIs.'
+      },
+      {
+        title: 'Custom Modular Block Builders',
+        description: 'Empower your editorial team to assemble beautiful landing pages using brand-approved visual component blocks.'
+      },
+      {
+        title: 'Multi-Language & Localization',
+        description: 'Manage international content, regional currency adaptations, and localized SEO meta tags in one dashboard.'
+      },
+      {
+        title: 'Role-Based Editorial Workflows',
+        description: 'Multi-tier review stages (Writer -> Editor -> Legal -> Publisher) with revision history and rollback controls.'
+      },
+      {
+        title: 'Hardened Enterprise WordPress',
+        description: 'Clean, security-hardened WordPress installations optimized for speed without bulky third-party plugin bloat.'
+      },
+      {
+        title: 'Automated Media Optimization',
+        description: 'Automatic WebP/AVIF compression, responsive image breakpoints, and CDN asset distribution.'
+      }
+    ],
+    metrics: [
+      { label: 'Publishing Speed', value: 'Instant / Real-time' },
+      { label: 'Lighthouse Score', value: '95+' },
+      { label: 'Security Grade', value: 'A+ Enterprise' },
+      { label: 'Edge Latency', value: '< 35ms' }
+    ],
+    techStack: [
+      { name: 'Strapi / Sanity', role: 'Headless CMS' },
+      { name: 'Next.js 15', role: 'Frontend Delivery' },
+      { name: 'Tailwind CSS', role: 'Design System' },
+      { name: 'PostgreSQL', role: 'Content Database' },
+      { name: 'AWS S3', role: 'Media Storage' },
+      { name: 'Cloudflare', role: 'Global CDN' }
+    ],
+    process: [
+      { step: '01', name: 'Content Modeling', desc: 'Structuring content types, editorial hierarchies, and relationships.' },
+      { step: '02', name: 'CMS & Frontend Build', desc: 'Developing the management interface and high-speed delivery frontend.' },
+      { step: '03', name: 'Editorial Walkthrough', desc: 'Hands-on team training and visual content creation guidelines.' },
+      { step: '04', name: 'Global CDN Rollout', desc: 'Edge caching deployment, SSL hardening, and automated backups.' }
+    ],
+    faqs: [
+      { q: 'What is a Headless CMS and why should we use it?', a: 'A headless CMS separates your content management database from the user-facing website. This provides lightning-fast sub-second loading, total security against plugin vulnerabilities, and enables multi-channel publishing to websites and apps simultaneously.' },
+      { q: 'Can our marketing team edit text and images without calling developers?', a: 'Yes! You will receive a clean, user-friendly admin dashboard with custom drag-and-drop building blocks designed specifically for your brand guidelines.' }
+    ]
+  },
+  {
+    slug: 'custom-application-development',
+    categoryId: 'web-development',
+    categoryName: 'Web & Software Development',
+    title: 'Application Development',
+    shortDescription: 'We are a product agency breathing tech into your ideas with our custom Application Development services.',
+    heroDescription: 'We engineer bespoke, enterprise-grade software applications that automate complex business workflows, eliminate operational inefficiencies, and deliver exceptional digital experiences across web, desktop, and internal portals.',
+    icon: Code,
+    brandColor: '#EC4899',
+    badge: 'Bespoke Software',
+    highlights: [
+      'Bespoke Software Architecture Tailored 100% to Your Workflow',
+      'High-Security Enterprise Integrations (ERP, CRM, Banking APIs)',
+      'Automated Data Pipelines & Real-Time Operational Dashboards',
+      'Scalable Cloud Deployment with 99.9% Uptime Guarantee'
+    ],
+    credentials: ['React 19', 'TypeScript', 'Node.js', 'Python', 'PostgreSQL', 'Docker'],
+    solutionsDelivered: [
+      {
+        challenge: 'Disjointed manual spreadsheets causing communication silos and costly business errors.',
+        solution: 'Unified bespoke internal application automating task routing, approvals, and data validation.',
+        value: '80% reduction in manual data processing time.'
+      },
+      {
+        challenge: 'Off-the-shelf software imposing rigid limitations and high recurring license fees.',
+        solution: 'Custom proprietary application engineered specifically around your company’s unique workflow.',
+        value: 'Zero recurring per-user licensing fees and 100% proprietary IP ownership.'
+      }
+    ],
+    capabilities: [
+      {
+        title: 'Custom Web & Internal Portals',
+        description: 'Centralized platforms for employee management, operations tracking, and client self-service interactions.'
+      },
+      {
+        title: 'Workflow Automation Engines',
+        description: 'Automating multi-step approvals, automated notifications, document generation, and status syncing.'
+      },
+      {
+        title: 'Enterprise System Modernization',
+        description: 'Upgrading legacy desktop or manual databases into cloud-accessible modern applications.'
+      },
+      {
+        title: 'Role-Based Security & Permissions',
+        description: 'Strict department-level data segregation, audit logging, and single sign-on (SSO) authentication.'
+      },
+      {
+        title: 'Third-Party API Integrations',
+        description: 'Seamless bidirectional synchronization with your existing accounting, inventory, and payment systems.'
+      },
+      {
+        title: 'Ongoing Support & SLA Maintenance',
+        description: 'Dedicated technical support, feature enhancements, and proactive security monitoring.'
+      }
+    ],
+    metrics: [
+      { label: 'Time Saved', value: '75%+' },
+      { label: 'System Uptime', value: '99.9%' },
+      { label: 'Error Reduction', value: '95% Fewer Errors' },
+      { label: 'IP Ownership', value: '100% Proprietary' }
+    ],
+    techStack: [
+      { name: 'React / Next.js', role: 'Application UI' },
+      { name: 'Node.js / Express', role: 'Business Engine' },
+      { name: 'PostgreSQL', role: 'Database' },
+      { name: 'Tailwind CSS', role: 'Design System' },
+      { name: 'Docker', role: 'Containerization' },
+      { name: 'AWS Cloud', role: 'Hosting' }
+    ],
+    process: [
+      { step: '01', name: 'Operational Audit', desc: 'Analyzing internal business logic, workflows, and pain points.' },
+      { step: '02', name: 'System Blueprint', desc: 'Mapping database schemas, user roles, and interactive wireframes.' },
+      { step: '03', name: 'Sprint Engineering', desc: 'Bi-weekly functional releases tested directly with your team.' },
+      { step: '04', name: 'Rollout & Staff Training', desc: 'Guided deployment, user onboarding, and dedicated technical maintenance.' }
+    ],
+    faqs: [
+      { q: 'Why should we choose custom application development over off-the-shelf SaaS?', a: 'Off-the-shelf software charges exorbitant per-user monthly fees and forces your business to adapt to their limitations. A custom application is built 100% around your exact workflow, carries zero recurring per-seat licenses, and remains your exclusive proprietary asset.' },
+      { q: 'Can the application integrate with our current systems?', a: 'Yes! We develop secure custom APIs and webhook connectors to synchronize with QuickBooks, SAP, Salesforce, or any custom database you currently run.' }
+    ]
+  },
   {
     slug: 'react-nextjs-development',
     categoryId: 'web-development',

@@ -6,6 +6,7 @@ import { SiReact, SiFlutter } from 'react-icons/si';
 import Container from '../ui/Container';
 import SectionHeading from '../common/SectionHeading';
 import TiltCard from '../ui/TiltCard';
+import { additionalEnterpriseServices } from '../../data/servicesData';
 
 const coreServices = [
   {
@@ -59,9 +60,12 @@ const FeaturedServices = () => {
   return (
     <section className="py-20 md:py-28 bg-surface/20 border-y border-border relative overflow-hidden">
       {/* Background ambient lighting */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
 
       <Container className="relative z-10">
+        {/* =========================================================
+            1. TOP 3 CORE SPECIALIZATION CARDS
+        ========================================================= */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 md:mb-16">
           <SectionHeading
             eyebrow="Core Specializations"
@@ -79,7 +83,7 @@ const FeaturedServices = () => {
           </Link>
         </div>
 
-        {/* 3-Column Cards Grid */}
+        {/* 3-Column Technology Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {coreServices.map((service, index) => {
             const Icon = service.icon;
@@ -161,6 +165,88 @@ const FeaturedServices = () => {
               </motion.div>
             );
           })}
+        </div>
+
+        {/* =========================================================
+            2. ADDITIONAL 6 ENTERPRISE SERVICES (Reference Image)
+        ========================================================= */}
+        <div className="mt-20 md:mt-28 pt-16 border-t border-white/10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+            <div>
+              <span className="text-xs uppercase tracking-widest text-accent font-medium block mb-2">
+                Specialized Offerings
+              </span>
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-display font-medium text-white">
+                Enterprise & Application Services
+              </h3>
+            </div>
+            <p className="text-sm text-secondary max-w-md">
+              Full-cycle product engineering, multi-tenant SaaS architecture, conversion-focused eCommerce, and modern content platforms.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-12">
+            {additionalEnterpriseServices.map((item, index) => {
+              const ItemIcon = item.icon;
+              return (
+                <motion.div
+                  key={item.slug}
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-50px' }}
+                  transition={{ duration: 0.5, delay: index * 0.08 }}
+                >
+                  <Link
+                    to={`/services/${item.slug}`}
+                    className="group block p-7 md:p-8 rounded-3xl bg-surface/40 border border-white/10 hover:border-accent/40 hover:bg-surface/80 hover:shadow-2xl hover:shadow-accent/10 transition-all duration-300 relative overflow-hidden h-full flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-6">
+                        <div
+                          className="w-14 h-14 rounded-2xl flex items-center justify-center border transition-all duration-300 group-hover:scale-110"
+                          style={{
+                            backgroundColor: `${item.brandColor}15`,
+                            borderColor: `${item.brandColor}40`,
+                            boxShadow: `0 0 25px ${item.brandColor}20`,
+                          }}
+                        >
+                          <ItemIcon size={26} style={{ color: item.brandColor }} />
+                        </div>
+
+                        <span className="text-[11px] font-mono text-secondary/80 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10">
+                          {item.badge}
+                        </span>
+                      </div>
+
+                      <h4 className="text-xl md:text-2xl font-display font-medium text-white group-hover:text-accent transition-colors mb-3">
+                        {item.title}
+                      </h4>
+
+                      <p className="text-secondary text-sm md:text-base leading-relaxed mb-6">
+                        {item.description}
+                      </p>
+                    </div>
+
+                    <div className="pt-4 border-t border-white/5 flex items-center justify-between text-sm font-medium text-white/90 group-hover:text-accent transition-colors">
+                      <span>Explore Technical Architecture</span>
+                      <ArrowRight size={16} className="group-hover:translate-x-1.5 transition-transform" />
+                    </div>
+                  </Link>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* View More Button (Green pill matching reference image) */}
+          <div className="flex justify-center pt-4">
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-[#10B981] hover:bg-[#059669] text-white font-medium text-sm transition-all duration-300 shadow-[0_0_25px_rgba(16,185,129,0.3)] hover:scale-105"
+            >
+              <span>View More</span>
+              <ArrowRight size={16} />
+            </Link>
+          </div>
         </div>
       </Container>
     </section>
