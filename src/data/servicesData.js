@@ -31,7 +31,8 @@ import {
   Zap,
   Briefcase
 } from 'lucide-react';
-import { FaLinkedin } from 'react-icons/fa6';
+import { FaLinkedin, FaAws } from 'react-icons/fa6';
+import { SiReact, SiFlutter, SiNodedotjs, SiNextdotjs } from 'react-icons/si';
 
 export const serviceCategories = [
   {
@@ -93,9 +94,306 @@ export const enterpriseSpecialties = [
   }
 ];
 
+export const featuredTechServices = [
+  {
+    slug: 'react-nextjs-development',
+    title: 'React & Next.js Development',
+    category: 'Web & Full-Stack',
+    badge: 'Frontend & SSR',
+    icon: SiReact,
+    brandColor: '#61DAFB',
+    description: 'High-performance bespoke web applications, Next.js App Router, dynamic SaaS dashboards, and lightning-fast edge rendering.',
+    tags: ['React 19', 'Next.js 15', 'TypeScript', 'Tailwind CSS']
+  },
+  {
+    slug: 'flutter-app-development',
+    title: 'Flutter App Development',
+    category: 'Mobile Engineering',
+    badge: 'iOS & Android',
+    icon: SiFlutter,
+    brandColor: '#54C5F8',
+    description: 'Cross-platform mobile apps for iOS and Android from a single codebase with 60fps native animations and offline-first capabilities.',
+    tags: ['Flutter 3', 'Dart', 'Bloc / Riverpod', 'Offline Sync']
+  },
+  {
+    slug: 'backend-cloud-development',
+    title: 'Backend & Cloud Development',
+    category: 'Cloud & Infrastructure',
+    badge: 'Microservices & APIs',
+    icon: Server,
+    brandColor: '#34D399',
+    description: 'Scalable microservices, robust REST & GraphQL APIs, AWS/GCP cloud architecture, and high-security databases.',
+    tags: ['Node.js', 'Python / FastAPI', 'PostgreSQL', 'Docker & AWS']
+  }
+];
+
 export const allServices = [
   // ─────────────────────────────────────────────────────────────
-  // 1. WEB & SOFTWARE DEVELOPMENT
+  // 1. PRIMARY FEATURED ENGINEERING SERVICES
+  // ─────────────────────────────────────────────────────────────
+  {
+    slug: 'react-nextjs-development',
+    categoryId: 'web-development',
+    categoryName: 'Web & Software Development',
+    title: 'React & Next.js Development',
+    shortDescription: 'High-performance bespoke web applications, Next.js App Router, dynamic SaaS dashboards, and lightning-fast edge rendering.',
+    heroDescription: 'We engineer modern React & Next.js web applications, high-converting SaaS platforms, and enterprise dashboards with Server-Side Rendering (SSR), React Server Components (RSC), type-safe TypeScript architectures, and sub-second load times.',
+    icon: SiReact,
+    brandColor: '#61DAFB',
+    badge: 'Frontend & Full-Stack',
+    highlights: [
+      'Next.js 15 App Router & React 19 Server Components',
+      'Sub-Second Page Loads & 95+ Google Lighthouse Scores',
+      'Scalable SaaS Dashboards with Enterprise RBAC & Data Grids',
+      'Edge Caching, ISR & Global CDN Cloudflare Rollouts',
+      '100% Intellectual Property & Source Code Ownership',
+      'Clean Modular Architecture with Unit & E2E Testing'
+    ],
+    credentials: ['Next.js 15', 'React 19', 'TypeScript', 'Tailwind CSS', 'Vercel / AWS', 'TanStack Query'],
+    solutionsDelivered: [
+      {
+        challenge: 'Legacy frontend codebases with slow render cycles and high bounce rates.',
+        solution: 'Modern Next.js architecture with incremental static regeneration and edge CDN caching.',
+        value: '3x faster load times and 45% lower bounce rate.'
+      },
+      {
+        challenge: 'Complex enterprise dashboards freezing under large data tables.',
+        solution: 'Virtualised rendering, Web Workers, and optimistic UI updates.',
+        value: 'Smooth 60 FPS interactions across 10,000+ data rows.'
+      },
+      {
+        challenge: 'Poor SEO and slow time-to-first-byte (TTFB) in single-page applications.',
+        solution: 'Full Server-Side Rendering (SSR) and dynamic metadata generation.',
+        value: 'Top 3 Google SERP ranking for target commercial keywords.'
+      }
+    ],
+    capabilities: [
+      {
+        title: 'Next.js App Router & SSR',
+        description: 'Server-side rendering, streaming HTML, and React Server Components for instantaneous first contentful paint.'
+      },
+      {
+        title: 'High-Density SaaS Dashboards',
+        description: 'Complex analytical web apps with real-time charts, filterable data tables, and granular role permissions.'
+      },
+      {
+        title: 'Component Design Systems',
+        description: 'Pixel-perfect, accessible UI components built with Tailwind CSS, Radix UI, and motion interactions.'
+      },
+      {
+        title: 'Edge Caching & Cloudflare CI/CD',
+        description: 'Zero-latency content delivery networks, automated test suites, and preview environments for rapid releases.'
+      },
+      {
+        title: 'Type-Safe Full-Stack APIs',
+        description: 'End-to-end type safety connecting Next.js server actions and tRPC/REST endpoints to backend services.'
+      },
+      {
+        title: 'Headless CMS & Commerce',
+        description: 'Integration with Shopify Plus, Strapi, Sanity, and Supabase for dynamic content-driven digital experiences.'
+      }
+    ],
+    metrics: [
+      { label: 'Lighthouse Score', value: '98/100' },
+      { label: 'UI Frame Rate', value: '60 FPS' },
+      { label: 'Time-To-First-Byte', value: '< 300ms' },
+      { label: 'IP Ownership', value: '100% Full Transfer' }
+    ],
+    techStack: [
+      { name: 'React 19', role: 'UI Library' },
+      { name: 'Next.js 15', role: 'Full-Stack SSR' },
+      { name: 'TypeScript', role: 'Type Safety' },
+      { name: 'Tailwind CSS', role: 'Styling' },
+      { name: 'TanStack Query', role: 'Server State' },
+      { name: 'Zustand / Redux', role: 'Client State' }
+    ],
+    process: [
+      { step: '01', name: 'Architecture & UX', desc: 'Defining component boundaries, data contracts, and responsive layout systems.' },
+      { step: '02', name: 'Sprint Engineering', desc: 'Rapid two-week agile development sprints with continuous staging deployments.' },
+      { step: '03', name: 'Performance & QA', desc: 'Lighthouse audits, cross-browser compatibility, and automated Playwright E2E tests.' },
+      { step: '04', name: 'Global Rollout & SLA', desc: 'Edge CDN deployment, uptime monitoring, and post-launch maintenance warranty.' }
+    ],
+    faqs: [
+      { q: 'Why choose Next.js over vanilla React?', a: 'Next.js provides Server-Side Rendering (SSR) and Static Site Generation (SSG), which drastically improves search engine indexing (SEO), ensures sub-second page loads, and provides built-in API routing.' },
+      { q: 'Will our team receive full source code?', a: 'Yes, 100% of the repository, design assets, and intellectual property are handed over directly to your organization.' }
+    ]
+  },
+  {
+    slug: 'flutter-app-development',
+    categoryId: 'web-development',
+    categoryName: 'Web & Software Development',
+    title: 'Flutter App Development',
+    shortDescription: 'High-performance cross-platform mobile apps for iOS and Android with 60fps native animations and offline-first capabilities.',
+    heroDescription: 'We architect fluid, production-ready Flutter mobile applications for iOS and Android from a single battle-tested codebase, delivering native performance, responsive gestures, hardware integrations, and seamless app store releases.',
+    icon: SiFlutter,
+    brandColor: '#54C5F8',
+    badge: 'iOS & Android',
+    highlights: [
+      'Single Codebase for Both iOS & Android with 95%+ Code Sharing',
+      'Smooth 60 FPS & 120 FPS Native Motion Graphics & Fluid Gestures',
+      'Offline-First SQLite & Hive Local Storage with Automatic Cloud Sync',
+      'Biometrics, Camera, Bluetooth BLE & Background GPS Integrations',
+      '100% Guaranteed App Store & Google Play Store Publishing',
+      'Strict State Architecture (Bloc / Riverpod) for Long-Term Scalability'
+    ],
+    credentials: ['Flutter 3', 'Dart 3', 'Apple iOS', 'Google Android', 'Firebase', 'Bloc / Riverpod'],
+    solutionsDelivered: [
+      {
+        challenge: 'High cost and doubled timeline of maintaining separate native Swift and Kotlin apps.',
+        solution: 'Unified Flutter architecture sharing 95%+ of business logic and UI while compiling to native arm64 code.',
+        value: '45% cost reduction and 2x faster time-to-market.'
+      },
+      {
+        challenge: 'Unreliable offline performance for on-field personnel and bad network zones.',
+        solution: 'Local-first database caching with automated background sync queues.',
+        value: 'Zero data loss and instantaneous offline user interactions.'
+      },
+      {
+        challenge: 'Strenuous app store rejection due to guideline and privacy policy compliance.',
+        solution: 'Rigorous pre-submission audits, automated compliance checklists, and sandbox testing.',
+        value: '100% first-pass store approval rate.'
+      }
+    ],
+    capabilities: [
+      {
+        title: 'Cross-Platform Mobile Apps',
+        description: 'Single codebase targeting both Apple iPhone/iPad and Android phones/tablets with identical pixel fidelity.'
+      },
+      {
+        title: '60fps Native Motion UI',
+        description: 'Fluid micro-interactions, custom animations, and responsive screen adaptability across all screen aspect ratios.'
+      },
+      {
+        title: 'Offline-First Synchronization',
+        description: 'Local caching via SQLite or Hive ensuring uninterrupted app usage in low or zero internet connectivity.'
+      },
+      {
+        title: 'Hardware Sensor & Device APIs',
+        description: 'Deep integration with FaceID/fingerprint biometrics, Bluetooth BLE, camera scanners, and real-time geolocation.'
+      },
+      {
+        title: 'Push Notifications & WebSockets',
+        description: 'Real-time live messaging, order dispatching, and targeted push notification campaigns via Firebase Cloud Messaging.'
+      },
+      {
+        title: 'App Store & Play Store CI/CD',
+        description: 'Automated Fastlane pipelines for TestFlight beta distributions and guaranteed public store approvals.'
+      }
+    ],
+    metrics: [
+      { label: 'UI Fluidity', value: '60-120 FPS' },
+      { label: 'Code Sharing', value: '95%+ Shared' },
+      { label: 'Store Approval', value: '100% First-Pass' },
+      { label: 'Crash-Free Rate', value: '99.8%' }
+    ],
+    techStack: [
+      { name: 'Flutter 3', role: 'UI Framework' },
+      { name: 'Dart 3', role: 'Language' },
+      { name: 'Bloc / Riverpod', role: 'State Architecture' },
+      { name: 'Firebase', role: 'Cloud & Auth' },
+      { name: 'SQLite / Hive', role: 'Offline Storage' },
+      { name: 'Fastlane', role: 'Store Automation' }
+    ],
+    process: [
+      { step: '01', name: 'Product Scope & Wireframes', desc: 'Defining user journeys, gesture interactions, and technical device dependencies.' },
+      { step: '02', name: 'Interactive Prototyping', desc: 'Clickable Figma prototypes validating user flows before code implementation.' },
+      { step: '03', name: 'Sprint Development & Tests', desc: 'Iterative feature rollouts with automated unit tests and weekly TestFlight/APK drops.' },
+      { step: '04', name: 'Store Publishing & SLA', desc: 'Submission to Apple App Store and Google Play, followed by crash analytics monitoring.' }
+    ],
+    faqs: [
+      { q: 'Will the Flutter app feel like a real native app?', a: 'Yes! Flutter does not use web views; it renders directly using Skia / Impeller graphics engines and compiles to machine code (arm64), delivering 60-120 FPS native performance.' },
+      { q: 'Do you handle the Apple and Google Play store submission?', a: 'Yes, our team manages the entire submission process, developer account setup, screenshot generation, and policy compliance until your app is live.' }
+    ]
+  },
+  {
+    slug: 'backend-cloud-development',
+    categoryId: 'web-development',
+    categoryName: 'Web & Software Development',
+    title: 'Backend & Cloud Development',
+    shortDescription: 'Scalable microservices, robust REST & GraphQL APIs, AWS/GCP cloud architecture, and high-security databases.',
+    heroDescription: 'We build secure, high-concurrency backend infrastructures, microservices, and event-driven architectures capable of processing millions of daily transactions with sub-100ms latency, 99.99% uptime, and military-grade encryption.',
+    icon: Server,
+    brandColor: '#34D399',
+    badge: 'Microservices & Cloud',
+    highlights: [
+      'Sub-100ms High-Throughput RESTful & GraphQL Enterprise APIs',
+      'Cloud Infrastructure on AWS, Google Cloud & Containerized Docker',
+      'PostgreSQL, Redis Caching & High-Availability Database Clusters',
+      'Row-Level Security, JWT/OAuth2, RBAC & SOC2 Compliance Ready',
+      'Zero-Downtime Blue/Green CI/CD Deployment Pipelines',
+      'Asynchronous Message Queues (BullMQ, Kafka, RabbitMQ)'
+    ],
+    credentials: ['Node.js', 'Python / FastAPI', 'PostgreSQL', 'Docker', 'AWS Cloud', 'Redis'],
+    solutionsDelivered: [
+      {
+        challenge: 'Database deadlocks and server crashes during sudden peak traffic spikes.',
+        solution: 'Connection pooling, Redis distributed caching, and horizontal autoscaling on Kubernetes.',
+        value: 'Handled 20x traffic spikes with 0% downtime.'
+      },
+      {
+        challenge: 'Vulnerable endpoints and exposed API keys risking critical business data.',
+        solution: 'Strict JWT authentication, HMAC request signing, rate limiting, and automated security penetration audits.',
+        value: 'Zero security breaches and SOC2/HIPAA compliance ready.'
+      },
+      {
+        challenge: 'Slow multi-table SQL queries causing multi-second delays for mobile clients.',
+        solution: 'Database indexing, materialized query views, and denormalized read-replicas.',
+        value: 'Reduced API response times from 3.2s to 42ms.'
+      }
+    ],
+    capabilities: [
+      {
+        title: 'High-Concurrency REST & GraphQL APIs',
+        description: 'Cleanly documented, versioned APIs with schema validation, rate limiting, and sub-100ms response targets.'
+      },
+      {
+        title: 'Cloud Infrastructure & DevOps',
+        description: 'Automated infrastructure provisioning on AWS/GCP with Docker containers, autoscaling groups, and VPC isolation.'
+      },
+      {
+        title: 'High-Availability Database Engineering',
+        description: 'PostgreSQL and MySQL database tuning, connection pooling, automated backups, and Redis distributed caching.'
+      },
+      {
+        title: 'Event-Driven Architecture & Queues',
+        description: 'Asynchronous task workers using Redis BullMQ, RabbitMQ, and Apache Kafka for non-blocking workload execution.'
+      },
+      {
+        title: 'Enterprise Auth & Security Audits',
+        description: 'OAuth2, OpenID Connect, SAML single sign-on (SSO), role-based permissions (RBAC), and encryption at rest and in transit.'
+      },
+      {
+        title: 'Continuous Deployment & Monitoring',
+        description: 'Zero-downtime blue/green deployments with GitHub Actions, Sentry crash tracking, and Prometheus/Grafana metrics.'
+      }
+    ],
+    metrics: [
+      { label: 'Uptime SLA', value: '99.99%' },
+      { label: 'API Response', value: '< 45ms' },
+      { label: 'Throughput', value: '100K+ req/s' },
+      { label: 'Security Standard', value: 'SOC2 / HIPAA' }
+    ],
+    techStack: [
+      { name: 'Node.js / Express', role: 'Runtime API' },
+      { name: 'Python / FastAPI', role: 'High-Speed Services' },
+      { name: 'PostgreSQL', role: 'Primary Relational DB' },
+      { name: 'Redis', role: 'Cache & Queue Engine' },
+      { name: 'Docker', role: 'Containerization' },
+      { name: 'AWS / GCP', role: 'Cloud Infrastructure' }
+    ],
+    process: [
+      { step: '01', name: 'Data Modeling & API Contracts', desc: 'Designing relational database schemas, indexes, and OpenAPI/Swagger specifications.' },
+      { step: '02', name: 'Core Microservices Build', desc: 'Implementing business logic, authentication guards, and database transactions.' },
+      { step: '03', name: 'Stress & Load Testing', desc: 'Running k6 load tests simulating 10,000+ concurrent requests and penetration audits.' },
+      { step: '04', name: 'Production Cloud Launch', desc: 'Container orchestration, SSL certificate hardening, and 24/7 automated monitoring setup.' }
+    ],
+    faqs: [
+      { q: 'Can you migrate our existing legacy database without downtime?', a: 'Yes! We use dual-write and replication migration strategies so your live production systems experience zero interruptions during the database switchover.' },
+      { q: 'What cloud provider do you deploy to?', a: 'We architect for AWS (Amazon Web Services), Google Cloud Platform (GCP), DigitalOcean, or private bare-metal servers depending on your budget and regulatory requirements.' }
+    ]
+  },
+  // ─────────────────────────────────────────────────────────────
+  // 2. OTHER SPECIALIZED SERVICES
   // ─────────────────────────────────────────────────────────────
   {
     slug: 'custom-web-development',

@@ -1,208 +1,166 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  ArrowRight, 
-  ChevronRight, 
-  Sparkles, 
-  Building2, 
-  Users, 
-  Store, 
-  Stethoscope, 
-  GraduationCap, 
-  Wallet,
-  CheckCircle2
-} from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Server } from 'lucide-react';
+import { SiReact, SiFlutter } from 'react-icons/si';
 import Container from '../ui/Container';
 import SectionHeading from '../common/SectionHeading';
-import Button from '../ui/Button';
 import TiltCard from '../ui/TiltCard';
-import { serviceCategories, allServices, enterpriseSpecialties } from '../../data/servicesData';
+
+const coreServices = [
+  {
+    id: '01',
+    slug: 'react-nextjs-development',
+    title: 'React & Next.js Development',
+    category: 'Web & Full-Stack',
+    badge: 'Frontend & SSR',
+    icon: SiReact,
+    brandColor: '#61DAFB',
+    accentBg: 'bg-[#61DAFB]/10',
+    accentBorder: 'border-[#61DAFB]/30',
+    accentGlow: 'group-hover:shadow-[0_0_30px_rgba(97,218,251,0.25)]',
+    description: 'Bespoke web applications, Next.js 15 App Router, dynamic SaaS dashboards, and lightning-fast edge rendering.',
+    highlights: ['Next.js SSR & Server Components', 'Sub-second page load times', 'Interactive SaaS dashboards'],
+    tags: ['React 19', 'Next.js 15', 'TypeScript', 'Tailwind CSS'],
+  },
+  {
+    id: '02',
+    slug: 'flutter-app-development',
+    title: 'Flutter App Development',
+    category: 'Mobile Engineering',
+    badge: 'iOS & Android',
+    icon: SiFlutter,
+    brandColor: '#54C5F8',
+    accentBg: 'bg-[#54C5F8]/10',
+    accentBorder: 'border-[#54C5F8]/30',
+    accentGlow: 'group-hover:shadow-[0_0_30px_rgba(84,197,248,0.25)]',
+    description: 'Cross-platform mobile apps for iOS and Android from a single codebase with 60fps native animations and offline-first capabilities.',
+    highlights: ['Unified iOS & Android codebase', '60-120 FPS native motion', 'Offline-first SQLite sync'],
+    tags: ['Flutter 3', 'Dart', 'Bloc / Riverpod', 'Offline Sync'],
+  },
+  {
+    id: '03',
+    slug: 'backend-cloud-development',
+    title: 'Backend & Cloud Development',
+    category: 'Cloud & Infrastructure',
+    badge: 'Microservices & APIs',
+    icon: Server,
+    brandColor: '#34D399',
+    accentBg: 'bg-emerald-500/10',
+    accentBorder: 'border-emerald-500/30',
+    accentGlow: 'group-hover:shadow-[0_0_30px_rgba(52,211,153,0.25)]',
+    description: 'Scalable microservices, robust REST & GraphQL APIs, AWS/GCP cloud architecture, and high-security databases.',
+    highlights: ['High-throughput REST & GraphQL', 'AWS & Docker cloud architecture', 'PostgreSQL & Redis caching'],
+    tags: ['Node.js', 'Python / FastAPI', 'PostgreSQL', 'Docker & AWS'],
+  },
+];
 
 const FeaturedServices = () => {
-  const [activeTab, setActiveTab] = useState(serviceCategories[0].id);
-
-  const activeCategory = serviceCategories.find(s => s.id === activeTab) || serviceCategories[0];
-  const categoryServices = allServices.filter(s => s.categoryId === activeTab);
-
   return (
-    <section className="py-16 md:py-24 bg-surface/20 border-y border-border relative overflow-hidden">
-      <Container>
-        <SectionHeading 
-          eyebrow="Our Capabilities"
-          title="Engineered for modern enterprise growth."
-          description="A complete suite of custom software engineering, advanced AI systems, digital product design, SEO, Google Ads, and B2B growth."
-        />
+    <section className="py-20 md:py-28 bg-surface/20 border-y border-border relative overflow-hidden">
+      {/* Background ambient lighting */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
 
-        {/* =========================================================
-            INTERACTIVE SERVICES TABS & DETAILED CARDS
-        ========================================================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 min-h-[540px] mb-16">
-          {/* Left Tabs */}
-          <div className="lg:col-span-5 flex flex-col gap-3.5">
-            {serviceCategories.map((category) => {
-              const isActive = activeTab === category.id;
-              const Icon = category.icon;
-              const count = allServices.filter(s => s.categoryId === category.id).length;
-              
-              return (
-                <TiltCard key={category.id} intensity={4} glare={false} className="rounded-2xl">
-                  <button
-                    onClick={() => setActiveTab(category.id)}
-                    className={`w-full text-left p-5 md:p-6 rounded-2xl transition-all duration-300 border cursor-pointer ${
-                      isActive 
-                        ? 'bg-surface border-white/20 shadow-xl ring-1 ring-white/10' 
-                        : 'bg-transparent border-transparent hover:bg-surface/50 hover:border-white/5'
-                    }`}
-                  >
-                    <div className="flex items-center justify-between mb-2.5">
-                      <div className="flex items-center gap-3.5">
-                        <div className={`p-2.5 rounded-xl transition-colors ${isActive ? 'bg-white text-black shadow-lg shadow-white/10' : 'bg-surface text-secondary'}`}>
-                          <Icon size={20} />
-                        </div>
-                        <h3 className={`text-base md:text-lg font-medium transition-colors ${isActive ? 'text-white font-semibold' : 'text-secondary'}`}>
-                          {category.title}
-                        </h3>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className={`text-[11px] px-2 py-0.5 rounded-full border ${isActive ? 'bg-white/10 border-white/20 text-white' : 'bg-white/5 border-transparent text-secondary/60'}`}>
-                          {count}
-                        </span>
-                        {isActive && (
-                          <motion.div layoutId="serviceTabIndicator" className="w-2 h-2 rounded-full bg-accent shadow-[0_0_10px_#3366ff]" />
-                        )}
-                      </div>
-                    </div>
-                    <p className={`text-xs md:text-sm leading-relaxed ${isActive ? 'text-secondary' : 'text-secondary/60'}`}>
-                      {category.description}
-                    </p>
-                  </button>
-                </TiltCard>
-              );
-            })}
-          </div>
+      <Container className="relative z-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 md:mb-16">
+          <SectionHeading
+            eyebrow="Core Specializations"
+            title="Engineered for modern digital scale."
+            description="We build high-performance web applications, fluid mobile experiences, and resilient cloud backends tailored for fast-moving businesses."
+            className="mb-0 max-w-2xl"
+          />
 
-          {/* Right Content Area */}
-          <div className="lg:col-span-7 lg:pl-4">
-            <TiltCard intensity={2} className="h-full">
-              <div className="glass-card h-full p-6 md:p-10 relative overflow-hidden flex flex-col justify-between rounded-3xl border border-white/10 shadow-2xl">
-                <div className="absolute top-0 right-0 p-32 bg-accent/5 rounded-full blur-[100px] -mr-16 -mt-16 pointer-events-none" />
-                
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeTab}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.3 }}
-                    className="flex-grow flex flex-col justify-between"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between pb-5 border-b border-border/50 mb-6">
-                        <div>
-                          <p className="text-[11px] uppercase tracking-[0.2em] text-accent mb-1 font-medium">Service Suite</p>
-                          <h3 className="text-xl md:text-2xl font-display font-medium text-white">
-                            {activeCategory.title}
-                          </h3>
-                        </div>
-                        <span className="text-xs px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80">
-                          {categoryServices.length} Specialized Offerings
-                        </span>
-                      </div>
-                      
-                      {/* Clickable Sub-Services List */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-8">
-                        {categoryServices.map((service, i) => {
-                          const ItemIcon = service.icon || CheckCircle2;
-                          return (
-                            <motion.div
-                              key={service.slug}
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: 0.04 + (i * 0.03) }}
-                            >
-                              <Link
-                                to={`/services/${service.slug}`}
-                                className="group/item flex flex-col justify-between p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-accent/40 hover:bg-white/[0.06] transition-all duration-300 h-full"
-                              >
-                                <div>
-                                  <div className="flex items-center justify-between mb-2">
-                                    <div className="flex items-center gap-2.5">
-                                      <div className="w-7 h-7 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-accent group-hover/item:scale-110 group-hover/item:bg-accent group-hover/item:text-black transition-all">
-                                        <ItemIcon size={14} />
-                                      </div>
-                                      <span className="text-xs text-accent/80 font-medium">{service.badge}</span>
-                                    </div>
-                                    <ChevronRight size={15} className="text-secondary/40 group-hover/item:text-white group-hover/item:translate-x-1 transition-all" />
-                                  </div>
-                                  <h4 className="text-sm font-medium text-white mb-1 group-hover/item:text-accent transition-colors">
-                                    {service.title}
-                                  </h4>
-                                  <p className="text-xs text-secondary line-clamp-2 leading-relaxed">
-                                    {service.shortDescription}
-                                  </p>
-                                </div>
-                              </Link>
-                            </motion.div>
-                          );
-                        })}
-                      </div>
-                    </div>
-
-                    <div className="pt-5 border-t border-border/40 flex items-center justify-between">
-                      <p className="text-xs text-secondary hidden sm:block">
-                        Click any service to view full technical architecture and workflows.
-                      </p>
-                      <Link to="/services">
-                        <Button variant="ghost" className="!pl-0 group" icon={ArrowRight}>
-                          View Full Directory
-                        </Button>
-                      </Link>
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-            </TiltCard>
-          </div>
+          <Link
+            to="/services"
+            className="shrink-0 inline-flex items-center gap-2 text-sm text-secondary hover:text-white transition-colors group"
+          >
+            <span>Explore All Services</span>
+            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
 
-        {/* =========================================================
-            FLAGSHIP BUSINESS SYSTEMS (ERP, CRM, POS, HMS, LMS, FINTECH)
-        ========================================================= */}
-        <div className="pt-8 border-t border-white/5">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
-            <div>
-              <span className="text-[11px] uppercase tracking-[0.2em] text-accent font-semibold block mb-1">
-                Custom Enterprise Systems
-              </span>
-              <h3 className="text-xl md:text-2xl font-display font-medium text-white">
-                Enterprise Business Software & Management Engines
-              </h3>
-            </div>
-            <p className="text-xs md:text-sm text-secondary max-w-md">
-              Complete on-premise and cloud systems built to automate operations across supply chain, sales, healthcare, and education.
-            </p>
-          </div>
+        {/* 3-Column Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {coreServices.map((service, index) => {
+            const Icon = service.icon;
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5">
-            {enterpriseSpecialties.map((item, idx) => {
-              const ItemIcon = item.icon;
-              return (
-                <div
-                  key={idx}
-                  className="p-4 rounded-2xl bg-surface/30 border border-white/5 flex flex-col justify-between hover:border-white/20 transition-all select-none"
-                >
-                  <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-accent mb-3">
-                    <ItemIcon size={18} />
+            return (
+              <motion.div
+                key={service.slug}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.6, delay: index * 0.15 }}
+                className="h-full"
+              >
+                <TiltCard intensity={8} glare={true} scale={1.02} className="h-full rounded-3xl">
+                  <div className="glass-card h-full p-7 md:p-8 rounded-3xl border border-white/10 bg-surface/40 hover:bg-surface/70 hover:border-white/20 transition-all duration-500 flex flex-col justify-between group relative overflow-hidden">
+                    {/* Subtle top-right ambient glow */}
+                    <div
+                      className="absolute -top-16 -right-16 w-36 h-36 rounded-full blur-3xl opacity-0 group-hover:opacity-30 transition-opacity duration-700 pointer-events-none"
+                      style={{ backgroundColor: service.brandColor }}
+                    />
+
+                    <div>
+                      {/* Real Tech Icon Badge */}
+                      <div className="flex items-center justify-between mb-6">
+                        <div
+                          className={`w-16 h-16 rounded-2xl ${service.accentBg} ${service.accentBorder} border flex items-center justify-center transition-all duration-500 ${service.accentGlow} group-hover:scale-105`}
+                        >
+                          <Icon size={32} style={{ color: service.brandColor }} />
+                        </div>
+
+                        <span className="text-[11px] font-mono uppercase tracking-wider text-secondary/70 px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10">
+                          {service.badge}
+                        </span>
+                      </div>
+
+                      {/* Service Category */}
+                      <span className="text-xs uppercase tracking-widest text-accent font-medium block mb-2">
+                        {service.category}
+                      </span>
+
+                      {/* Service Title */}
+                      <h3 className="text-2xl font-display font-medium text-white group-hover:text-white transition-colors mb-3 leading-snug">
+                        {service.title}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="text-secondary text-sm leading-relaxed mb-6">
+                        {service.description}
+                      </p>
+
+                      {/* Tech Stack Tags */}
+                      <div className="flex flex-wrap gap-1.5 mb-8">
+                        {service.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-xs px-2.5 py-1 rounded-lg bg-white/[0.03] border border-white/10 text-secondary/80 font-mono"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* View More Button */}
+                    <div className="pt-5 border-t border-white/10 flex items-center justify-between">
+                      <Link
+                        to={`/services/${service.slug}`}
+                        className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-accent hover:border-accent hover:text-white transition-all duration-300 font-medium text-sm group/btn shadow-lg w-full justify-center"
+                      >
+                        <span>View More</span>
+                        <ArrowRight
+                          size={16}
+                          className="group-hover/btn:translate-x-1 transition-transform"
+                        />
+                      </Link>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="text-xs font-semibold text-white mb-1">{item.title}</h4>
-                    <p className="text-[11px] text-secondary line-clamp-2 leading-relaxed">{item.desc}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+                </TiltCard>
+              </motion.div>
+            );
+          })}
         </div>
       </Container>
     </section>

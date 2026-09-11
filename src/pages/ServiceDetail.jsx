@@ -12,14 +12,19 @@ import {
   Globe,
   TrendingUp,
   CheckCircle,
-  Building2,
-  ShieldCheck
+  ShieldCheck,
+  Cpu,
+  Clock,
+  Lock,
+  Code2
 } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa6';
 import PageTransition from '../components/layout/PageTransition';
 import Container from '../components/ui/Container';
 import Button from '../components/ui/Button';
 import { getServiceBySlug, allServices } from '../data/servicesData';
+
+const WHATSAPP_NUMBER = '923320901442';
 
 const ServiceDetail = () => {
   const { slug } = useParams();
@@ -39,7 +44,7 @@ const ServiceDetail = () => {
             <Layers size={40} />
           </div>
           <h1 className="text-3xl md:text-5xl font-display font-medium text-white mb-4">Service Not Found</h1>
-          <p className="text-secondary max-w-md mb-8">The system you are looking for might have been moved or updated.</p>
+          <p className="text-secondary max-w-md mb-8">The technology or system you are looking for might have been moved or updated.</p>
           <Link to="/services">
             <Button variant="primary" icon={ArrowLeft}>Back to Services</Button>
           </Link>
@@ -49,19 +54,25 @@ const ServiceDetail = () => {
   }
 
   const IconComponent = service.icon || Globe;
+  const brandColor = service.brandColor || '#3366ff';
   const relatedServices = allServices.filter(s => s.categoryId === service.categoryId && s.slug !== service.slug).slice(0, 3);
-  const whatsappUrl = `https://wa.me/923320901442?text=Hello%20Blank%20Slate%20Technologies%2C%20I%20am%20interested%20in%20your%20${encodeURIComponent(service.title)}%20system.`;
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+    `Hello Blank Slate, I am interested in your ${service.title} engineering services for an upcoming project.`
+  )}`;
 
   return (
     <PageTransition>
       <div className="w-full pt-28 pb-20 overflow-hidden">
         
         {/* =========================================================
-            HERO SECTION
+            1. HERO SECTION (With Real Tech Logo & Brand Glow)
         ========================================================= */}
         <section className="relative pb-16 md:pb-24 border-b border-white/5">
-          {/* Background Ambient Glows */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[450px] bg-gradient-to-b from-[#3366ff]/15 via-purple-600/10 to-transparent rounded-full blur-[140px] pointer-events-none" />
+          {/* Ambient Glows */}
+          <div 
+            className="absolute top-0 left-1/2 -translate-x-1/2 w-[750px] h-[400px] rounded-full blur-[140px] opacity-20 pointer-events-none"
+            style={{ backgroundColor: brandColor }}
+          />
 
           <Container className="relative z-10">
             {/* Breadcrumb Navigation */}
@@ -69,7 +80,7 @@ const ServiceDetail = () => {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="flex items-center gap-2 text-xs md:text-sm text-[#ADADAE] mb-8"
+              className="flex items-center gap-2 text-xs md:text-sm text-secondary mb-8"
             >
               <Link to="/" className="hover:text-white transition-colors">Home</Link>
               <span>/</span>
@@ -88,7 +99,7 @@ const ServiceDetail = () => {
                   className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs font-medium text-accent mb-6"
                 >
                   <Sparkles size={14} />
-                  <span>{service.categoryName}</span>
+                  <span>{service.categoryName || 'Engineering Service'}</span>
                   <span className="w-1 h-1 rounded-full bg-white/40" />
                   <span className="text-white/80">{service.badge}</span>
                 </motion.div>
@@ -106,52 +117,37 @@ const ServiceDetail = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="text-lg md:text-xl text-secondary leading-relaxed max-w-3xl mb-8"
+                  className="text-lg md:text-xl text-secondary leading-relaxed max-w-3xl mb-10"
                 >
                   {service.heroDescription}
                 </motion.p>
 
-                {/* Highlights Tags */}
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.25 }}
-                  className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10"
-                >
-                  {service.highlights.map((highlight, i) => (
-                    <div key={i} className="flex items-center gap-2.5 text-sm text-white/90">
-                      <CheckCircle2 size={16} className="text-accent shrink-0" />
-                      <span>{highlight}</span>
-                    </div>
-                  ))}
-                </motion.div>
-
-                {/* Action Buttons */}
+                {/* Primary Action Buttons */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.3 }}
                   className="flex flex-wrap items-center gap-4"
                 >
-                  <Link to="/contact">
-                    <Button variant="primary" className="!px-7 !py-3.5 text-base" icon={ArrowRight}>
-                      Request System Proposal
-                    </Button>
-                  </Link>
-
                   <a 
                     href={whatsappUrl} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-[#25D366]/40 bg-[#25D366]/10 text-[#25D366] hover:bg-[#25D366]/20 transition-all duration-300 font-medium text-sm shadow-[0_0_20px_rgba(37,211,102,0.15)] hover:scale-105"
+                    className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-[#25D366] text-black font-semibold text-sm hover:bg-[#20bd5a] transition-all duration-300 shadow-[0_0_25px_rgba(37,211,102,0.3)] hover:scale-105"
                   >
-                    <FaWhatsapp size={18} />
+                    <FaWhatsapp size={19} />
                     <span>Instant WhatsApp Consultation</span>
                   </a>
+
+                  <Link to="/contact">
+                    <Button variant="ghost" className="!px-7 !py-3.5 text-base border border-white/10 hover:border-white/30" icon={ArrowRight}>
+                      Request Technical Proposal
+                    </Button>
+                  </Link>
                 </motion.div>
               </div>
 
-              {/* Right Column: Visual Card */}
+              {/* Right Column: Hero Visual Card with Brand Icon */}
               <div className="lg:col-span-4">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -159,29 +155,40 @@ const ServiceDetail = () => {
                   transition={{ duration: 0.7, delay: 0.2 }}
                   className="relative p-8 rounded-3xl bg-gradient-to-b from-white/[0.08] to-white/[0.02] border border-white/10 shadow-2xl backdrop-blur-xl overflow-hidden group"
                 >
-                  <div className="absolute -top-24 -right-24 w-48 h-48 bg-accent/20 rounded-full blur-3xl pointer-events-none" />
+                  <div 
+                    className="absolute -top-24 -right-24 w-48 h-48 rounded-full blur-3xl opacity-30 pointer-events-none"
+                    style={{ backgroundColor: brandColor }}
+                  />
                   
-                  <div className="w-16 h-16 rounded-2xl bg-accent/20 border border-accent/40 flex items-center justify-center text-accent mb-6 shadow-[0_0_30px_rgba(59,130,246,0.3)]">
-                    <IconComponent size={32} />
+                  {/* Floating Brand Icon */}
+                  <div 
+                    className="w-20 h-20 rounded-2xl border flex items-center justify-center mb-6 shadow-2xl transition-transform duration-500 group-hover:scale-105"
+                    style={{ 
+                      backgroundColor: `${brandColor}15`, 
+                      borderColor: `${brandColor}40`,
+                      boxShadow: `0 0 35px ${brandColor}30` 
+                    }}
+                  >
+                    <IconComponent size={40} style={{ color: brandColor }} />
                   </div>
 
-                  <h3 className="text-xl font-display font-medium text-white mb-2">Engineered For Scale</h3>
+                  <h3 className="text-xl font-display font-medium text-white mb-2">Engineered For Production</h3>
                   <p className="text-sm text-secondary leading-relaxed mb-6">
-                    Custom-built architecture, high-availability database replication, automated testing, and 100% complete IP transfer.
+                    Battle-tested architectural standards, high-availability data layers, automated testing, and guaranteed 100% intellectual property transfer.
                   </p>
 
                   <div className="space-y-3 pt-4 border-t border-white/10 text-xs text-white/80">
                     <div className="flex items-center justify-between">
-                      <span className="text-secondary">Deployment Mode</span>
-                      <span className="font-semibold text-white">Cloud / On-Premise</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-secondary">Code Ownership</span>
+                      <span className="text-secondary flex items-center gap-1.5"><Lock size={13} /> Code Ownership</span>
                       <span className="font-semibold text-white">100% IP Transfer</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-secondary">Post-Launch Warranty</span>
-                      <span className="font-semibold text-white">Full SLA & Support</span>
+                      <span className="text-secondary flex items-center gap-1.5"><Clock size={13} /> Sprint Cadence</span>
+                      <span className="font-semibold text-white">2-Week Agile Drops</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-secondary flex items-center gap-1.5"><ShieldCheck size={13} /> Post-Launch SLA</span>
+                      <span className="font-semibold text-white">Dedicated Support</span>
                     </div>
                   </div>
                 </motion.div>
@@ -191,10 +198,115 @@ const ServiceDetail = () => {
         </section>
 
         {/* =========================================================
-            BUSINESS SOLUTIONS DELIVERED
+            2. TECH CREDENTIALS & ECOSYSTEM STRIP (Image 3 inspired)
+        ========================================================= */}
+        {service.credentials && service.credentials.length > 0 && (
+          <section className="py-6 border-b border-white/5 bg-white/[0.015]">
+            <Container>
+              <div className="flex flex-wrap items-center justify-between gap-4">
+                <span className="text-xs uppercase tracking-widest text-secondary/60 font-mono">
+                  Ecosystem & Standards:
+                </span>
+                <div className="flex flex-wrap items-center gap-3">
+                  {service.credentials.map((cred, i) => (
+                    <span 
+                      key={i} 
+                      className="px-3.5 py-1 rounded-full text-xs font-mono bg-white/[0.04] border border-white/10 text-white/90"
+                    >
+                      {cred}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </Container>
+          </section>
+        )}
+
+        {/* =========================================================
+            3. ARCHITECTURE HIGHLIGHTS & OVERVIEW (Image 3 inspired)
+        ========================================================= */}
+        {service.highlights && service.highlights.length > 0 && (
+          <section className="py-16 md:py-24 border-b border-white/5 bg-surface/30">
+            <Container>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                <div className="lg:col-span-5">
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent block mb-3">
+                    Architectural Excellence
+                  </span>
+                  <h2 className="text-3xl md:text-4xl font-display font-medium text-white tracking-tight leading-tight mb-6">
+                    What makes our engineering approach fundamentally different.
+                  </h2>
+                  <p className="text-secondary text-sm md:text-base leading-relaxed mb-8">
+                    We do not use cookie-cutter templates or low-quality offshore shortcuts. Every line of code is written with clean architecture, strict type definitions, optimized network payloads, and complete security compliance.
+                  </p>
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm text-accent hover:underline font-medium"
+                  >
+                    <span>Discuss your project specifications with an architect</span>
+                    <ArrowRight size={15} />
+                  </a>
+                </div>
+
+                <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {service.highlights.map((highlight, idx) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, y: 15 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: idx * 0.08 }}
+                      className="p-5 rounded-2xl bg-surface/60 border border-white/10 hover:border-accent/40 transition-all flex items-start gap-3.5 group"
+                    >
+                      <div 
+                        className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5 border"
+                        style={{ backgroundColor: `${brandColor}15`, borderColor: `${brandColor}40` }}
+                      >
+                        <CheckCircle2 size={16} style={{ color: brandColor }} />
+                      </div>
+                      <span className="text-sm font-medium text-white/90 leading-snug group-hover:text-white transition-colors">
+                        {highlight}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </Container>
+          </section>
+        )}
+
+        {/* =========================================================
+            4. PERFORMANCE METRICS BAR (Image 3 inspired)
+        ========================================================= */}
+        {service.metrics && service.metrics.length > 0 && (
+          <section className="py-12 border-b border-white/5 bg-gradient-to-r from-surface via-surface/80 to-surface">
+            <Container>
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                {service.metrics.map((metric, i) => (
+                  <div key={i} className="p-6 rounded-2xl bg-white/[0.02] border border-white/5">
+                    <span 
+                      className="text-3xl sm:text-4xl font-display font-bold block mb-1"
+                      style={{ color: brandColor }}
+                    >
+                      {metric.value}
+                    </span>
+                    <span className="text-xs font-mono uppercase tracking-wider text-secondary">
+                      {metric.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </Container>
+          </section>
+        )}
+
+        {/* =========================================================
+            5. BUSINESS SOLUTIONS DELIVERED
         ========================================================= */}
         {service.solutionsDelivered && service.solutionsDelivered.length > 0 && (
-          <section className="py-20 md:py-28 bg-surface/30 border-b border-white/5 relative">
+          <section className="py-20 md:py-28 bg-surface/20 border-b border-white/5 relative">
             <Container>
               <div className="max-w-3xl mb-16">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-semibold uppercase tracking-wider mb-4">
@@ -220,7 +332,6 @@ const ServiceDetail = () => {
                     className="p-7 md:p-8 rounded-3xl bg-surface/60 border border-white/10 flex flex-col justify-between hover:border-accent/40 transition-all duration-300 relative overflow-hidden group"
                   >
                     <div>
-                      {/* Operational Context */}
                       <span className="text-xs font-semibold text-secondary uppercase tracking-wider block mb-2">
                         Operational Challenge
                       </span>
@@ -228,7 +339,6 @@ const ServiceDetail = () => {
                         "{item.challenge}"
                       </p>
 
-                      {/* Custom Solution */}
                       <div className="pt-6 border-t border-white/10 mb-3">
                         <div className="flex items-center gap-2 text-xs font-semibold text-accent uppercase tracking-wider mb-2">
                           <CheckCircle size={15} className="text-accent" />
@@ -240,7 +350,6 @@ const ServiceDetail = () => {
                       </div>
                     </div>
 
-                    {/* Value Badge */}
                     {item.value && (
                       <div className="p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center gap-3">
                         <div className="w-8 h-8 rounded-xl bg-accent/10 border border-accent/30 flex items-center justify-center text-accent shrink-0">
@@ -260,110 +369,123 @@ const ServiceDetail = () => {
         )}
 
         {/* =========================================================
-            KEY CAPABILITIES
+            6. KEY CAPABILITIES (Modular Feature Grid)
         ========================================================= */}
-        <section className="py-20 md:py-28">
-          <Container>
-            <div className="max-w-2xl mb-16">
-              <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent mb-3">Capabilities</p>
-              <h2 className="text-3xl md:text-5xl font-display font-medium text-white tracking-tight">
-                System modules & capabilities.
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {service.capabilities.map((cap, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="p-8 md:p-10 rounded-2xl bg-surface/50 border border-white/10 hover:border-accent/40 transition-all duration-300 group relative overflow-hidden"
-                >
-                  <div className="absolute top-0 right-0 p-24 bg-accent/5 rounded-full blur-2xl group-hover:bg-accent/15 transition-all duration-500 pointer-events-none" />
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white group-hover:bg-accent group-hover:text-black transition-all duration-300">
-                      <Zap size={20} />
-                    </div>
-                    <h3 className="text-xl font-display font-medium text-white">{cap.title}</h3>
-                  </div>
-                  <p className="text-secondary text-sm md:text-base leading-relaxed">{cap.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </Container>
-        </section>
-
-        {/* =========================================================
-            TECH STACK
-        ========================================================= */}
-        <section className="py-16 md:py-20 bg-surface/30 border-y border-white/5">
-          <Container>
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-              <div>
-                <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent mb-2">Technologies</p>
-                <h2 className="text-2xl md:text-4xl font-display font-medium text-white">
-                  Engineered with robust tech stacks.
+        {service.capabilities && service.capabilities.length > 0 && (
+          <section className="py-20 md:py-28 border-b border-white/5">
+            <Container>
+              <div className="max-w-2xl mb-16">
+                <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent mb-3">Capabilities</p>
+                <h2 className="text-3xl md:text-5xl font-display font-medium text-white tracking-tight">
+                  Core capabilities & system modules.
                 </h2>
               </div>
-              <p className="text-sm text-secondary max-w-md">
-                Modern, enterprise-tested technologies ensuring high concurrency, data integrity, and low latency.
-              </p>
-            </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-              {service.techStack.map((tech, i) => (
-                <div 
-                  key={i} 
-                  className="p-5 rounded-xl bg-surface border border-white/5 hover:border-white/20 transition-all duration-300 flex flex-col justify-center"
-                >
-                  <span className="text-white font-medium text-base mb-1">{tech.name}</span>
-                  <span className="text-xs text-secondary">{tech.role}</span>
-                </div>
-              ))}
-            </div>
-          </Container>
-        </section>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {service.capabilities.map((cap, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.08 }}
+                    className="p-7 md:p-8 rounded-3xl bg-surface/50 border border-white/10 hover:border-accent/40 transition-all duration-300 group relative overflow-hidden flex flex-col justify-between"
+                  >
+                    <div>
+                      <div 
+                        className="w-10 h-10 rounded-xl flex items-center justify-center mb-5 border transition-all duration-300 group-hover:scale-105"
+                        style={{ backgroundColor: `${brandColor}15`, borderColor: `${brandColor}40` }}
+                      >
+                        <Zap size={18} style={{ color: brandColor }} />
+                      </div>
+                      <h3 className="text-xl font-display font-medium text-white mb-2">{cap.title}</h3>
+                      <p className="text-secondary text-sm leading-relaxed">{cap.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </Container>
+          </section>
+        )}
 
         {/* =========================================================
-            DEVELOPMENT LIFECYCLE / PROCESS
+            7. TECH STACK (Ecosystem Badges)
         ========================================================= */}
-        <section className="py-20 md:py-28">
-          <Container>
-            <div className="max-w-2xl mb-16">
-              <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent mb-3">Our Methodology</p>
-              <h2 className="text-3xl md:text-5xl font-display font-medium text-white tracking-tight">
-                How we deliver your custom system.
-              </h2>
-            </div>
+        {service.techStack && service.techStack.length > 0 && (
+          <section className="py-16 md:py-20 bg-surface/30 border-b border-white/5">
+            <Container>
+              <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+                <div>
+                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent mb-2">Technologies</p>
+                  <h2 className="text-2xl md:text-4xl font-display font-medium text-white">
+                    Engineered with robust tech stacks.
+                  </h2>
+                </div>
+                <p className="text-sm text-secondary max-w-md">
+                  Modern, enterprise-tested technologies ensuring high concurrency, data integrity, and low latency.
+                </p>
+              </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {service.process.map((step, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="relative p-6 rounded-2xl bg-surface/30 border border-white/5 flex flex-col justify-between h-full"
-                >
-                  <div>
-                    <span className="text-3xl font-display font-bold text-accent/50 mb-4 block">{step.step}</span>
-                    <h3 className="text-lg font-medium text-white mb-2">{step.name}</h3>
-                    <p className="text-xs sm:text-sm text-secondary leading-relaxed">{step.desc}</p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3.5">
+                {service.techStack.map((tech, i) => (
+                  <div 
+                    key={i} 
+                    className="p-4 rounded-2xl bg-surface border border-white/5 hover:border-white/20 transition-all duration-300 flex flex-col justify-center"
+                  >
+                    <span className="text-white font-medium text-sm mb-1">{tech.name}</span>
+                    <span className="text-[11px] text-secondary font-mono">{tech.role}</span>
                   </div>
-                </motion.div>
-              ))}
-            </div>
-          </Container>
-        </section>
+                ))}
+              </div>
+            </Container>
+          </section>
+        )}
 
         {/* =========================================================
-            FAQS SECTION
+            8. DEVELOPMENT LIFECYCLE / PROCESS
+        ========================================================= */}
+        {service.process && service.process.length > 0 && (
+          <section className="py-20 md:py-28 border-b border-white/5">
+            <Container>
+              <div className="max-w-2xl mb-16">
+                <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent mb-3">Our Methodology</p>
+                <h2 className="text-3xl md:text-5xl font-display font-medium text-white tracking-tight">
+                  How we deliver your custom system.
+                </h2>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {service.process.map((step, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                    className="relative p-6 rounded-2xl bg-surface/30 border border-white/5 flex flex-col justify-between h-full"
+                  >
+                    <div>
+                      <span 
+                        className="text-3xl font-display font-bold mb-4 block"
+                        style={{ color: brandColor }}
+                      >
+                        {step.step}
+                      </span>
+                      <h3 className="text-lg font-medium text-white mb-2">{step.name}</h3>
+                      <p className="text-xs sm:text-sm text-secondary leading-relaxed">{step.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </Container>
+          </section>
+        )}
+
+        {/* =========================================================
+            9. FAQS SECTION
         ========================================================= */}
         {service.faqs && service.faqs.length > 0 && (
-          <section className="py-16 md:py-24 bg-surface/20 border-t border-white/5">
+          <section className="py-16 md:py-24 bg-surface/20 border-b border-white/5">
             <Container className="max-w-4xl">
               <div className="text-center mb-12">
                 <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent mb-2">Got Questions?</p>
@@ -377,7 +499,7 @@ const ServiceDetail = () => {
                   const isOpen = openFaq === idx;
                   return (
                     <div 
-                      key={idx}
+                      key={idx} 
                       className="rounded-2xl border border-white/10 bg-surface/40 overflow-hidden transition-all duration-300"
                     >
                       <button
@@ -412,89 +534,46 @@ const ServiceDetail = () => {
         )}
 
         {/* =========================================================
-            RELATED SERVICES
+            10. DIRECT WHATSAPP & CONSULTATION CTA (Image 3 inspired)
         ========================================================= */}
-        {relatedServices.length > 0 && (
-          <section className="py-20 md:py-24 border-t border-white/5">
-            <Container>
-              <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-                <div>
-                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent mb-2">Explore More</p>
-                  <h2 className="text-2xl md:text-4xl font-display font-medium text-white">
-                    Related Systems
-                  </h2>
-                </div>
-                <Link to="/services" className="text-sm font-medium text-accent hover:text-white flex items-center gap-2 transition-colors">
-                  View All Services <ArrowRight size={16} />
+        <section className="py-16 md:py-24">
+          <Container className="max-w-4xl">
+            <div className="p-8 md:p-12 rounded-3xl bg-gradient-to-b from-surface/80 to-surface/40 border border-white/10 shadow-2xl text-center relative overflow-hidden">
+              <div 
+                className="absolute -top-20 left-1/2 -translate-x-1/2 w-80 h-80 rounded-full blur-[100px] opacity-20 pointer-events-none"
+                style={{ backgroundColor: brandColor }}
+              />
+
+              <div 
+                className="w-16 h-16 rounded-2xl mx-auto mb-6 flex items-center justify-center border shadow-xl"
+                style={{ backgroundColor: `${brandColor}15`, borderColor: `${brandColor}40` }}
+              >
+                <IconComponent size={32} style={{ color: brandColor }} />
+              </div>
+
+              <h2 className="text-2xl sm:text-4xl font-display font-medium text-white mb-4">
+                Ready to engineer your {service.title}?
+              </h2>
+              <p className="text-secondary text-base max-w-xl mx-auto mb-8">
+                Speak directly with our senior software architects. Get an immediate technical evaluation and transparent timeline for your project.
+              </p>
+
+              <div className="flex flex-wrap items-center justify-center gap-4">
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#25D366] text-black font-semibold text-base hover:bg-[#20bd5a] transition-all duration-300 shadow-[0_0_30px_rgba(37,211,102,0.35)] hover:scale-105"
+                >
+                  <FaWhatsapp size={20} />
+                  <span>Chat on WhatsApp Now</span>
+                </a>
+
+                <Link to="/contact">
+                  <Button variant="ghost" className="!px-7 !py-4 text-base border border-white/10">
+                    Schedule a Discovery Call
+                  </Button>
                 </Link>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {relatedServices.map((rel) => {
-                  const RelIcon = rel.icon || Globe;
-                  return (
-                    <Link
-                      key={rel.slug}
-                      to={`/services/${rel.slug}`}
-                      className="p-6 md:p-8 rounded-2xl bg-surface/40 border border-white/5 hover:border-accent/40 hover:bg-surface transition-all duration-300 group flex flex-col justify-between"
-                    >
-                      <div>
-                        <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-accent mb-6 group-hover:scale-110 transition-transform">
-                          <RelIcon size={24} />
-                        </div>
-                        <h3 className="text-xl font-display font-medium text-white mb-2 group-hover:text-accent transition-colors">
-                          {rel.title}
-                        </h3>
-                        <p className="text-sm text-secondary line-clamp-2 mb-6">
-                          {rel.shortDescription}
-                        </p>
-                      </div>
-
-                      <div className="flex items-center gap-2 text-xs font-semibold text-white/80 group-hover:text-white transition-colors">
-                        <span>Learn More</span>
-                        <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                      </div>
-                    </Link>
-                  );
-                })}
-              </div>
-            </Container>
-          </section>
-        )}
-
-        {/* =========================================================
-            BOTTOM CTA
-        ========================================================= */}
-        <section className="pt-12">
-          <Container>
-            <div className="relative rounded-3xl p-10 md:p-16 bg-gradient-to-br from-[#0c1322] via-[#09090b] to-[#050505] border border-white/10 overflow-hidden text-center shadow-2xl">
-              <div className="absolute inset-0 bg-accent/5 pointer-events-none" />
-              <div className="relative z-10 max-w-2xl mx-auto">
-                <span className="px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs font-medium text-accent inline-block mb-6">
-                  Custom Software Architecture
-                </span>
-                <h2 className="text-3xl md:text-5xl font-display font-medium text-white mb-6">
-                  Ready to automate your enterprise operations?
-                </h2>
-                <p className="text-secondary text-base mb-8">
-                  Schedule a discovery session with our Lead Solutions Architect to design your custom software blueprint.
-                </p>
-                <div className="flex flex-wrap items-center justify-center gap-4">
-                  <Link to="/contact">
-                    <Button variant="primary" className="!px-8 !py-3.5 text-base" icon={ArrowRight}>
-                      Book Strategy Call
-                    </Button>
-                  </Link>
-                  <a
-                    href={whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-white/20 bg-white/5 text-white hover:bg-white hover:text-black transition-all duration-300 font-medium text-sm"
-                  >
-                    <FaWhatsapp size={18} className="text-[#25D366]" />
-                    <span>Instant WhatsApp Chat</span>
-                  </a>
-                </div>
               </div>
             </div>
           </Container>

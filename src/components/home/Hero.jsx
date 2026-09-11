@@ -105,24 +105,6 @@ const Hero = () => {
                 <Button variant="outline" className="!px-6 !py-3">Explore Our Work</Button>
               </Link>
             </motion.div>
-
-            {/* Trust / Stats micro-indicators */}
-            <motion.div variants={itemVariants} className="flex items-center gap-8 sm:gap-12">
-              {[
-                { value: '10+', label: 'Years' },
-                { value: '150+', label: 'Projects' },
-                { value: '30+', label: 'Team' },
-              ].map((stat, i) => (
-                <div key={i} className="flex flex-col">
-                  <div className="text-xl sm:text-2xl font-display font-semibold text-white">
-                    {stat.value}
-                  </div>
-                  <div className="text-[10px] sm:text-xs text-secondary uppercase tracking-widest mt-0.5">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </motion.div>
           </motion.div>
 
           {/* RIGHT: Auto-playing 3D animation panel */}
