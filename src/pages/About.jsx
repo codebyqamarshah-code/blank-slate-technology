@@ -18,7 +18,7 @@ const About = () => {
     <PageTransition>
       <div className="w-full">
         {/* Zigzag Animated Hero */}
-        <section className="relative h-[45vh] flex items-center justify-center overflow-hidden">
+        <section className="relative pt-36 pb-20 md:pt-48 md:pb-28 min-h-[50vh] flex items-center justify-center overflow-hidden">
           {/* Animated zigzag background — replaces image */}
           <ZigzagHeroBackground />
           {/* Subtle dark overlay so text stays readable */}
@@ -45,16 +45,30 @@ const About = () => {
         </section>
 
         {/* Story Section */}
-        <section className="py-10 md:py-14">
+        <section className="py-10 md:py-16">
           <Container>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
               <div>
-                <SectionHeading 
-                  eyebrow="Our Story"
-                  title="A legacy of innovation."
-                  className="mb-8"
-                />
-                <div className="space-y-6 text-secondary text-lg leading-relaxed">
+                <div className="mb-6 md:mb-7">
+                  <motion.span 
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="inline-block text-secondary font-medium tracking-wider uppercase text-sm mb-3"
+                  >
+                    Our Story
+                  </motion.span>
+                  <motion.h2 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ delay: 0.1 }}
+                    className="text-3xl md:text-5xl font-semibold text-white tracking-tight"
+                  >
+                    A legacy of innovation.
+                  </motion.h2>
+                </div>
+                <div className="space-y-6 text-secondary text-base md:text-lg leading-relaxed">
                   <p>
                     Blank Slate Technologies was founded on a simple premise: technology should be an enabler, not a bottleneck. We saw businesses struggling to adapt to the digital age and decided to build an agency that bridges the gap between complex engineering and beautiful design.
                   </p>
@@ -75,7 +89,7 @@ const About = () => {
                   <img 
                     src="/images/team.jpg" 
                     alt="Our Office" 
-                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" 
+                    className="w-full h-full object-cover transition-all duration-700 hover:scale-105" 
                   />
                 </motion.div>
                 {/* Floating animated element */}

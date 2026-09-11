@@ -8,14 +8,16 @@ const SectionHeading = ({ eyebrow, title, description, align = 'left', className
     right: 'text-right ml-auto',
   };
 
+  const hasMarginOverride = className.includes('mb-');
+
   return (
-    <div className={`max-w-2xl mb-16 md:mb-24 ${aligns[align]} ${className}`}>
+    <div className={`max-w-2xl ${hasMarginOverride ? '' : 'mb-10 md:mb-14'} ${aligns[align]} ${className}`}>
       {eyebrow && (
         <motion.span 
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          className="inline-block text-secondary font-medium tracking-wider uppercase text-sm mb-4"
+          className="inline-block text-secondary font-medium tracking-wider uppercase text-xs md:text-sm mb-2 md:mb-3"
         >
           {eyebrow}
         </motion.span>
@@ -25,7 +27,7 @@ const SectionHeading = ({ eyebrow, title, description, align = 'left', className
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ delay: 0.1 }}
-        className="text-3xl md:text-5xl font-semibold mb-6 text-balance"
+        className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-3 md:mb-4 text-balance leading-tight tracking-tight"
       >
         {title}
       </motion.h2>
@@ -35,7 +37,7 @@ const SectionHeading = ({ eyebrow, title, description, align = 'left', className
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ delay: 0.2 }}
-          className="text-secondary text-lg leading-relaxed text-balance"
+          className="text-secondary text-base md:text-lg leading-relaxed text-balance"
         >
           {description}
         </motion.p>

@@ -1,11 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, ArrowRight, Globe } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 import Container from '../ui/Container';
 
 const DirectorUK = () => {
   return (
-    <section className="py-16 md:py-24 bg-[#050505] relative overflow-hidden">
+    <section className="py-12 md:py-16 bg-[#050505] relative overflow-hidden">
       {/* Background Glow */}
       <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
 
@@ -20,17 +20,17 @@ const DirectorUK = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="relative"
           >
-            {/* Main Image (Using CEO's image as requested) */}
-            <div className="relative rounded-3xl overflow-hidden aspect-[4/5] md:aspect-square lg:aspect-[4/5] border border-white/10 bg-white/[0.02]">
+            {/* Main Image - Sized to match Our Story */}
+            <div className="relative rounded-3xl overflow-hidden aspect-square md:aspect-[4/3] border border-white/10 bg-white/[0.02]">
               <img 
                 src="/images/team.jpg" 
                 alt="Director of UK" 
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                className="w-full h-full object-cover transition-all duration-700 hover:scale-105"
                 onError={(e) => { e.target.src = '/images/big1.png'; }}
               />
               
               {/* Overlay Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/30 via-transparent to-transparent pointer-events-none" />
             </div>
 
             {/* UK Flag & Location Badge */}
@@ -39,9 +39,9 @@ const DirectorUK = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="absolute -bottom-6 -right-6 md:bottom-8 md:-right-8 bg-[#0a0a0a] border border-white/10 p-5 rounded-2xl shadow-2xl backdrop-blur-xl flex items-center gap-4"
+              className="absolute -bottom-5 -right-5 md:bottom-6 md:-right-6 bg-[#0a0a0a] border border-white/10 p-4 sm:p-5 rounded-2xl shadow-2xl backdrop-blur-xl flex items-center gap-3.5"
             >
-              <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/20 shrink-0 shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-white/20 shrink-0 shadow-[0_0_15px_rgba(59,130,246,0.3)]">
                 {/* UK Flag SVG */}
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" className="w-full h-full object-cover">
                   <clipPath id="s">
@@ -60,9 +60,9 @@ const DirectorUK = () => {
                 </svg>
               </div>
               <div>
-                <p className="text-white font-medium text-lg leading-tight">London, UK</p>
-                <p className="text-[#ADADAE] text-sm flex items-center gap-1 mt-0.5">
-                  <MapPin size={12} /> Global HQ
+                <p className="text-white font-medium text-base sm:text-lg leading-tight">London, UK</p>
+                <p className="text-secondary text-xs sm:text-sm flex items-center gap-1 mt-0.5">
+                  <MapPin size={12} /> Global Operations
                 </p>
               </div>
             </motion.div>
@@ -75,44 +75,21 @@ const DirectorUK = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm mb-6 font-medium tracking-wide">
-              <Globe size={16} />
-              <span>Global Expansion</span>
-            </div>
-            
-            <h2 className="text-4xl md:text-5xl font-display font-medium text-white mb-6 leading-tight">
+            <h2 className="text-3xl md:text-5xl font-semibold text-white tracking-tight mb-6 leading-tight">
               Spearheading our <br className="hidden md:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">
                 UK Operations.
               </span>
             </h2>
-            
-            <h3 className="text-2xl text-white font-medium mb-2">Director of UK</h3>
-            
-            <div className="w-12 h-1 bg-blue-500/50 mb-6 rounded-full" />
 
-            <div className="space-y-5 text-[#ADADAE] text-lg leading-relaxed">
+            <div className="space-y-5 text-secondary text-base md:text-lg leading-relaxed">
               <p>
-                As Blank Slate Technologies continues its global expansion, our UK division serves as a critical hub for innovation, enterprise partnerships, and European market strategies. 
+                As Blank Slate Technologies continues its global expansion, our UK division serves as a strategic hub for innovation, enterprise partnerships, and European market strategies.
               </p>
               <p>
-                Led by our Director of UK, we are bridging the gap between cutting-edge technological advancements and the dynamic business landscape of the United Kingdom. Our focus remains on delivering scalable, high-performance solutions tailored to the unique needs of our European clientele.
-              </p>
-              <p>
-                From fostering local tech talent to executing large-scale digital transformations for UK-based enterprises, our mission is to empower businesses with world-class engineering and unparalleled design.
+                We bridge cutting-edge engineering with the dynamic UK business landscape, delivering scalable software architectures and high-performance digital products tailored to our European clientele.
               </p>
             </div>
-
-            <motion.button
-              whileHover={{ x: 5 }}
-              whileTap={{ scale: 0.98 }}
-              className="mt-10 flex items-center gap-2 text-white font-medium hover:text-blue-400 transition-colors group"
-            >
-              Connect with our UK Team
-              <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-blue-500/20 group-hover:border-blue-500/30 transition-all">
-                <ArrowRight size={16} />
-              </div>
-            </motion.button>
           </motion.div>
 
         </div>

@@ -139,17 +139,17 @@ const FeaturedWork = ({ showAll = false, showHeading = true, limit = 4 }) => {
   }, [showAll, selectedCategory, limit]);
 
   return (
-    <section className="py-16 md:py-20 relative">
+    <section className="pt-8 md:pt-12 pb-16 md:pb-20 relative">
       <Container>
         {showHeading && (
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 md:mb-16">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 md:mb-8">
             <SectionHeading
               eyebrow="Our Portfolio"
               title="Work that speaks for itself."
               className="mb-0 max-w-xl"
             />
             {!showAll && (
-              <Link to="/work" className="shrink-0">
+              <Link to="/work" className="shrink-0 mb-2 md:mb-0">
                 <Button variant="ghost" icon={ArrowRight}>
                   View All Projects
                 </Button>

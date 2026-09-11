@@ -84,7 +84,7 @@ const TestimonialSlider = () => {
                     <img 
                       src={testimonials[currentIndex].image} 
                       alt={testimonials[currentIndex].name}
-                      className="w-full h-full object-cover grayscale"
+                      className="w-full h-full object-cover"
                     />
                   </div>
                   <div className="text-left">

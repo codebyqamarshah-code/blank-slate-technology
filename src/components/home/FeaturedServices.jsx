@@ -58,7 +58,7 @@ const coreServices = [
 
 const FeaturedServices = () => {
   return (
-    <section className="py-20 md:py-28 bg-surface/20 border-y border-border relative overflow-hidden">
+    <section className="pt-8 md:pt-12 pb-16 md:pb-20 bg-surface/20 border-y border-border relative overflow-hidden">
       {/* Background ambient lighting */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
 
@@ -66,7 +66,7 @@ const FeaturedServices = () => {
         {/* =========================================================
             1. TOP 3 CORE SPECIALIZATION CARDS
         ========================================================= */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 md:mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 md:mb-10">
           <SectionHeading
             eyebrow="Core Specializations"
             title="Engineered for modern digital scale."
