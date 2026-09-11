@@ -39,8 +39,8 @@ const Work = () => {
           </motion.p>
         </Container>
 
-        <div className="-mt-16">
-          <FeaturedWork />
+        <div className="-mt-8">
+          <FeaturedWork showAll={true} showHeading={false} />
         </div>
         <CTA />
       </div>
