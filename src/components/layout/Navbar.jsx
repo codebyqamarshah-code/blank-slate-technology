@@ -107,10 +107,11 @@ const Navbar = () => {
   // Track scroll state
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 40);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => {
       window.removeEventListener('scroll', handleScroll);
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -121,17 +122,19 @@ const Navbar = () => {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? 'py-4 glass' : 'py-6 bg-transparent'
+          isScrolled
+            ? 'py-3.5 bg-white/95 backdrop-blur-md shadow-md border-b border-black/10'
+            : 'py-6 bg-transparent'
         }`}
       >
         <Container className="relative flex items-center justify-between">
           {/* Logo */}
           <Link to="/" onClick={closeAllMenus} className="relative z-50 flex items-center">
             <img
-              src="/images/Blank Slate IT Logo-02.png"
+              src={isScrolled ? '/images/logo-dark.png' : '/images/Blank Slate IT Logo-02.png'}
               alt="Blank Slate Technologies"
               className={`object-contain transition-all duration-300 ${
-                isScrolled ? 'h-11 md:h-13' : 'h-14 md:h-17'
+                isScrolled ? 'h-9 md:h-11' : 'h-14 md:h-17'
               }`}
             />
           </Link>
@@ -155,15 +158,17 @@ const Navbar = () => {
                         onClick={() => setIsServicesOpen((prev) => !prev)}
                         className={`flex items-center gap-1.5 transition-colors cursor-pointer ${
                           isServicesActive || isServicesOpen
-                            ? 'text-white'
-                            : 'text-secondary hover:text-white'
+                            ? (isScrolled ? 'text-black font-semibold' : 'text-white')
+                            : (isScrolled ? 'text-neutral-600 hover:text-black' : 'text-secondary hover:text-white')
                         }`}
                       >
                         <span>{link.label}</span>
                         <ChevronDown
                           size={14}
                           className={`transition-transform duration-200 ${
-                            isServicesOpen ? 'rotate-180 text-white' : 'text-secondary'
+                            isServicesOpen
+                              ? (isScrolled ? 'rotate-180 text-black' : 'rotate-180 text-white')
+                              : (isScrolled ? 'text-neutral-500' : 'text-secondary')
                           }`}
                         />
                       </button>
@@ -171,7 +176,9 @@ const Navbar = () => {
                       {isServicesActive && (
                         <motion.div
                           layoutId="activeNavLine"
-                          className="absolute bottom-0.5 left-0 right-0 h-[2px] bg-[#3366ff] rounded-full"
+                          className={`absolute bottom-0.5 left-0 right-0 h-[2px] rounded-full ${
+                            isScrolled ? 'bg-black' : 'bg-[#3366ff]'
+                          }`}
                           transition={{
                             type: 'spring',
                             stiffness: 380,
@@ -190,7 +197,9 @@ const Navbar = () => {
                       href={link.path}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="relative transition-colors text-secondary hover:text-white"
+                      className={`relative transition-colors ${
+                        isScrolled ? 'text-neutral-600 hover:text-black' : 'text-secondary hover:text-white'
+                      }`}
                     >
                       {link.label}
                     </a>
@@ -204,7 +213,9 @@ const Navbar = () => {
                     key={link.label}
                     to={link.path}
                     className={`relative transition-colors ${
-                      isActive ? 'text-white' : 'text-secondary hover:text-white'
+                      isActive
+                        ? (isScrolled ? 'text-black font-semibold' : 'text-white')
+                        : (isScrolled ? 'text-neutral-600 hover:text-black' : 'text-secondary hover:text-white')
                     }`}
                   >
                     {link.label}
@@ -212,7 +223,9 @@ const Navbar = () => {
                     {isActive && (
                       <motion.div
                         layoutId="activeNavLine"
-                        className="absolute -bottom-1.5 left-0 right-0 h-[2px] bg-[#3366ff] rounded-full"
+                        className={`absolute -bottom-1.5 left-0 right-0 h-[2px] rounded-full ${
+                          isScrolled ? 'bg-black' : 'bg-[#3366ff]'
+                        }`}
                         transition={{
                           type: 'spring',
                           stiffness: 380,
@@ -226,7 +239,14 @@ const Navbar = () => {
             </div>
 
             <Link to="/contact" onClick={closeAllMenus}>
-              <Button variant="primary" className="!px-6 !py-2.5 text-sm">
+              <Button
+                variant="primary"
+                className={`!px-6 !py-2.5 text-sm transition-all duration-300 ${
+                  isScrolled
+                    ? '!bg-black !text-white hover:!bg-neutral-800 shadow-md'
+                    : '!bg-white !text-black hover:!bg-white/90'
+                }`}
+              >
                 Let's Talk
               </Button>
             </Link>
@@ -244,17 +264,31 @@ const Navbar = () => {
                 onMouseLeave={handleMouseLeave}
                 className="hidden md:block absolute top-[calc(100%+8px)] left-1/2 -translate-x-1/2 w-[980px] max-w-[calc(100vw-3rem)] z-50 pt-2 pointer-events-auto"
               >
-                <div className="bg-[#0b0b12]/98 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.85)] p-6 overflow-hidden">
+                <div
+                  className={`rounded-2xl p-6 overflow-hidden transition-all duration-300 ${
+                    isScrolled
+                      ? 'bg-white/98 backdrop-blur-2xl border border-neutral-200 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.18)]'
+                      : 'bg-[#0b0b12]/98 backdrop-blur-2xl border border-white/10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.85)]'
+                  }`}
+                >
                   {/* 4 Curated Category Columns */}
                   <div className="grid grid-cols-4 gap-5">
                     {serviceColumns.map((col) => (
                       <div key={col.category} className="space-y-2">
-                        <div className="flex items-center gap-2 pb-2 border-b border-white/[0.08]">
+                        <div
+                          className={`flex items-center gap-2 pb-2 border-b ${
+                            isScrolled ? 'border-neutral-200' : 'border-white/[0.08]'
+                          }`}
+                        >
                           <span
                             className="w-1.5 h-1.5 rounded-full"
                             style={{ backgroundColor: col.color }}
                           />
-                          <span className="text-[11px] font-semibold uppercase tracking-wider text-white/70">
+                          <span
+                            className={`text-[11px] font-semibold uppercase tracking-wider ${
+                              isScrolled ? 'text-neutral-500' : 'text-white/70'
+                            }`}
+                          >
                             {col.category}
                           </span>
                         </div>
@@ -268,23 +302,41 @@ const Navbar = () => {
                                 key={service.slug}
                                 to={`/services/${service.slug}`}
                                 onClick={closeAllMenus}
-                                className="group/item flex items-start gap-2.5 p-2 rounded-xl hover:bg-white/[0.05] border border-transparent hover:border-white/10 transition-all duration-150"
+                                className={`group/item flex items-start gap-2.5 p-2 rounded-xl border transition-all duration-150 ${
+                                  isScrolled
+                                    ? 'hover:bg-neutral-100/90 border-transparent hover:border-neutral-200'
+                                    : 'hover:bg-white/[0.05] border-transparent hover:border-white/10'
+                                }`}
                               >
                                 <div
                                   className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5 transition-transform duration-200 group-hover/item:scale-110"
                                   style={{
-                                    backgroundColor: `${service.brandColor || col.color}18`,
+                                    backgroundColor: isScrolled
+                                      ? `${service.brandColor || col.color}20`
+                                      : `${service.brandColor || col.color}18`,
                                     color: service.brandColor || col.color,
                                   }}
                                 >
                                   <Icon size={14} />
                                 </div>
                                 <div className="min-w-0 flex-1">
-                                  <div className="text-xs font-medium text-white/85 group-hover/item:text-white transition-colors truncate">
+                                  <div
+                                    className={`text-xs font-medium transition-colors truncate ${
+                                      isScrolled
+                                        ? 'text-neutral-800 group-hover/item:text-black font-medium'
+                                        : 'text-white/85 group-hover/item:text-white'
+                                    }`}
+                                  >
                                     {service.title}
                                   </div>
                                   {service.badge && (
-                                    <div className="text-[10px] text-white/40 group-hover/item:text-cyan-400 transition-colors truncate">
+                                    <div
+                                      className={`text-[10px] transition-colors truncate ${
+                                        isScrolled
+                                          ? 'text-neutral-400 group-hover/item:text-blue-600'
+                                          : 'text-white/40 group-hover/item:text-cyan-400'
+                                      }`}
+                                    >
                                       {service.badge}
                                     </div>
                                   )}
@@ -298,15 +350,25 @@ const Navbar = () => {
                   </div>
 
                   {/* Bottom Quick Action Bar */}
-                  <div className="mt-5 pt-3.5 border-t border-white/[0.08] flex items-center justify-between text-xs px-2">
-                    <div className="flex items-center gap-2 text-white/60">
-                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <div
+                    className={`mt-5 pt-3.5 border-t flex items-center justify-between text-xs px-2 ${
+                      isScrolled
+                        ? 'border-neutral-200 text-neutral-600'
+                        : 'border-white/[0.08] text-white/60'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                       <span>End-to-End Enterprise Architecture & Agile Engineering</span>
                     </div>
                     <Link
                       to="/contact"
                       onClick={closeAllMenus}
-                      className="text-cyan-400 hover:text-cyan-300 font-medium flex items-center gap-1.5 transition-colors group/cta"
+                      className={`font-medium flex items-center gap-1.5 transition-colors group/cta ${
+                        isScrolled
+                          ? 'text-blue-600 hover:text-blue-700'
+                          : 'text-cyan-400 hover:text-cyan-300'
+                      }`}
                     >
                       <span>Free Architecture Consultation</span>
                       <ArrowRight size={13} className="group-hover/cta:translate-x-0.5 transition-transform" />
@@ -319,7 +381,9 @@ const Navbar = () => {
 
           {/* Mobile Menu Toggle */}
           <button
-            className="md:hidden relative z-50 p-2 -mr-2 text-white"
+            className={`md:hidden relative z-50 p-2 -mr-2 transition-colors ${
+              isMobileMenuOpen ? 'text-white' : (isScrolled ? 'text-black' : 'text-white')
+            }`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
