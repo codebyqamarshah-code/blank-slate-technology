@@ -18,8 +18,8 @@ const Footer = () => {
   return (
     <footer className="bg-surface pt-24 pb-12 border-t border-border transition-colors duration-300">
       <Container>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-          <div className="md:col-span-1">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 xl:gap-24 mb-16">
+          <div className="w-full lg:max-w-[340px] shrink-0">
             <Link to="/" className="inline-block mb-6">
               <img 
                 src={isDark ? '/images/Blank Slate IT Logo-02.png' : '/images/logo-dark.png'} 
@@ -27,7 +27,7 @@ const Footer = () => {
                 className="h-16 md:h-20 object-contain opacity-95 hover:opacity-100 transition-all duration-300" 
               />
             </Link>
-            <p className="text-secondary text-sm leading-relaxed max-w-xs mb-6">
+            <p className="text-secondary text-sm leading-relaxed mb-6 pr-4">
               We design and build digital products, intelligent systems, and technology solutions that help ambitious businesses move forward.
             </p>
 
@@ -55,35 +55,37 @@ const Footer = () => {
             </div>
           </div>
           
-          <div>
-            <h4 className="text-primary font-semibold mb-6">Company</h4>
-            <ul className="space-y-4 text-sm text-secondary">
-              <li><Link to="/about" className="hover:text-primary transition-colors">About Us</Link></li>
-              <li><Link to="/services" className="hover:text-primary transition-colors">Services</Link></li>
-              <li><Link to="/work" className="hover:text-primary transition-colors">Work</Link></li>
-              <li><a href="https://blankslateinstitute.pk/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Institute</a></li>
-              <li><Link to="/insights" className="hover:text-primary transition-colors">Insights</Link></li>
-              <li><Link to="/contact" className="hover:text-primary transition-colors">Contact</Link></li>
-            </ul>
-          </div>
+          <div className="flex flex-wrap gap-10 md:gap-12 lg:gap-16 xl:gap-24 w-full">
+            <div className="flex-1 min-w-[140px]">
+              <h4 className="text-primary font-semibold mb-6">Company</h4>
+              <ul className="space-y-4 text-sm text-secondary">
+                <li><Link to="/about" className="hover:text-primary transition-colors">About Us</Link></li>
+                <li><Link to="/services" className="hover:text-primary transition-colors">Services</Link></li>
+                <li><Link to="/work" className="hover:text-primary transition-colors">Work</Link></li>
+                <li><a href="https://blankslateinstitute.pk/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Institute</a></li>
+                <li><Link to="/insights" className="hover:text-primary transition-colors">Insights</Link></li>
+                <li><Link to="/contact" className="hover:text-primary transition-colors">Contact</Link></li>
+              </ul>
+            </div>
 
-          <div>
-            <h4 className="text-primary font-semibold mb-6">Services</h4>
-            <ul className="space-y-4 text-sm text-secondary">
-              <li><Link to="/services" className="hover:text-primary transition-colors">Custom Development</Link></li>
-              <li><Link to="/services" className="hover:text-primary transition-colors">Advanced Technology</Link></li>
-              <li><Link to="/services" className="hover:text-primary transition-colors">Design & Creative</Link></li>
-              <li><Link to="/services" className="hover:text-primary transition-colors">Digital Growth</Link></li>
-            </ul>
-          </div>
+            <div className="flex-1 min-w-[140px]">
+              <h4 className="text-primary font-semibold mb-6">Services</h4>
+              <ul className="space-y-4 text-sm text-secondary">
+                <li><Link to="/services" className="hover:text-primary transition-colors">Custom Development</Link></li>
+                <li><Link to="/services" className="hover:text-primary transition-colors">Advanced Technology</Link></li>
+                <li><Link to="/services" className="hover:text-primary transition-colors">Design & Creative</Link></li>
+                <li><Link to="/services" className="hover:text-primary transition-colors">Digital Growth</Link></li>
+              </ul>
+            </div>
 
-          <div>
-            <h4 className="text-primary font-semibold mb-6">Connect</h4>
-            <ul className="space-y-4 text-sm text-secondary">
-              <li><a href="#" className="hover:text-primary transition-colors">LinkedIn</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Instagram</a></li>
-              <li><a href="mailto:hello@blankslatetechnology.com" className="hover:text-primary transition-colors">hello@blankslatetechnology.com</a></li>
-            </ul>
+            <div className="flex-1 min-w-[140px]">
+              <h4 className="text-primary font-semibold mb-6">Connect</h4>
+              <ul className="space-y-4 text-sm text-secondary">
+                <li><a href="#" className="hover:text-primary transition-colors">LinkedIn</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">Instagram</a></li>
+                <li><a href="mailto:hello@blankslatetechnology.com" className="hover:text-primary transition-colors">hello@blankslatetechnology.com</a></li>
+              </ul>
+            </div>
           </div>
         </div>
 
