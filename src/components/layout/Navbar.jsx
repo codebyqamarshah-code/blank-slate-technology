@@ -265,37 +265,40 @@ const Navbar = () => {
                 transition={{ duration: 0.18, ease: 'easeOut' }}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
-                className="hidden md:block absolute top-[calc(100%+8px)] left-1/2 -translate-x-1/2 w-[980px] max-w-[calc(100vw-3rem)] z-50 pt-2 pointer-events-auto"
+                className="hidden md:block absolute top-[calc(100%+8px)] left-1/2 -translate-x-1/2 w-[1200px] max-w-[calc(100vw-2.5rem)] z-50 pt-2 pointer-events-auto"
               >
                 <div
-                  className={`rounded-2xl p-6 overflow-hidden transition-all duration-300 ${
+                  className={`rounded-3xl p-7 lg:p-8 overflow-hidden transition-all duration-300 ${
                     isLightNav
-                      ? 'bg-white/98 backdrop-blur-2xl border border-neutral-200 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.18)]'
-                      : 'bg-[#0b0b12]/98 backdrop-blur-2xl border border-white/10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.85)]'
+                      ? 'bg-white/98 backdrop-blur-2xl border border-neutral-200 shadow-[0_30px_70px_-15px_rgba(0,0,0,0.2)]'
+                      : 'bg-[#0c0c14]/98 backdrop-blur-2xl border border-white/10 shadow-[0_30px_70px_-15px_rgba(0,0,0,0.9)]'
                   }`}
                 >
                   {/* 4 Curated Category Columns */}
-                  <div className="grid grid-cols-4 gap-5">
+                  <div className="grid grid-cols-4 gap-6 lg:gap-8">
                     {serviceColumns.map((col) => (
-                      <div key={col.category} className="space-y-2">
+                      <div key={col.category} className="space-y-3">
                         <div
-                          className={`flex items-center gap-2 pb-2 border-b ${
+                          className={`flex items-center gap-2.5 pb-2.5 border-b ${
                             isLightNav ? 'border-neutral-200' : 'border-white/[0.08]'
                           }`}
                         >
                           <span
-                            className="w-1.5 h-1.5 rounded-full"
-                            style={{ backgroundColor: col.color }}
+                            className="w-2 h-2 rounded-full shrink-0"
+                            style={{ 
+                              backgroundColor: col.color,
+                              boxShadow: `0 0 8px ${col.color}90`
+                            }}
                           />
                           <span
-                            className={`text-[11px] font-semibold uppercase tracking-wider ${
-                              isLightNav ? 'text-neutral-500' : 'text-white/70'
+                            className={`text-xs font-semibold uppercase tracking-wider font-display ${
+                              isLightNav ? 'text-neutral-700' : 'text-white/80'
                             }`}
                           >
                             {col.category}
                           </span>
                         </div>
-                        <div className="space-y-1">
+                        <div className="space-y-1.5">
                           {col.slugs.map((slug) => {
                             const service = serviceMap.get(slug);
                             if (!service) return null;
@@ -305,39 +308,41 @@ const Navbar = () => {
                                 key={service.slug}
                                 to={`/services/${service.slug}`}
                                 onClick={closeAllMenus}
-                                className={`group/item flex items-start gap-2.5 p-2 rounded-xl border transition-all duration-150 ${
+                                className={`group/item flex items-center gap-3 p-2.5 rounded-2xl border transition-all duration-200 ${
                                   isLightNav
                                     ? 'hover:bg-neutral-100/90 border-transparent hover:border-neutral-200'
-                                    : 'hover:bg-white/[0.05] border-transparent hover:border-white/10'
+                                    : 'hover:bg-white/[0.06] border-transparent hover:border-white/10'
                                 }`}
                               >
                                 <div
-                                  className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5 transition-transform duration-200 group-hover/item:scale-110"
+                                  className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-200 group-hover/item:scale-110 border"
                                   style={{
                                     backgroundColor: isLightNav
-                                      ? `${service.brandColor || col.color}20`
-                                      : `${service.brandColor || col.color}18`,
+                                      ? `${service.brandColor || col.color}18`
+                                      : `${service.brandColor || col.color}15`,
+                                    borderColor: `${service.brandColor || col.color}35`,
                                     color: service.brandColor || col.color,
+                                    boxShadow: `0 0 15px ${service.brandColor || col.color}20`,
                                   }}
                                 >
-                                  <Icon size={14} />
+                                  <Icon size={18} />
                                 </div>
                                 <div className="min-w-0 flex-1">
                                   <div
-                                    className={`text-xs font-medium transition-colors truncate ${
+                                    className={`text-[13px] font-medium transition-colors leading-tight ${
                                       isLightNav
-                                        ? 'text-neutral-800 group-hover/item:text-black font-medium'
-                                        : 'text-white/85 group-hover/item:text-white'
+                                        ? 'text-neutral-900 group-hover/item:text-black font-medium'
+                                        : 'text-white/90 group-hover/item:text-white'
                                     }`}
                                   >
                                     {service.title}
                                   </div>
                                   {service.badge && (
                                     <div
-                                      className={`text-[10px] transition-colors truncate ${
+                                      className={`text-[11px] mt-0.5 transition-colors truncate font-sans ${
                                         isLightNav
-                                          ? 'text-neutral-400 group-hover/item:text-blue-600'
-                                          : 'text-white/40 group-hover/item:text-cyan-400'
+                                          ? 'text-neutral-500 group-hover/item:text-blue-600'
+                                          : 'text-white/45 group-hover/item:text-cyan-400'
                                       }`}
                                     >
                                       {service.badge}
@@ -354,27 +359,27 @@ const Navbar = () => {
 
                   {/* Bottom Quick Action Bar */}
                   <div
-                    className={`mt-5 pt-3.5 border-t flex items-center justify-between text-xs px-2 ${
+                    className={`mt-6 pt-4 border-t flex items-center justify-between text-xs md:text-sm px-2 ${
                       isLightNav
                         ? 'border-neutral-200 text-neutral-600'
                         : 'border-white/[0.08] text-white/60'
                     }`}
                   >
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2.5">
                       <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                      <span>End-to-End Enterprise Architecture & Agile Engineering</span>
+                      <span className="font-medium">End-to-End Enterprise Architecture & Agile Engineering</span>
                     </div>
                     <Link
                       to="/contact"
                       onClick={closeAllMenus}
-                      className={`font-medium flex items-center gap-1.5 transition-colors group/cta ${
+                      className={`font-semibold flex items-center gap-2 transition-colors group/cta ${
                         isLightNav
                           ? 'text-blue-600 hover:text-blue-700'
                           : 'text-cyan-400 hover:text-cyan-300'
                       }`}
                     >
                       <span>Free Architecture Consultation</span>
-                      <ArrowRight size={13} className="group-hover/cta:translate-x-0.5 transition-transform" />
+                      <ArrowRight size={15} className="group-hover/cta:translate-x-1 transition-transform" />
                     </Link>
                   </div>
                 </div>
