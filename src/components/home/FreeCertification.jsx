@@ -25,7 +25,7 @@ const FreeCertification = () => {
   ];
 
   return (
-    <section ref={containerRef} className="relative py-20 md:py-32 overflow-hidden bg-background transition-colors duration-300">
+    <section ref={containerRef} className="relative pt-4 md:pt-6 pb-0 overflow-hidden bg-background transition-colors duration-300">
       {/* Ambient Golden Halo Lighting */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-yellow-500/5 rounded-full blur-[100px] pointer-events-none" />

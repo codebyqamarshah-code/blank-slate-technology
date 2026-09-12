@@ -37,7 +37,7 @@ const Insights = () => {
   const regularInsights = insights.filter(i => !i.featured);
 
   return (
-    <section className="py-16 md:py-20">
+    <section className="pt-16 md:pt-20 pb-6 md:pb-8">
       <Container>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 md:mb-24">
           <SectionHeading 

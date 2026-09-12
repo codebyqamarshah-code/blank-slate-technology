@@ -53,14 +53,13 @@ const DirectorUK = () => {
               Talha Mughal
             </h2>
             
-            <div className="flex flex-wrap items-center gap-2 mb-6 text-base md:text-lg">
-              <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-500">
+            <div className="mb-6 space-y-1">
+              <p className="text-lg md:text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-500">
                 CEO &amp; Founder
-              </span>
-              <span className="text-secondary opacity-60">—</span>
-              <span className="text-secondary font-medium">
+              </p>
+              <p className="text-secondary text-sm md:text-base font-medium tracking-wide">
                 Tech Entrepreneur | IT Consultant
-              </span>
+              </p>
             </div>
 
             <div className="space-y-4 text-secondary text-base md:text-lg leading-relaxed">

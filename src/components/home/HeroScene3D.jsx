@@ -75,13 +75,23 @@ function TechCore({ progressRef, autoRotRef, dragRef, prefersReducedMotion, isMo
     // ── colours & glow ────────────────────────────────────────────────────
     const col = getStageColor(p);
     if (coreRef.current?.material) {
-      coreRef.current.material.color.copy(col);
-      coreRef.current.material.emissive.copy(col);
-      coreRef.current.material.emissiveIntensity = isDark ? (0.18 + p * 0.55) : (0.08 + p * 0.3);
+      if (isDark) {
+        coreRef.current.material.color.copy(col);
+        coreRef.current.material.emissive.copy(col);
+        coreRef.current.material.emissiveIntensity = 0.18 + p * 0.55;
+        coreRef.current.material.opacity = 0.88;
+      } else {
+        // Soft airy frosted glass look in light mode
+        coreRef.current.material.color.set('#ffffff');
+        coreRef.current.material.emissive.copy(col);
+        coreRef.current.material.emissiveIntensity = 0.15 + p * 0.15;
+        coreRef.current.material.opacity = 0.25; // High transparency so dark text reads clearly
+      }
     }
     if (outerRef.current?.material) {
       outerRef.current.material.color.copy(col);
-      outerRef.current.material.opacity = (isDark ? 0.1 : 0.35) + Math.sin(p * Math.PI) * (isDark ? 0.18 : 0.2);
+      // Softer wireframe in light mode
+      outerRef.current.material.opacity = (isDark ? 0.1 : 0.12) + Math.sin(p * Math.PI) * (isDark ? 0.18 : 0.12);
     }
     if (ring1Ref.current?.children[0]?.material) ring1Ref.current.children[0].material.color.copy(col);
     if (pointLightRef.current) {
@@ -98,22 +108,28 @@ function TechCore({ progressRef, autoRotRef, dragRef, prefersReducedMotion, isMo
       <mesh ref={coreRef}>
         <icosahedronGeometry args={[1.5, 1]} />
         <meshPhysicalMaterial
-          color="#3b82f6" emissive="#3b82f6" emissiveIntensity={isDark ? 0.18 : 0.08}
-          roughness={0.08} metalness={isDark ? 0.65 : 0.35} transparent opacity={isDark ? 0.88 : 0.95} clearcoat={1}
+          color={isDark ? "#3b82f6" : "#ffffff"} 
+          emissive="#3b82f6" 
+          emissiveIntensity={isDark ? 0.18 : 0.15}
+          roughness={isDark ? 0.08 : 0.15} 
+          metalness={isDark ? 0.65 : 0.1} 
+          transparent 
+          opacity={isDark ? 0.88 : 0.25} 
+          clearcoat={1}
         />
       </mesh>
 
       {/* Outer wireframe shell */}
       <mesh ref={outerRef}>
         <icosahedronGeometry args={[1.5, 1]} />
-        <meshBasicMaterial color="#3b82f6" wireframe transparent opacity={isDark ? 0.1 : 0.35}
+        <meshBasicMaterial color="#3b82f6" wireframe transparent opacity={isDark ? 0.1 : 0.12}
           blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending} depthWrite={false} />
       </mesh>
 
       {/* Inner octahedron */}
       <mesh ref={innerRef}>
         <octahedronGeometry args={[1.5, 0]} />
-        <meshBasicMaterial color={isDark ? "#ffffff" : "#2563eb"} wireframe transparent opacity={isDark ? 0.2 : 0.45}
+        <meshBasicMaterial color={isDark ? "#ffffff" : "#3b82f6"} wireframe transparent opacity={isDark ? 0.2 : 0.25}
           blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending} depthWrite={false} />
       </mesh>
 

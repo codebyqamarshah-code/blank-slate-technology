@@ -30,14 +30,13 @@ const CoFounder = () => {
               Hafiz Saqib Aslam
             </h2>
             
-            <div className="flex flex-wrap items-center gap-2 mb-6 text-base md:text-lg">
-              <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-cyan-500">
+            <div className="mb-6 space-y-1">
+              <p className="text-lg md:text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-cyan-500">
                 Co-Founder &amp; Full Stack Developer
-              </span>
-              <span className="text-secondary opacity-60">—</span>
-              <span className="text-secondary font-medium">
+              </p>
+              <p className="text-secondary text-sm md:text-base font-medium tracking-wide">
                 Web Development | Frontend | Backend | Database Solutions
-              </span>
+              </p>
             </div>
 
             <div className="space-y-4 text-secondary text-base md:text-lg leading-relaxed">

@@ -5,10 +5,10 @@ import Container from '../ui/Container';
 import { useTheme } from '../../context/ThemeContext';
 
 const socialLinks = [
-  { name: 'Facebook', icon: FaFacebookF, url: 'https://facebook.com' },
-  { name: 'Instagram', icon: FaInstagram, url: 'https://instagram.com' },
+  { name: 'Facebook', icon: FaFacebookF, url: 'https://www.facebook.com/BlankSlate.IT' },
+  { name: 'Instagram', icon: FaInstagram, url: 'https://www.instagram.com/blankslate.it/' },
   { name: 'YouTube', icon: FaYoutube, url: 'https://youtube.com' },
-  { name: 'LinkedIn', icon: FaLinkedinIn, url: 'https://linkedin.com' },
+  { name: 'LinkedIn', icon: FaLinkedinIn, url: 'https://www.linkedin.com/company/blankslate.IT' },
   { name: 'TikTok', icon: FaTiktok, url: 'https://tiktok.com' },
 ];
 

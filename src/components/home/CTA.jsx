@@ -9,12 +9,12 @@ import { useTheme } from '../../context/ThemeContext';
 
 const WHATSAPP_URL = 'https://wa.me/923320901442?text=Hello%20Blank%20Slate%2C%20I%20have%20a%20project%20in%20mind%20and%20would%20like%20to%20discuss%20it.';
 
-const CTA = ({ theme }) => {
+const CTA = ({ theme, className = '' }) => {
   const { isDark } = useTheme();
   const isLight = theme ? theme === 'light' : !isDark;
 
   return (
-    <section className={`py-16 md:py-24 relative overflow-hidden ${isLight ? 'bg-white' : ''}`}>
+    <section className={`pt-2 md:pt-4 pb-16 md:pb-24 relative overflow-hidden bg-background transition-colors duration-300 ${className}`}>
       {/* Background Glow */}
       <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
         <div className={`w-[800px] h-[800px] rounded-full blur-[140px] ${isLight ? 'bg-blue-500/8' : 'bg-accent/12'}`} />
