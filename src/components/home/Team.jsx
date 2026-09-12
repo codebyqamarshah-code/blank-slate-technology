@@ -14,9 +14,9 @@ const team = [
     bio: 'Visionary leader driving digital innovation and scaling technology solutions for forward-thinking businesses.'
   },
   {
-    name: 'Saqib Mughal',
+    name: 'Hafiz Saqib Aslam',
     role: 'Co-Founder & Full Stack Developer',
-    image: '/images/team 2.jpg',
+    image: '/images/saqib-aslam.jpg',
     bio: 'Technical mastermind architecting robust, high-performance systems and leading advanced engineering initiatives.'
   },
   {

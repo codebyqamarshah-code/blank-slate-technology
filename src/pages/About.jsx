@@ -6,8 +6,8 @@ import SectionHeading from '../components/common/SectionHeading';
 import Values from '../components/home/Values';
 import Team from '../components/home/Team';
 import CTA from '../components/home/CTA';
-import ZigzagHeroBackground from '../components/ui/ZigzagHeroBackground';
 import DirectorUK from '../components/about/DirectorUK';
+import CoFounder from '../components/about/CoFounder';
 import { useTheme } from '../context/ThemeContext';
 
 const About = () => {
@@ -19,12 +19,27 @@ const About = () => {
   return (
     <PageTransition>
       <div className="w-full bg-background text-primary transition-colors duration-300">
-        {/* Zigzag Animated Hero */}
+        {/* Hero Section with Animation Video Background */}
         <section className="relative pt-36 pb-20 md:pt-48 md:pb-28 min-h-[50vh] flex items-center justify-center overflow-hidden">
-          {/* Animated zigzag background — replaces image */}
-          <ZigzagHeroBackground />
-          {/* Subtle overlay so text stays readable */}
-          <div className="absolute inset-0 z-10 bg-gradient-to-b from-background/30 via-transparent to-background/60 pointer-events-none" />
+          {/* Background Video */}
+          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            >
+              <source src="/animation-video.mp4" type="video/mp4" />
+              <source src="/animation video.mp4" type="video/mp4" />
+            </video>
+            {/* Theme-adaptive gradient overlay for crisp text readability */}
+            <div className={`absolute inset-0 transition-colors duration-300 ${
+              isDark 
+                ? 'bg-gradient-to-b from-background/80 via-background/60 to-background' 
+                : 'bg-gradient-to-b from-background/85 via-background/70 to-background'
+            }`} />
+          </div>
 
           <Container className="relative z-20 text-center">
             <motion.h1
@@ -93,20 +108,11 @@ const About = () => {
                   className="relative rounded-3xl overflow-hidden aspect-square md:aspect-[4/3] bg-surface border border-border"
                 >
                   <img 
-                    src="/images/team.jpg" 
-                    alt="Our Office" 
+                    src="/images/about-blank-slate.jpg" 
+                    alt="Blank Slate" 
                     className="w-full h-full object-cover transition-all duration-700 hover:scale-105" 
                     onError={(e) => { e.target.src = '/images/big1.png'; }}
                   />
-                </motion.div>
-                {/* Floating animated element */}
-                <motion.div
-                  animate={{ y: [-10, 10, -10] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute -bottom-8 -left-8 bg-surface/90 backdrop-blur-md border border-border p-6 rounded-2xl shadow-xl hidden md:block"
-                >
-                  <div className="text-4xl font-display font-bold text-primary mb-1">11+</div>
-                  <div className="text-secondary text-sm uppercase tracking-wider">Years of Excellence</div>
                 </motion.div>
               </div>
             </div>
@@ -114,6 +120,7 @@ const About = () => {
         </section>
 
         <DirectorUK />
+        <CoFounder />
         <Values />
         <Team />
         <CTA />
