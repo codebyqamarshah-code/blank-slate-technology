@@ -15,6 +15,8 @@ import Institute from './pages/Institute';
 import InsightsPage from './pages/Insights';
 import Contact from './pages/Contact';
 import Apply from './pages/Apply';
+import Terms from './pages/Terms';
+import Privacy from './pages/Privacy';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -42,6 +44,8 @@ function App() {
               <Route path="insights" element={<InsightsPage />} />
               <Route path="contact" element={<Contact />} />
               <Route path="apply" element={<Apply />} />
+              <Route path="terms" element={<Terms />} />
+              <Route path="privacy" element={<Privacy />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Route>
           </Routes>

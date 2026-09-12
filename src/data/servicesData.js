@@ -32,7 +32,8 @@ import {
   Briefcase
 } from 'lucide-react';
 import { FaLinkedin, FaAws } from 'react-icons/fa6';
-import { SiReact, SiFlutter, SiNodedotjs, SiNextdotjs } from 'react-icons/si';
+import { SiJavascript, SiReact, SiNodedotjs, SiMongodb, SiPython, SiFlutter, SiNextdotjs } from 'react-icons/si';
+import { RiRobot2Fill } from 'react-icons/ri';
 
 export const serviceCategories = [
   {
@@ -179,6 +180,362 @@ export const additionalEnterpriseServices = [
 ];
 
 export const allServices = [
+  {
+    slug: 'javascript-development',
+    categoryId: 'web-development',
+    categoryName: 'Web & Software Development',
+    title: 'JavaScript Development',
+    shortDescription: 'Build fast, interactive, and scalable digital experiences with modern JavaScript architecture.',
+    heroDescription: 'JavaScript is the backbone of the modern web. We engineer high-performance frontend interfaces, robust backend APIs, and real-time data solutions using cutting-edge JavaScript ES6+, TypeScript, and modern frameworks to drive your digital growth.',
+    icon: SiJavascript,
+    brandColor: '#F7DF1E',
+    badge: 'Modern Web Development',
+    highlights: [
+      'Single Page Applications (SPAs) & Progressive Web Apps (PWAs)',
+      'Real-time data synchronization & WebSocket integrations',
+      'Advanced state management and component-driven architecture',
+      'High-performance JavaScript execution and core web vitals optimization'
+    ],
+    credentials: ['JavaScript ES6+', 'TypeScript', 'Node.js', 'Vite', 'Webpack'],
+    solutionsDelivered: [
+      {
+        challenge: 'Slow page load times affecting customer retention and SEO rankings.',
+        solution: 'Refactored legacy code into modern ES6+ modules with lazy loading and optimized asset delivery.',
+        value: 'Reduced load times by 70%, boosting SEO visibility and conversion rates.'
+      }
+    ],
+    capabilities: [
+      {
+        title: 'Frontend Engineering',
+        description: 'Creating highly interactive and responsive user interfaces with modern JavaScript.'
+      },
+      {
+        title: 'Backend API Development',
+        description: 'Building secure, scalable, and fast RESTful APIs using Node.js and Express.'
+      },
+      {
+        title: 'Full-Stack JavaScript Integration',
+        description: 'Seamless integration between client and server using unified JavaScript architectures.'
+      }
+    ],
+    metrics: [
+      { label: 'Performance', value: '99+ Lighthouse' },
+      { label: 'Type Safety', value: '100% Strict TS' },
+      { label: 'Code Quality', value: 'ESLint Audited' },
+      { label: 'Delivery', value: 'Agile Sprints' }
+    ],
+    techStack: [
+      { name: 'JavaScript', role: 'Core Language' },
+      { name: 'TypeScript', role: 'Static Typing' },
+      { name: 'Node.js', role: 'Runtime' },
+      { name: 'Webpack / Vite', role: 'Bundler' },
+      { name: 'Jest / Cypress', role: 'Testing' }
+    ],
+    faq: [
+      {
+        question: 'Why choose JavaScript for enterprise applications?',
+        answer: 'JavaScript allows for a unified tech stack across both frontend and backend (Node.js), accelerating development cycles and enabling highly interactive, real-time web experiences.'
+      },
+      {
+        question: 'Do you use TypeScript?',
+        answer: 'Yes, we heavily utilize TypeScript in our JavaScript projects to ensure type safety, reduce runtime errors, and improve code maintainability for enterprise-scale applications.'
+      }
+    ]
+  },
+  {
+    slug: 'react-nextjs-development',
+    categoryId: 'web-development',
+    categoryName: 'Web & Software Development',
+    title: 'React & Next.js Development',
+    shortDescription: 'Bespoke web applications, Next.js architecture, dynamic SaaS dashboards, and server-side rendering.',
+    heroDescription: 'We build exceptional digital products using React and Next.js. Our engineering focuses on Server-Side Rendering (SSR), Static Site Generation (SSG), and edge computing to deliver lightning-fast, SEO-optimized web applications and scalable SaaS platforms.',
+    icon: SiReact,
+    brandColor: '#61DAFB',
+    badge: 'Frontend & SSR',
+    highlights: [
+      'Next.js App Router & Server Components architecture',
+      'Sub-second page loads with Edge caching and SSR/SSG',
+      'Dynamic SaaS dashboards with complex data visualization',
+      'Headless CMS integration and decoupled frontend solutions'
+    ],
+    credentials: ['React 18/19', 'Next.js 14/15', 'TypeScript', 'Tailwind CSS', 'Redux / Zustand'],
+    solutionsDelivered: [
+      {
+        challenge: 'Client-side rendered React app suffering from poor SEO and slow initial load times.',
+        solution: 'Migrated to Next.js with Server-Side Rendering and static asset optimization.',
+        value: 'Achieved 100/100 SEO score and reduced Time to Interactive (TTI) by 3 seconds.'
+      }
+    ],
+    capabilities: [
+      {
+        title: 'Custom SaaS Development',
+        description: 'Building robust, multi-tenant dashboards with granular role-based access control.'
+      },
+      {
+        title: 'High-Performance E-Commerce',
+        description: 'Headless storefronts built with Next.js Commerce for lightning-fast shopping experiences.'
+      },
+      {
+        title: 'Design System Implementation',
+        description: 'Translating Figma designs into pixel-perfect, reusable React component libraries.'
+      }
+    ],
+    metrics: [
+      { label: 'Core Web Vitals', value: 'Pass (Green)' },
+      { label: 'Render Speed', value: '< 50ms SSR' },
+      { label: 'Scalability', value: 'Edge Ready' },
+      { label: 'Architecture', value: 'App Router' }
+    ],
+    techStack: [
+      { name: 'React', role: 'UI Library' },
+      { name: 'Next.js', role: 'React Framework' },
+      { name: 'Tailwind CSS', role: 'Styling' },
+      { name: 'Framer Motion', role: 'Animations' },
+      { name: 'Vercel / AWS', role: 'Hosting' }
+    ],
+    faq: [
+      {
+        question: 'What is the advantage of Next.js over standard React?',
+        answer: 'Next.js provides built-in Server-Side Rendering (SSR) and Static Site Generation (SSG), which drastically improves SEO, initial page load speed, and overall user experience compared to a standard Client-Side Rendered React app.'
+      }
+    ]
+  },
+  {
+    slug: 'nodejs-expressjs-development',
+    categoryId: 'web-development',
+    categoryName: 'Web & Software Development',
+    title: 'Node.js & Express.js Development',
+    shortDescription: 'Secure backend systems, RESTful APIs, authentication, and server-side architecture.',
+    heroDescription: 'Power your applications with high-performance, event-driven Node.js backend systems. We engineer scalable RESTful and GraphQL APIs using Express.js, handling high traffic loads, complex third-party integrations, and secure data processing.',
+    icon: SiNodedotjs,
+    brandColor: '#339933',
+    badge: 'Backend & APIs',
+    highlights: [
+      'High-throughput REST API & GraphQL development',
+      'JWT/OAuth2 secure authentication and role-based authorization',
+      'Microservices architecture and event-driven data flows',
+      'Real-time communication using WebSockets (Socket.io)'
+    ],
+    credentials: ['Node.js', 'Express.js', 'NestJS', 'GraphQL', 'Redis', 'Docker'],
+    solutionsDelivered: [
+      {
+        challenge: 'Legacy PHP backend struggling to handle high concurrent user requests during peak hours.',
+        solution: 'Re-architected the backend using an asynchronous Node.js and Express microservices approach.',
+        value: 'Increased request throughput by 500% while reducing server resource costs by 40%.'
+      }
+    ],
+    capabilities: [
+      {
+        title: 'Custom API Engineering',
+        description: 'Building secure, documented, and versioned APIs for web and mobile clients.'
+      },
+      {
+        title: 'Third-Party Integrations',
+        description: 'Connecting payment gateways (Stripe), CRMs, ERPs, and external cloud services.'
+      },
+      {
+        title: 'Backend Refactoring',
+        description: 'Modernizing monolithic backends into agile, containerized Node.js microservices.'
+      }
+    ],
+    metrics: [
+      { label: 'Throughput', value: '10k+ Req/sec' },
+      { label: 'Security', value: 'OWASP Top 10' },
+      { label: 'Architecture', value: 'Event-Driven' },
+      { label: 'API Uptime', value: '99.99%' }
+    ],
+    techStack: [
+      { name: 'Node.js', role: 'Runtime Environment' },
+      { name: 'Express.js', role: 'Web Framework' },
+      { name: 'Socket.io', role: 'Real-time' },
+      { name: 'Redis', role: 'Caching Layer' },
+      { name: 'Postman / Swagger', role: 'API Docs' }
+    ],
+    faq: [
+      {
+        question: 'Is Node.js scalable for enterprise applications?',
+        answer: 'Yes, Node.js uses a non-blocking, event-driven architecture that is highly efficient for data-intensive real-time applications. When combined with microservices and containerization, it scales effortlessly.'
+      }
+    ]
+  },
+  {
+    slug: 'mongodb-mysql-solutions',
+    categoryId: 'web-development',
+    categoryName: 'Web & Software Development',
+    title: 'MongoDB & MySQL Solutions',
+    shortDescription: 'Reliable database architecture designed for modern applications—from flexible NoSQL to structured SQL.',
+    heroDescription: 'Data is the core of your business. We design, optimize, and manage highly resilient database architectures using MongoDB for flexible, document-based storage and MySQL/PostgreSQL for structured, relational data integrity.',
+    icon: SiMongodb,
+    brandColor: '#47A248',
+    badge: 'Database Engineering',
+    highlights: [
+      'Custom schema design and complex query optimization',
+      'ACID-compliant relational database setups (MySQL / PostgreSQL)',
+      'Highly scalable NoSQL document stores (MongoDB)',
+      'Database clustering, sharding, replication, and disaster recovery'
+    ],
+    credentials: ['MongoDB', 'MySQL', 'PostgreSQL', 'Mongoose', 'Prisma ORM'],
+    solutionsDelivered: [
+      {
+        challenge: 'Complex reporting queries taking minutes to execute on a growing dataset.',
+        solution: 'Implemented proper indexing, read-replicas, and query optimization strategies.',
+        value: 'Reduced query execution time from 3 minutes to under 2 seconds.'
+      }
+    ],
+    capabilities: [
+      {
+        title: 'Database Architecture Design',
+        description: 'Modeling normalized SQL schemas or flexible NoSQL structures based on your application needs.'
+      },
+      {
+        title: 'Performance Tuning',
+        description: 'Identifying bottlenecks, optimizing indexes, and implementing caching layers with Redis.'
+      },
+      {
+        title: 'Data Migration & Security',
+        description: 'Securely migrating legacy data with zero downtime and implementing at-rest encryption.'
+      }
+    ],
+    metrics: [
+      { label: 'Query Speed', value: '< 50ms Avg' },
+      { label: 'Availability', value: 'Multi-AZ Setup' },
+      { label: 'Data Security', value: 'AES-256 Encrypted' },
+      { label: 'Backups', value: 'Automated Daily' }
+    ],
+    techStack: [
+      { name: 'MongoDB', role: 'NoSQL Database' },
+      { name: 'MySQL', role: 'SQL Database' },
+      { name: 'PostgreSQL', role: 'Advanced SQL' },
+      { name: 'Prisma / Mongoose', role: 'ORM / ODM' },
+      { name: 'Redis', role: 'In-Memory Cache' }
+    ],
+    faq: [
+      {
+        question: 'Should I choose MongoDB or MySQL?',
+        answer: 'It depends on your data structure. MySQL is perfect for highly structured data requiring complex transactions and strict relational integrity (like financial apps). MongoDB is excellent for rapidly changing, document-based data (like content management or product catalogs).'
+      }
+    ]
+  },
+  {
+    slug: 'python-development',
+    categoryId: 'advanced-technology',
+    categoryName: 'Advanced AI & Cloud Tech',
+    title: 'Python Development',
+    shortDescription: 'Powerful Python solutions for backend development, data processing, APIs, and intelligent applications.',
+    heroDescription: 'Python drives the intelligence behind modern software. We build scalable Python backend architectures using Django and FastAPI, engineered to handle heavy data processing, machine learning integrations, and complex business logic.',
+    icon: SiPython,
+    brandColor: '#3776AB',
+    badge: 'Backend & Intelligent Systems',
+    highlights: [
+      'High-performance asynchronous APIs with FastAPI',
+      'Robust enterprise web applications using Django',
+      'Data processing pipelines and ETL workflows',
+      'Seamless integration of Machine Learning and AI models'
+    ],
+    credentials: ['Python 3', 'FastAPI', 'Django', 'Flask', 'Pandas', 'Celery'],
+    solutionsDelivered: [
+      {
+        challenge: 'A data-heavy platform required rapid processing of millions of records for real-time analytics.',
+        solution: 'Built a distributed processing pipeline using Python, Celery workers, and RabbitMQ.',
+        value: 'Enabled real-time analytics processing, handling 5M+ records daily without lag.'
+      }
+    ],
+    capabilities: [
+      {
+        title: 'API & Microservices Engineering',
+        description: 'Developing lightning-fast, asynchronous REST and GraphQL APIs with FastAPI.'
+      },
+      {
+        title: 'AI & Data Integration',
+        description: 'Connecting backend systems to predictive models, LLMs, and data analytics engines.'
+      },
+      {
+        title: 'Enterprise Web Development',
+        description: 'Building secure, scalable, and feature-rich web platforms using the Django framework.'
+      }
+    ],
+    metrics: [
+      { label: 'API Speed', value: 'High-Concurrency' },
+      { label: 'Codebase', value: 'PEP 8 Standard' },
+      { label: 'Data Processing', value: 'Scalable ETL' },
+      { label: 'Integration', value: 'AI-Ready' }
+    ],
+    techStack: [
+      { name: 'Python', role: 'Core Language' },
+      { name: 'FastAPI / Django', role: 'Web Frameworks' },
+      { name: 'Celery', role: 'Task Queue' },
+      { name: 'PostgreSQL', role: 'Database' },
+      { name: 'Docker', role: 'Containerization' }
+    ],
+    faq: [
+      {
+        question: 'Why use FastAPI for backend development?',
+        answer: 'FastAPI is a modern, high-performance web framework for building APIs with Python. It is highly optimized, supports asynchronous programming natively, and automatically generates API documentation.'
+      }
+    ]
+  },
+  {
+    slug: 'ai-automation-solutions',
+    categoryId: 'advanced-technology',
+    categoryName: 'Advanced AI & Cloud Tech',
+    title: 'AI Automation Solutions',
+    shortDescription: 'Transform repetitive business processes into intelligent automated workflows with AI agents.',
+    heroDescription: 'Step into the future of operations with our AI Automation Solutions. We integrate Large Language Models (LLMs), custom AI agents, and intelligent workflow tools (like n8n and Make) to automate repetitive tasks, enhance customer support, and streamline your business operations.',
+    icon: RiRobot2Fill,
+    brandColor: '#8B5CF6',
+    badge: 'AI & Workflow Automation',
+    highlights: [
+      'Custom AI Chatbots and intelligent customer support agents',
+      'Integration of OpenAI (ChatGPT), Claude, and open-source LLMs',
+      'Complex business workflow automation (n8n, Zapier, Make)',
+      'Retrieval-Augmented Generation (RAG) for internal company knowledge bases'
+    ],
+    credentials: ['OpenAI API', 'LangChain', 'n8n', 'Make.com', 'Vector Databases'],
+    solutionsDelivered: [
+      {
+        challenge: 'Customer support team overwhelmed by repetitive queries, leading to slow response times.',
+        solution: 'Deployed a custom AI agent trained on the company knowledge base using RAG architecture.',
+        value: 'Resolved 65% of customer inquiries instantly, reducing support ticket volume and saving 40+ human hours weekly.'
+      }
+    ],
+    capabilities: [
+      {
+        title: 'Intelligent AI Agents',
+        description: 'Deploying custom AI models that can reason, process documents, and assist users 24/7.'
+      },
+      {
+        title: 'Workflow Automation',
+        description: 'Connecting disconnected apps (CRMs, emails, databases) into seamless, autonomous pipelines.'
+      },
+      {
+        title: 'Private LLM Integrations',
+        description: 'Setting up secure, private AI environments to protect your sensitive corporate data.'
+      }
+    ],
+    metrics: [
+      { label: 'Efficiency', value: '10x Faster Workflows' },
+      { label: 'Availability', value: '24/7 AI Support' },
+      { label: 'Integration', value: '500+ App Connectors' },
+      { label: 'ROI', value: 'Immediate Impact' }
+    ],
+    techStack: [
+      { name: 'LangChain / LlamaIndex', role: 'AI Orchestration' },
+      { name: 'OpenAI / Claude', role: 'LLMs' },
+      { name: 'Pinecone / Chroma', role: 'Vector DBs' },
+      { name: 'n8n / Make', role: 'Automation Platforms' },
+      { name: 'Python', role: 'Backend' }
+    ],
+    faq: [
+      {
+        question: 'What is an AI Agent?',
+        answer: 'An AI Agent is an autonomous system powered by an LLM that can understand instructions, break them into steps, use external tools (like searching the web or querying a database), and complete tasks without human intervention.'
+      },
+      {
+        question: 'Is my data secure when using your AI solutions?',
+        answer: 'Absolutely. We can design Private RAG (Retrieval-Augmented Generation) systems and utilize enterprise-grade APIs where your data is not used to train public models, ensuring total confidentiality.'
+      }
+    ]
+  },
   // ─────────────────────────────────────────────────────────────
   // 1. PRIMARY FEATURED ENGINEERING SERVICES
   // ─────────────────────────────────────────────────────────────

@@ -88,7 +88,7 @@ const Footer = () => {
         </div>
 
         <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-secondary">
-          <p>© {new Date().getFullYear()} Blank Slate Technologies. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Blank Slate Technology Pvt. Ltd. All rights reserved.</p>
           <div className="flex gap-6">
             <Link to="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
             <Link to="/terms" className="hover:text-primary transition-colors">Terms of Service</Link>

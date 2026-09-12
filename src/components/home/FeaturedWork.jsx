@@ -196,7 +196,7 @@ const FeaturedWork = ({ showAll = false, showHeading = true, limit = 4, theme })
   }, [showAll, selectedCategory, limit]);
 
   return (
-    <section className={`pt-8 md:pt-12 pb-16 md:pb-20 relative ${isLight ? 'bg-white' : ''}`}>
+    <section className={`py-8 md:py-12 relative ${isLight ? 'bg-white' : ''}`}>
       <Container>
         {showHeading && (
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 md:mb-8">

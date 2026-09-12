@@ -37,9 +37,9 @@ const Insights = () => {
   const regularInsights = insights.filter(i => !i.featured);
 
   return (
-    <section className="pt-16 md:pt-20 pb-6 md:pb-8">
+    <section className="pt-6 md:pt-8 pb-6 md:pb-8">
       <Container>
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 md:mb-24">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-4 md:mb-6">
           <SectionHeading 
             eyebrow="Insights & News"
             title="Thoughts, ideas, and perspectives."

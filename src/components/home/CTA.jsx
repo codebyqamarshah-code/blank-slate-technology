@@ -106,16 +106,16 @@ const CTA = ({ theme, className = '' }) => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.45 }}
-            className="flex flex-wrap items-center justify-center gap-6 mt-12 pt-8 border-t border-border/50 text-xs text-secondary"
+            className="flex flex-wrap items-center justify-center gap-6 md:gap-8 mt-8 pt-6 border-t border-border/50 text-sm md:text-base text-secondary"
           >
-            <span className="flex items-center gap-1.5 font-medium">
-              <CheckCircle size={15} className="text-accent" /> 24-Hour Response
+            <span className="flex items-center gap-2 font-medium">
+              <CheckCircle size={17} className="text-accent" /> 24-Hour Response
             </span>
-            <span className="flex items-center gap-1.5 font-medium">
-              <CheckCircle size={15} className="text-accent" /> 100% Code & IP Ownership
+            <span className="flex items-center gap-2 font-medium">
+              <CheckCircle size={17} className="text-accent" /> 100% Code & IP Ownership
             </span>
-            <span className="flex items-center gap-1.5 font-medium">
-              <CheckCircle size={15} className="text-accent" /> Direct Architect Consultation
+            <span className="flex items-center gap-2 font-medium">
+              <CheckCircle size={17} className="text-accent" /> Direct Architect Consultation
             </span>
           </motion.div>
         </motion.div>

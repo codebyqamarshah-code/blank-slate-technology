@@ -60,7 +60,7 @@ const Values = () => {
   const { isDark } = useTheme();
 
   return (
-    <section className="py-20 md:py-28 relative overflow-hidden">
+    <section className="py-10 md:py-16 relative overflow-hidden">
       {/* Background ambient lighting */}
       <div className="absolute top-1/2 -right-40 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
 

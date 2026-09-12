@@ -147,7 +147,7 @@ const Navbar = () => {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
-            <div className="flex items-center gap-6 text-sm font-medium">
+            <div className="flex items-center gap-7 text-base font-medium">
               {navLinks.map((link) => {
                 // If it's the Services dropdown trigger
                 if (link.isDropdown) {

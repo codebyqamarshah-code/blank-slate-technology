@@ -61,7 +61,7 @@ const Process = () => {
   });
 
   return (
-    <section ref={containerRef} className="py-20 md:py-28 bg-surface/20 border-y border-border relative overflow-hidden">
+    <section ref={containerRef} className="py-10 md:py-16 bg-surface/20 border-y border-border relative overflow-hidden">
       {/* Ambient background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[350px] bg-accent/5 rounded-full blur-[140px] pointer-events-none" />
 

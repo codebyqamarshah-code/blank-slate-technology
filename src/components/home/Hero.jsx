@@ -34,14 +34,11 @@ const Hero = () => {
   const { isDark } = useTheme();
 
   return (
-    <section className="relative w-full min-h-screen flex flex-col overflow-hidden pt-20">
+    <section className="relative w-full min-h-screen flex flex-col overflow-hidden pt-8">
 
-      {/* Background: full theme base + dot grid */}
+      {/* Background: full theme base */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute inset-0 bg-background transition-colors duration-300" />
-        <div className={`absolute inset-0 bg-[size:34px_34px] ${
-          isDark ? 'bg-[radial-gradient(#ffffff09_1px,transparent_1px)]' : 'bg-[radial-gradient(#0000000d_1px,transparent_1px)]'
-        }`} />
         {/* Ambient left glow */}
         <motion.div
           animate={{ opacity: [0.1, 0.2, 0.1], scale: [1, 1.1, 1] }}

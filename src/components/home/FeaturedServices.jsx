@@ -216,7 +216,7 @@ const CoreServiceCard = ({ service, index }) => {
 
 const FeaturedServices = () => {
   return (
-    <section className="pt-8 md:pt-12 pb-16 md:pb-20 bg-surface/20 border-y border-border relative overflow-hidden">
+    <section className="py-8 md:py-12 bg-surface/20 border-y border-border relative overflow-hidden">
       {/* Background ambient lighting */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
 

@@ -26,7 +26,7 @@ const AboutPreview = () => {
   return (
     <section ref={sectionRef} className="pt-8 md:pt-12 pb-6 md:pb-8 overflow-hidden perspective-[1200px]">
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-center">
           
           <div className="order-2 lg:order-1 relative h-full flex items-center justify-center">
             <motion.div 
@@ -97,7 +97,7 @@ const AboutPreview = () => {
               className="space-y-3 text-secondary text-sm sm:text-base md:text-[17px] leading-relaxed mb-6 max-w-xl"
             >
               <p>
-                Blank Slate Technologies is a premium digital development and technology agency. We partner with forward-thinking businesses to design, engineer, and scale solutions that drive real impact.
+                Blank Slate Technology is a premium digital development and technology agency. We partner with forward-thinking businesses to design, engineer, and scale solutions that drive real impact.
               </p>
               <p>
                 From complex custom software to stunning digital experiences, we believe in pushing boundaries, rapid advancement, and a relentless attention to detail.
@@ -111,7 +111,7 @@ const AboutPreview = () => {
               transition={{ delay: 0.3, duration: 0.8 }}
             >
               <Link to="/about">
-                <Button variant="outline" className="group !py-2.5 !px-6 text-sm" icon={ArrowRight}>
+                <Button variant="primary" className="group !py-3 !px-7 text-sm !bg-black !text-white hover:!bg-neutral-800 border-none shadow-lg hover:scale-105 transition-all duration-300" icon={ArrowRight}>
                   Discover Our Story
                 </Button>
               </Link>

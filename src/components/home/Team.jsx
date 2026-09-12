@@ -26,11 +26,23 @@ const team = [
     bio: 'Creative powerhouse crafting stunning visual identities and immersive, conversion-driven user experiences.'
   },
   {
+    name: 'Hamad Zaheer',
+    role: 'Mobile App Developer',
+    image: '/images/Hamad Zaheer.png',
+    bio: 'Expert in building seamless, high-performance cross-platform mobile applications that elevate user engagement.'
+  },
+  {
     name: 'Kinza Eiman',
     role: 'SEO Expert',
     image: '/images/team4.jpeg',
     bio: "Freelance SEO Expert with 5+ years of experience delivering tailored, data-driven SEO strategies across Middle East, US, and UK markets."
   },
+  {
+    name: 'Zain Haroon',
+    role: 'CMS Developer',
+    image: '/images/zainharoon.png',
+    bio: 'Specialist in custom CMS solutions, enabling businesses to effortlessly manage, scale, and optimize their digital content.'
+  }
 ];
 
 const Team = () => {
@@ -78,7 +90,7 @@ const Team = () => {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-surface/20 border-y border-border overflow-hidden">
+    <section className="py-10 md:py-16 bg-surface/20 border-y border-border overflow-hidden">
       <Container>
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 md:mb-16">
@@ -136,56 +148,28 @@ const Team = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group cursor-pointer perspective-[1200px] h-[460px] w-[300px] sm:w-[340px] md:w-[360px] shrink-0 snap-start select-none"
+              className="group rounded-2xl bg-surface border border-border/80 overflow-hidden h-[460px] w-[300px] sm:w-[340px] md:w-[360px] shrink-0 snap-start select-none flex flex-col transition-all duration-500 hover:border-accent/40 hover:shadow-xl"
             >
-              {/* Card Container - Handles the 3D flip */}
-              <div
-                className="relative w-full h-full transition-all duration-700 ease-out shadow-xl rounded-2xl group-hover:shadow-accent/20"
-                style={{
-                  transformStyle: 'preserve-3d',
-                  transform: 'rotateY(0deg)'
-                }}
-              >
-                {/* ── FRONT OF CARD ── */}
-                <div
-                  className="absolute inset-0 w-full h-full bg-surface rounded-2xl overflow-hidden backface-hidden group-hover:[transform:rotateY(180deg)] transition-all duration-700 ease-out"
-                  style={{ backfaceVisibility: 'hidden' }}
-                >
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    onError={(e) => { e.target.src = '/images/big1.png'; }}
-                  />
-                  {/* Front Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent flex flex-col justify-end p-6">
-                    <h3 className="text-2xl font-display font-medium text-white mb-1 drop-shadow-md">{member.name}</h3>
-                    <p className="text-accent font-medium text-xs md:text-sm tracking-wide uppercase">{member.role}</p>
-                  </div>
+              {/* Photo Area */}
+              <div className="relative h-[310px] w-full overflow-hidden bg-neutral-900 shrink-0">
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  onError={(e) => { e.target.src = '/images/big1.png'; }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+              </div>
+
+              {/* Text Info Area */}
+              <div className="p-6 flex-1 flex flex-col justify-between bg-surface border-t border-border/40">
+                <div>
+                  <h3 className="text-xl md:text-2xl font-display font-semibold text-primary mb-1">{member.name}</h3>
+                  <p className="text-accent font-medium text-xs tracking-wider uppercase mb-2.5">{member.role}</p>
+                  <p className="text-secondary text-xs sm:text-sm leading-relaxed line-clamp-3">
+                    {member.bio}
+                  </p>
                 </div>
-
-                {/* ── BACK OF CARD ── */}
-                <div
-                  className="absolute inset-0 w-full h-full rounded-2xl p-8 flex flex-col justify-center items-center text-center bg-surface border border-border/50 shadow-2xl backface-hidden [transform:rotateY(-180deg)] group-hover:[transform:rotateY(0deg)] transition-all duration-700 ease-out overflow-hidden"
-                  style={{ backfaceVisibility: 'hidden' }}
-                >
-                  {/* Back glow */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-purple-500/10 pointer-events-none" />
-
-                  <div className="relative z-10 flex flex-col items-center h-full justify-center">
-                    <div>
-                      <div className="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center mb-5 mx-auto text-accent shadow-[0_0_20px_rgba(59,130,246,0.3)]">
-                        <ArrowRight className="transform -rotate-45" size={22} />
-                      </div>
-                      <h3 className="text-2xl font-display font-medium text-primary mb-1">{member.name}</h3>
-                      <p className="text-accent font-medium text-xs md:text-sm tracking-wide uppercase mb-4">{member.role}</p>
-                      <p className="text-secondary text-xs sm:text-sm leading-relaxed line-clamp-6 text-balance">
-                        {member.bio}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
               </div>
             </motion.div>
           ))}
