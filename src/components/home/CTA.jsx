@@ -14,7 +14,7 @@ const CTA = ({ theme, className = '' }) => {
   const isLight = theme ? theme === 'light' : !isDark;
 
   return (
-    <section className={`pt-2 md:pt-4 pb-16 md:pb-24 relative overflow-hidden bg-background transition-colors duration-300 ${className}`}>
+    <section className={`pt-8 md:pt-12 pb-16 md:pb-24 relative overflow-hidden bg-background transition-colors duration-300 ${className}`}>
       {/* Background Glow */}
       <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
         <div className={`w-[800px] h-[800px] rounded-full blur-[140px] ${isLight ? 'bg-blue-500/8' : 'bg-accent/12'}`} />
