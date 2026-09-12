@@ -4,6 +4,7 @@ import { Send, MapPin, Mail, Phone, CheckCircle, ArrowRight } from 'lucide-react
 import PageTransition from '../components/layout/PageTransition';
 import Container from '../components/ui/Container';
 import TypewriterText from '../components/ui/TypewriterText';
+import { useTheme } from '../context/ThemeContext';
 
 /* ─── Animated floating dot bg ─── */
 const FloatingParticle = ({ delay, x, y, size }) => (
@@ -26,12 +27,13 @@ const particles = Array.from({ length: 14 }, (_, i) => ({
 /* ─── Animated Input Field ─── */
 const FormField = ({ label, type = 'text', value, onChange, multiline, required, delay }) => {
   const [focused, setFocused] = useState(false);
+  const { isDark } = useTheme();
   const isActive = focused || value.length > 0;
 
   const inputClass = `
-    w-full bg-transparent text-white outline-none resize-none transition-all duration-300
+    w-full bg-transparent text-primary outline-none resize-none transition-all duration-300
     border-0 border-b-2 py-3 text-base
-    ${focused ? 'border-[#3366ff]' : 'border-white/10 hover:border-white/25'}
+    ${focused ? 'border-[#3366ff]' : isDark ? 'border-white/10 hover:border-white/25' : 'border-neutral-300 hover:border-neutral-500'}
   `;
 
   return (
@@ -46,7 +48,7 @@ const FormField = ({ label, type = 'text', value, onChange, multiline, required,
         animate={{
           y: isActive ? -22 : 0,
           fontSize: isActive ? '11px' : '15px',
-          color: isActive ? (focused ? '#3366ff' : '#ADADAE') : '#6b6b6c',
+          color: isActive ? (focused ? '#3366ff' : isDark ? '#ADADAE' : '#475569') : isDark ? '#6b6b6c' : '#94a3b8',
         }}
         transition={{ type: 'spring', stiffness: 260, damping: 28 }}
         className="absolute left-0 top-3 pointer-events-none font-medium tracking-wide"
@@ -155,7 +157,7 @@ const SuccessState = () => (
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.25 }}
-      className="text-2xl font-display font-medium text-white mb-3"
+      className="text-2xl font-display font-medium text-primary mb-3"
     >
       Message Sent!
     </motion.h3>
@@ -163,7 +165,7 @@ const SuccessState = () => (
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.35 }}
-      className="text-[#ADADAE] text-sm leading-relaxed"
+      className="text-secondary text-sm leading-relaxed"
     >
       Opening WhatsApp... <br />
       Thank you for reaching out. We'll connect with you shortly.
@@ -177,6 +179,7 @@ const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const { isDark } = useTheme();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -201,7 +204,6 @@ const Contact = () => {
 
   const contactInfo = [
     { icon: Phone, label: 'Number', text: '+92 3320901442' },
-
   ];
 
   return (
@@ -224,7 +226,7 @@ const Contact = () => {
             {/* ── LEFT: Info Panel ── */}
             <div>
               <motion.p
-                className="text-sm font-medium text-[#ADADAE] uppercase tracking-widest mb-4"
+                className="text-sm font-medium text-secondary uppercase tracking-widest mb-4"
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -233,7 +235,7 @@ const Contact = () => {
               </motion.p>
 
               <motion.h1
-                className="text-4xl sm:text-5xl md:text-6xl font-display font-medium mb-6 leading-[1.1]"
+                className="text-4xl sm:text-5xl md:text-6xl font-display font-medium mb-6 leading-[1.1] text-primary"
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.1 }}
@@ -241,7 +243,11 @@ const Contact = () => {
                 Let's start a<br />
                 <span
                   className="inline-block bg-clip-text text-transparent"
-                  style={{ backgroundImage: 'linear-gradient(90deg, #ffffff 0%, #B9B9BA 60%, #7a7a7c 100%)' }}
+                  style={{
+                    backgroundImage: isDark
+                      ? 'linear-gradient(90deg, #ffffff 0%, #B9B9BA 60%, #7a7a7c 100%)'
+                      : 'linear-gradient(90deg, #0f172a 0%, #334155 60%, #64748b 100%)'
+                  }}
                 >
                   <TypewriterText
                     words={['conversation.', 'project.', 'partnership.']}
@@ -252,7 +258,7 @@ const Contact = () => {
               </motion.h1>
 
               <motion.p
-                className="text-[#ADADAE] text-lg leading-relaxed max-w-md mb-12"
+                className="text-secondary text-lg leading-relaxed max-w-md mb-12"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
@@ -269,9 +275,12 @@ const Contact = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.55, delay: 0.3 + i * 0.12 }}
                     className="group flex items-center gap-5 p-4 rounded-2xl cursor-pointer transition-all duration-300"
-                    style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}
+                    style={{
+                      background: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
+                      border: isDark ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(0,0,0,0.08)'
+                    }}
                     whileHover={{
-                      background: 'rgba(51,102,255,0.07)',
+                      background: isDark ? 'rgba(51,102,255,0.07)' : 'rgba(51,102,255,0.05)',
                       borderColor: 'rgba(51,102,255,0.3)',
                       x: 6,
                     }}
@@ -283,8 +292,8 @@ const Contact = () => {
                       <item.icon size={18} className="text-[#3366ff]" />
                     </div>
                     <div>
-                      <div className="text-[10px] uppercase tracking-widest text-[#6b6b6c] mb-0.5">{item.label}</div>
-                      <div className="text-white text-sm font-medium">{item.text}</div>
+                      <div className="text-[10px] uppercase tracking-widest text-secondary mb-0.5">{item.label}</div>
+                      <div className="text-primary text-sm font-medium">{item.text}</div>
                     </div>
                     <ArrowRight size={14} className="ml-auto text-[#3366ff] opacity-0 group-hover:opacity-100 transition-opacity" />
                   </motion.div>
@@ -305,11 +314,13 @@ const Contact = () => {
               <div
                 className="relative rounded-3xl p-8 md:p-10"
                 style={{
-                  background: 'rgba(255,255,255,0.035)',
+                  background: isDark ? 'rgba(255,255,255,0.035)' : 'rgba(255,255,255,0.95)',
                   backdropFilter: 'blur(24px)',
                   WebkitBackdropFilter: 'blur(24px)',
-                  border: '1px solid rgba(255,255,255,0.08)',
-                  boxShadow: '0 32px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.07)',
+                  border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                  boxShadow: isDark
+                    ? '0 32px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.07)'
+                    : '0 20px 60px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.8)',
                 }}
               >
                 {/* Corner accent dots */}

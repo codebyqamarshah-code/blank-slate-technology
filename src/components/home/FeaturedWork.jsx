@@ -7,11 +7,14 @@ import SectionHeading from '../common/SectionHeading';
 import Button from '../ui/Button';
 import TiltCard from '../ui/TiltCard';
 import { portfolioProjects, portfolioCategories } from '../../data/projectsData';
+import { useTheme } from '../../context/ThemeContext';
 
 const WHATSAPP_NUMBER = '923320901442';
 
-const ProjectCard = ({ project, index, enableStagger = true, theme = 'dark' }) => {
-  const isLight = theme === 'light';
+const ProjectCard = ({ project, index, enableStagger = true, theme }) => {
+  const { isDark } = useTheme();
+  const effectiveTheme = theme || (isDark ? 'dark' : 'light');
+  const isLight = effectiveTheme === 'light';
   const offsetClass = enableStagger && index % 2 !== 0 ? 'lg:mt-24' : '';
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
     `Hello Blank Slate, I saw your portfolio project "${project.title}" and would like to discuss building a similar solution for my business.`
@@ -175,8 +178,10 @@ const ProjectCard = ({ project, index, enableStagger = true, theme = 'dark' }) =
   );
 };
 
-const FeaturedWork = ({ showAll = false, showHeading = true, limit = 4, theme = 'dark' }) => {
-  const isLight = theme === 'light';
+const FeaturedWork = ({ showAll = false, showHeading = true, limit = 4, theme }) => {
+  const { isDark } = useTheme();
+  const effectiveTheme = theme || (isDark ? 'dark' : 'light');
+  const isLight = effectiveTheme === 'light';
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   const filteredProjects = useMemo(() => {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useSpring, AnimatePresence } from 'framer-motion';
 import HeroScene3D from './HeroScene3D';
+import { useTheme } from '../../context/ThemeContext';
 
 // ─── Scene data ──────────────────────────────────────────────────────────────
 const stages = [
@@ -43,7 +44,7 @@ const stages = [
 ];
 
 // ─── Progress Indicators ──────────────────────────────────────────────────────
-const ProgressDots = ({ currentIndex, onDotClick }) => (
+const ProgressDots = ({ currentIndex, onDotClick, isDark }) => (
   <div className="absolute bottom-5 sm:bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-3 z-30">
     {stages.map((s, index) => (
       <button 
@@ -51,7 +52,7 @@ const ProgressDots = ({ currentIndex, onDotClick }) => (
         onClick={() => onDotClick(index)}
         className="flex flex-col items-center gap-1 group outline-none"
       >
-        <div className="w-8 h-[2px] rounded-full bg-white/20 overflow-hidden">
+        <div className={`w-8 h-[2px] rounded-full overflow-hidden ${isDark ? 'bg-white/20' : 'bg-black/15'}`}>
           <motion.div 
             initial={false}
             animate={{ 
@@ -62,8 +63,8 @@ const ProgressDots = ({ currentIndex, onDotClick }) => (
           />
         </div>
         <span
-          className={`text-[8px] sm:text-[10px] font-medium tracking-widest drop-shadow-md transition-all duration-300 ${index === currentIndex ? 'opacity-100' : 'opacity-30 group-hover:opacity-60'}`}
-          style={{ color: index === currentIndex ? s.accent : '#fff' }}
+          className={`text-[8px] sm:text-[10px] font-medium tracking-widest transition-all duration-300 ${index === currentIndex ? 'opacity-100 font-semibold' : 'opacity-40 group-hover:opacity-75'}`}
+          style={{ color: index === currentIndex ? s.accent : (isDark ? '#fff' : '#475569') }}
         >
           {s.label}
         </span>
@@ -74,6 +75,7 @@ const ProgressDots = ({ currentIndex, onDotClick }) => (
 
 // ─── Main Component ──────────────────────────────────────────────────────────
 const HeroScrollAnimation = ({ prefersReducedMotion }) => {
+  const { isDark } = useTheme();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Auto-play interval
@@ -103,7 +105,7 @@ const HeroScrollAnimation = ({ prefersReducedMotion }) => {
     <div className="relative w-full h-[380px] sm:h-[440px] md:h-[500px] lg:h-[580px] overflow-visible">
       
       {/* 3D WebGL Canvas Layer */}
-      <HeroScene3D smoothProgress={smoothProgress} prefersReducedMotion={prefersReducedMotion} />
+      <HeroScene3D smoothProgress={smoothProgress} prefersReducedMotion={prefersReducedMotion} isDark={isDark} />
 
       {/* HTML Text Overlay (AnimatePresence guarantees no overlapping text) */}
       <AnimatePresence mode="wait">
@@ -117,14 +119,23 @@ const HeroScrollAnimation = ({ prefersReducedMotion }) => {
         >
           <div
             className="text-[10px] sm:text-xs font-semibold tracking-[0.22em] uppercase mb-3 sm:mb-4 drop-shadow-md"
-            style={{ color: activeStage.accent, textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}
+            style={{
+              color: activeStage.accent,
+              textShadow: isDark ? '0 2px 10px rgba(0,0,0,0.8)' : '0 1px 3px rgba(255,255,255,0.9)'
+            }}
           >
             {activeStage.category}
           </div>
           
           <h2 
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[3.25rem] font-display font-medium text-white tracking-tight leading-[1.15] mb-5 sm:mb-7 whitespace-pre-line"
-            style={{ textShadow: '0 4px 20px rgba(0,0,0,0.8)' }}
+            className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[3.25rem] font-display font-medium tracking-tight leading-[1.15] mb-5 sm:mb-7 whitespace-pre-line ${
+              isDark ? 'text-white' : 'text-slate-900'
+            }`}
+            style={{
+              textShadow: isDark
+                ? '0 4px 20px rgba(0,0,0,0.8)'
+                : '0 2px 12px rgba(255,255,255,0.95), 0 0 20px rgba(255,255,255,0.85)'
+            }}
           >
             {activeStage.headline}
           </h2>
@@ -135,14 +146,18 @@ const HeroScrollAnimation = ({ prefersReducedMotion }) => {
                 key={tag}
                 className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-medium px-3 py-1.5 rounded-full border backdrop-blur-md"
                 style={{
-                  color: '#ffffff',
-                  borderColor: `${activeStage.accent}80`,
-                  backgroundColor: `${activeStage.accent}33`,
+                  color: isDark ? '#ffffff' : '#0f172a',
+                  borderColor: isDark ? `${activeStage.accent}80` : `${activeStage.accent}50`,
+                  backgroundColor: isDark ? `${activeStage.accent}33` : `${activeStage.accent}15`,
+                  boxShadow: isDark ? 'none' : '0 2px 8px rgba(0,0,0,0.04)',
                 }}
               >
                 <span
-                  className="w-1.5 h-1.5 rounded-full flex-shrink-0 shadow-[0_0_8px_currentColor]"
-                  style={{ backgroundColor: activeStage.accent }}
+                  className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                  style={{
+                    backgroundColor: activeStage.accent,
+                    boxShadow: `0 0 8px ${activeStage.accent}`,
+                  }}
                 />
                 {tag}
               </span>
@@ -151,7 +166,7 @@ const HeroScrollAnimation = ({ prefersReducedMotion }) => {
         </motion.div>
       </AnimatePresence>
 
-      <ProgressDots currentIndex={currentIndex} onDotClick={setCurrentIndex} />
+      <ProgressDots currentIndex={currentIndex} onDotClick={setCurrentIndex} isDark={isDark} />
     </div>
   );
 };

@@ -8,30 +8,36 @@ import Team from '../components/home/Team';
 import CTA from '../components/home/CTA';
 import ZigzagHeroBackground from '../components/ui/ZigzagHeroBackground';
 import DirectorUK from '../components/about/DirectorUK';
+import { useTheme } from '../context/ThemeContext';
 
 const About = () => {
   const { scrollYProgress } = useScroll();
+  const { isDark } = useTheme();
   const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
   return (
     <PageTransition>
-      <div className="w-full">
+      <div className="w-full bg-background text-primary transition-colors duration-300">
         {/* Zigzag Animated Hero */}
         <section className="relative pt-36 pb-20 md:pt-48 md:pb-28 min-h-[50vh] flex items-center justify-center overflow-hidden">
           {/* Animated zigzag background — replaces image */}
           <ZigzagHeroBackground />
-          {/* Subtle dark overlay so text stays readable */}
-          <div className="absolute inset-0 z-10 bg-gradient-to-b from-background/30 via-transparent to-background/60" />
+          {/* Subtle overlay so text stays readable */}
+          <div className="absolute inset-0 z-10 bg-gradient-to-b from-background/30 via-transparent to-background/60 pointer-events-none" />
 
           <Container className="relative z-20 text-center">
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-5xl md:text-7xl font-display font-medium tracking-tight mb-6"
+              className="text-5xl md:text-7xl font-display font-medium tracking-tight mb-6 text-primary"
             >
-              Building the <span className="text-transparent bg-clip-text" style={{ backgroundImage: 'linear-gradient(90deg, #ffffff 0%, #B9B9BA 60%, #7a7a7c 100%)' }}>future.</span>
+              Building the <span className="text-transparent bg-clip-text" style={{
+                backgroundImage: isDark
+                  ? 'linear-gradient(90deg, #ffffff 0%, #B9B9BA 60%, #7a7a7c 100%)'
+                  : 'linear-gradient(90deg, #0f172a 0%, #334155 60%, #64748b 100%)'
+              }}>future.</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -63,7 +69,7 @@ const About = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ delay: 0.1 }}
-                    className="text-3xl md:text-5xl font-semibold text-white tracking-tight"
+                    className="text-3xl md:text-5xl font-semibold text-primary tracking-tight"
                   >
                     A legacy of innovation.
                   </motion.h2>
@@ -84,21 +90,22 @@ const About = () => {
                   whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.7 }}
-                  className="relative rounded-3xl overflow-hidden aspect-square md:aspect-[4/3] bg-surface"
+                  className="relative rounded-3xl overflow-hidden aspect-square md:aspect-[4/3] bg-surface border border-border"
                 >
                   <img 
                     src="/images/team.jpg" 
                     alt="Our Office" 
                     className="w-full h-full object-cover transition-all duration-700 hover:scale-105" 
+                    onError={(e) => { e.target.src = '/images/big1.png'; }}
                   />
                 </motion.div>
                 {/* Floating animated element */}
                 <motion.div
                   animate={{ y: [-10, 10, -10] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute -bottom-8 -left-8 bg-surface/80 backdrop-blur-md border border-border p-6 rounded-2xl shadow-xl hidden md:block"
+                  className="absolute -bottom-8 -left-8 bg-surface/90 backdrop-blur-md border border-border p-6 rounded-2xl shadow-xl hidden md:block"
                 >
-                  <div className="text-4xl font-display font-bold text-white mb-1">11+</div>
+                  <div className="text-4xl font-display font-bold text-primary mb-1">11+</div>
                   <div className="text-secondary text-sm uppercase tracking-wider">Years of Excellence</div>
                 </motion.div>
               </div>

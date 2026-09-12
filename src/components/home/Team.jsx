@@ -4,6 +4,7 @@ import { ArrowRight, ArrowLeft } from 'lucide-react';
 import Container from '../ui/Container';
 import SectionHeading from '../common/SectionHeading';
 import Button from '../ui/Button';
+import { useTheme } from '../../context/ThemeContext';
 
 const team = [
   {
@@ -34,6 +35,7 @@ const team = [
 
 const Team = () => {
   const scrollContainerRef = useRef(null);
+  const { isDark } = useTheme();
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -93,10 +95,12 @@ const Team = () => {
           <button
             onClick={() => scroll('left')}
             disabled={!canScrollLeft}
-            className={`absolute -left-2 md:-left-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 md:w-13 md:h-13 rounded-full border border-white/20 flex items-center justify-center transition-all duration-300 backdrop-blur-md shadow-2xl ${
+            className={`absolute -left-2 md:-left-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 md:w-13 md:h-13 rounded-full border flex items-center justify-center transition-all duration-300 backdrop-blur-md shadow-xl ${
               canScrollLeft
-                ? 'bg-black/70 hover:bg-white hover:text-black text-white cursor-pointer hover:scale-110'
-                : 'bg-black/30 text-white/20 border-white/5 cursor-not-allowed opacity-0 pointer-events-none'
+                ? isDark
+                  ? 'bg-black/70 hover:bg-white hover:text-black text-white border-white/20 cursor-pointer hover:scale-110'
+                  : 'bg-white/95 hover:bg-neutral-900 hover:text-white text-neutral-900 border-neutral-300 cursor-pointer hover:scale-110'
+                : 'opacity-0 pointer-events-none'
             }`}
             aria-label="Previous team member"
           >
@@ -107,10 +111,12 @@ const Team = () => {
           <button
             onClick={() => scroll('right')}
             disabled={!canScrollRight}
-            className={`absolute -right-2 md:-right-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 md:w-13 md:h-13 rounded-full border border-white/20 flex items-center justify-center transition-all duration-300 backdrop-blur-md shadow-2xl ${
+            className={`absolute -right-2 md:-right-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 md:w-13 md:h-13 rounded-full border flex items-center justify-center transition-all duration-300 backdrop-blur-md shadow-xl ${
               canScrollRight
-                ? 'bg-black/70 hover:bg-white hover:text-black text-white cursor-pointer hover:scale-110'
-                : 'bg-black/30 text-white/20 border-white/5 cursor-not-allowed opacity-0 pointer-events-none'
+                ? isDark
+                  ? 'bg-black/70 hover:bg-white hover:text-black text-white border-white/20 cursor-pointer hover:scale-110'
+                  : 'bg-white/95 hover:bg-neutral-900 hover:text-white text-neutral-900 border-neutral-300 cursor-pointer hover:scale-110'
+                : 'opacity-0 pointer-events-none'
             }`}
             aria-label="Next team member"
           >
@@ -152,7 +158,7 @@ const Team = () => {
                     onError={(e) => { e.target.src = '/images/big1.png'; }}
                   />
                   {/* Front Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/30 to-transparent flex flex-col justify-end p-6">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent flex flex-col justify-end p-6">
                     <h3 className="text-2xl font-display font-medium text-white mb-1 drop-shadow-md">{member.name}</h3>
                     <p className="text-accent font-medium text-xs md:text-sm tracking-wide uppercase">{member.role}</p>
                   </div>
@@ -171,7 +177,7 @@ const Team = () => {
                       <div className="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center mb-5 mx-auto text-accent shadow-[0_0_20px_rgba(59,130,246,0.3)]">
                         <ArrowRight className="transform -rotate-45" size={22} />
                       </div>
-                      <h3 className="text-2xl font-display font-medium text-white mb-1">{member.name}</h3>
+                      <h3 className="text-2xl font-display font-medium text-primary mb-1">{member.name}</h3>
                       <p className="text-accent font-medium text-xs md:text-sm tracking-wide uppercase mb-4">{member.role}</p>
                       <p className="text-secondary text-xs sm:text-sm leading-relaxed line-clamp-6 text-balance">
                         {member.bio}
@@ -193,7 +199,11 @@ const Team = () => {
               key={i}
               onClick={() => scrollToIndex(i)}
               className={`h-2 rounded-full transition-all duration-300 ${
-                activeIndex === i ? 'w-8 bg-accent' : 'w-2 bg-white/20 hover:bg-white/40'
+                activeIndex === i
+                  ? 'w-8 bg-accent'
+                  : isDark
+                  ? 'w-2 bg-white/20 hover:bg-white/40'
+                  : 'w-2 bg-neutral-300 hover:bg-neutral-500'
               }`}
               aria-label={`Go to slide ${i + 1}`}
             />

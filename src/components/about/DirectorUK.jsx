@@ -2,10 +2,13 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { MapPin } from 'lucide-react';
 import Container from '../ui/Container';
+import { useTheme } from '../../context/ThemeContext';
 
 const DirectorUK = () => {
+  const { isDark } = useTheme();
+
   return (
-    <section className="py-12 md:py-16 bg-[#050505] relative overflow-hidden">
+    <section className="py-12 md:py-16 bg-background transition-colors duration-300 relative overflow-hidden">
       {/* Background Glow */}
       <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
 
@@ -21,16 +24,18 @@ const DirectorUK = () => {
             className="relative"
           >
             {/* Main Image - Sized to match Our Story */}
-            <div className="relative rounded-3xl overflow-hidden aspect-square md:aspect-[4/3] border border-white/10 bg-white/[0.02]">
+            <div className={`relative rounded-3xl overflow-hidden aspect-square md:aspect-[4/3] border ${
+              isDark ? 'border-white/10 bg-white/[0.02]' : 'border-neutral-200 bg-neutral-100 shadow-xl'
+            }`}>
               <img 
                 src="/images/team.jpg" 
                 alt="Director of UK" 
-                className="w-full h-full object-cover transition-all duration-700 hover:scale-105"
+                className="w-full h-full object-cover transition-all duration-700 hover:scale-105" 
                 onError={(e) => { e.target.src = '/images/big1.png'; }}
               />
               
               {/* Overlay Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/30 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
             </div>
 
             {/* UK Flag & Location Badge */}
@@ -39,7 +44,9 @@ const DirectorUK = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="absolute -bottom-5 -right-5 md:bottom-6 md:-right-6 bg-[#0a0a0a] border border-white/10 p-4 sm:p-5 rounded-2xl shadow-2xl backdrop-blur-xl flex items-center gap-3.5"
+              className={`absolute -bottom-5 -right-5 md:bottom-6 md:-right-6 border p-4 sm:p-5 rounded-2xl shadow-2xl backdrop-blur-xl flex items-center gap-3.5 ${
+                isDark ? 'bg-[#0a0a0a] border-white/10' : 'bg-white border-neutral-200 shadow-xl'
+              }`}
             >
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-white/20 shrink-0 shadow-[0_0_15px_rgba(59,130,246,0.3)]">
                 {/* UK Flag SVG */}
@@ -60,7 +67,7 @@ const DirectorUK = () => {
                 </svg>
               </div>
               <div>
-                <p className="text-white font-medium text-base sm:text-lg leading-tight">London, UK</p>
+                <p className="text-primary font-medium text-base sm:text-lg leading-tight">London, UK</p>
                 <p className="text-secondary text-xs sm:text-sm flex items-center gap-1 mt-0.5">
                   <MapPin size={12} /> Global Operations
                 </p>
@@ -75,7 +82,7 @@ const DirectorUK = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <h2 className="text-3xl md:text-5xl font-semibold text-white tracking-tight mb-6 leading-tight">
+            <h2 className="text-3xl md:text-5xl font-semibold text-primary tracking-tight mb-6 leading-tight">
               Spearheading our <br className="hidden md:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">
                 UK Operations.

@@ -18,9 +18,11 @@ import Process from '../components/home/Process';
 import CTA from '../components/home/CTA';
 import TypewriterText from '../components/ui/TypewriterText';
 import { serviceCategories, allServices, enterpriseSpecialties } from '../data/servicesData';
+import { useTheme } from '../context/ThemeContext';
 
 const Services = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const { isDark } = useTheme();
 
   const filteredServices = selectedCategory === 'all'
     ? allServices
@@ -36,7 +38,7 @@ const Services = () => {
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs font-medium text-accent mb-6"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-border bg-surface/80 backdrop-blur-md text-xs font-medium text-accent mb-6 shadow-sm"
           >
             <Sparkles size={14} />
             <span>Full-Suite Software House & Digital Growth</span>
@@ -46,12 +48,16 @@ const Services = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-4xl sm:text-5xl md:text-6xl font-display font-medium mb-8 leading-[1.1]"
+            className="text-4xl sm:text-5xl md:text-6xl font-display font-medium mb-8 leading-[1.1] text-primary"
           >
             Engineering digital solutions for <br />
             <span
               className="inline-block bg-clip-text text-transparent"
-              style={{ backgroundImage: 'linear-gradient(90deg, #ffffff 0%, #B9B9BA 60%, #7a7a7c 100%)' }}
+              style={{
+                backgroundImage: isDark
+                  ? 'linear-gradient(90deg, #ffffff 0%, #B9B9BA 60%, #7a7a7c 100%)'
+                  : 'linear-gradient(90deg, #0f172a 0%, #334155 60%, #64748b 100%)'
+              }}
             >
               <TypewriterText
                 words={['modern enterprises.', 'scaling businesses.', 'global brands.']}
@@ -73,12 +79,12 @@ const Services = () => {
         {/* =========================================================
             FLAGSHIP ENTERPRISE SYSTEMS SHOWCASE (STATIC CLEAN CARDS - NO CLICK NAVIGATION)
         ========================================================= */}
-        <section className="py-16 bg-surface/20 border-y border-white/5">
+        <section className="py-16 bg-surface/30 border-y border-border">
           <Container>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
               <div>
                 <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent mb-2">Core Solutions</p>
-                <h2 className="text-2xl md:text-4xl font-display font-medium text-white">
+                <h2 className="text-2xl md:text-4xl font-display font-medium text-primary">
                   Flagship Business Systems
                 </h2>
               </div>
@@ -93,13 +99,13 @@ const Services = () => {
                 return (
                   <div
                     key={idx}
-                    className="p-8 rounded-3xl bg-surface/40 border border-white/10 flex flex-col justify-between select-none"
+                    className="p-8 rounded-3xl bg-surface/70 border border-border shadow-sm flex flex-col justify-between select-none"
                   >
                     <div>
-                      <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-accent mb-5">
+                      <div className="w-12 h-12 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mb-5">
                         <ItemIcon size={22} />
                       </div>
-                      <h3 className="text-xl font-display font-medium text-white mb-2">
+                      <h3 className="text-xl font-display font-medium text-primary mb-2">
                         {item.title}
                       </h3>
                       <p className="text-sm text-secondary leading-relaxed">
@@ -120,7 +126,7 @@ const Services = () => {
           <Container>
             <div className="text-center max-w-2xl mx-auto mb-12">
               <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent mb-2">Capabilities</p>
-              <h2 className="text-3xl md:text-5xl font-display font-medium text-white mb-4">
+              <h2 className="text-3xl md:text-5xl font-display font-medium text-primary mb-4">
                 Our Services & Capabilities
               </h2>
               <p className="text-sm text-secondary">
@@ -132,10 +138,14 @@ const Services = () => {
             <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 mb-16">
               <button
                 onClick={() => setSelectedCategory('all')}
-                className={`px-5 py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300 ${
+                className={`px-5 py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300 cursor-pointer ${
                   selectedCategory === 'all'
-                    ? 'bg-white text-black font-semibold shadow-lg shadow-white/10'
-                    : 'bg-surface/60 text-secondary hover:text-white hover:bg-surface border border-white/5'
+                    ? isDark
+                      ? 'bg-white text-black font-semibold shadow-lg shadow-white/10'
+                      : 'bg-black text-white font-semibold shadow-md'
+                    : isDark
+                    ? 'bg-surface/60 text-secondary hover:text-white hover:bg-surface border border-white/5'
+                    : 'bg-neutral-100 text-neutral-600 hover:text-black hover:bg-neutral-200 border border-neutral-200'
                 }`}
               >
                 All Services ({allServices.length})
@@ -145,10 +155,14 @@ const Services = () => {
                 <button
                   key={cat.id}
                   onClick={() => setSelectedCategory(cat.id)}
-                  className={`px-5 py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300 ${
+                  className={`px-5 py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300 cursor-pointer ${
                     selectedCategory === cat.id
-                      ? 'bg-white text-black font-semibold shadow-lg shadow-white/10'
-                      : 'bg-surface/60 text-secondary hover:text-white hover:bg-surface border border-white/5'
+                      ? isDark
+                        ? 'bg-white text-black font-semibold shadow-lg shadow-white/10'
+                        : 'bg-black text-white font-semibold shadow-md'
+                      : isDark
+                      ? 'bg-surface/60 text-secondary hover:text-white hover:bg-surface border border-white/5'
+                      : 'bg-neutral-100 text-neutral-600 hover:text-black hover:bg-neutral-200 border border-neutral-200'
                   }`}
                 >
                   {cat.title}
@@ -175,24 +189,24 @@ const Services = () => {
                     >
                       <Link
                         to={`/services/${service.slug}`}
-                        className="group flex flex-col justify-between h-full p-8 rounded-3xl bg-surface/40 border border-white/10 hover:border-accent/40 hover:bg-surface/80 hover:shadow-[0_10px_30px_rgba(51,102,255,0.1)] transition-all duration-300 relative overflow-hidden"
+                        className="group flex flex-col justify-between h-full p-8 rounded-3xl bg-surface/50 border border-border hover:border-accent/50 hover:bg-surface hover:shadow-xl transition-all duration-300 relative overflow-hidden"
                       >
                         <div className="absolute top-0 right-0 p-24 bg-accent/5 rounded-full blur-2xl group-hover:bg-accent/15 transition-all duration-500 pointer-events-none" />
 
                         <div>
                           <div className="flex items-center justify-between mb-6">
-                            <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-accent group-hover:scale-110 group-hover:bg-accent group-hover:text-black transition-all duration-300">
+                            <div className="w-12 h-12 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent group-hover:scale-110 group-hover:bg-accent group-hover:text-black transition-all duration-300">
                               <Icon size={24} />
                             </div>
-                            <span className="text-[11px] font-medium px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80">
+                            <span className="text-[11px] font-medium px-3 py-1 rounded-full bg-surface border border-border text-primary/80">
                               {service.badge}
                             </span>
                           </div>
 
-                          <span className="text-xs uppercase tracking-wider text-accent/80 font-medium block mb-1">
+                          <span className="text-xs uppercase tracking-wider text-accent font-medium block mb-1">
                             {service.categoryName}
                           </span>
-                          <h3 className="text-xl md:text-2xl font-display font-medium text-white mb-3 group-hover:text-accent transition-colors">
+                          <h3 className="text-xl md:text-2xl font-display font-medium text-primary mb-3 group-hover:text-accent transition-colors">
                             {service.title}
                           </h3>
                           <p className="text-sm text-secondary leading-relaxed mb-6">
@@ -200,7 +214,7 @@ const Services = () => {
                           </p>
 
                           {/* Quick Highlights */}
-                          <div className="space-y-2 mb-8 pt-4 border-t border-white/5">
+                          <div className="space-y-2 mb-8 pt-4 border-t border-border/50">
                             {service.highlights.slice(0, 2).map((hl, i) => (
                               <div key={i} className="flex items-start gap-2 text-xs text-secondary">
                                 <CheckCircle2 size={13} className="text-accent shrink-0 mt-0.5" />
@@ -210,7 +224,7 @@ const Services = () => {
                           </div>
                         </div>
 
-                        <div className="flex items-center justify-between pt-4 border-t border-white/5 text-xs font-semibold text-white group-hover:text-accent transition-colors">
+                        <div className="flex items-center justify-between pt-4 border-t border-border/50 text-xs font-semibold text-primary group-hover:text-accent transition-colors">
                           <span>Explore Service Specs</span>
                           <ArrowRight size={15} className="group-hover:translate-x-1.5 transition-transform" />
                         </div>

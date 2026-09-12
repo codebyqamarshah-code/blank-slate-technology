@@ -12,8 +12,10 @@ import {
   SiTailwindcss,
   SiGit,
 } from 'react-icons/si';
+import { useTheme } from '../../context/ThemeContext';
 
 const CustomCursor = () => {
+  const { isDark } = useTheme();
   const ringRef = useRef(null);
 
   const pos = useRef({
@@ -398,17 +400,20 @@ const CustomCursor = () => {
 
             borderRadius: '50%',
 
-            border: '1.5px solid rgba(255,255,255,0.5)',
-            background: 'rgba(255,255,255,0.05)',
+            border: isDark ? '1.5px solid rgba(255,255,255,0.5)' : '1.5px solid rgba(15,23,42,0.4)',
+            background: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(15,23,42,0.04)',
 
             opacity: visible && !hovering ? 1 : 0,
             transform: hovering ? 'scale(0.2)' : 'scale(1)',
 
-            transition: 'opacity 0.18s ease, transform 0.18s ease, border-color 0.3s ease',
+            transition: 'opacity 0.18s ease, transform 0.18s ease, border-color 0.3s ease, background-color 0.3s ease',
 
-            boxShadow: `
+            boxShadow: isDark ? `
               0 0 25px rgba(255,255,255,0.08),
               0 0 50px rgba(255,255,255,0.04)
+            ` : `
+              0 0 20px rgba(0,0,0,0.08),
+              0 0 35px rgba(0,0,0,0.04)
             `,
 
             display: 'flex',
@@ -505,14 +510,17 @@ const CustomCursor = () => {
                   0,
 
                 background:
-                  'rgba(0,0,0,0.45)',
+                  isDark ? 'rgba(0,0,0,0.55)' : 'rgba(255,255,255,0.92)',
 
                 border:
-                  `1px solid ${currentColor}55`,
+                  `1.5px solid ${currentColor}${isDark ? '55' : '88'}`,
 
-                boxShadow: `
+                boxShadow: isDark ? `
                   0 0 10px
                   ${currentColor}35
+                ` : `
+                  0 2px 10px rgba(0,0,0,0.12),
+                  0 0 10px ${currentColor}35
                 `,
 
                 overflow:

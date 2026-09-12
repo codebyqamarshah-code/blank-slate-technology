@@ -77,7 +77,7 @@ const Insights = () => {
               </span>
             </div>
             
-            <h3 className="text-3xl md:text-4xl font-display font-medium group-hover:text-white transition-colors mb-4">
+            <h3 className="text-3xl md:text-4xl font-display font-medium text-primary group-hover:text-accent transition-colors mb-4">
               {featuredInsight.title}
             </h3>
             
@@ -86,7 +86,7 @@ const Insights = () => {
             </p>
             
             <div className="mt-auto">
-              <span className="inline-flex items-center gap-2 text-white font-medium group-hover:text-accent transition-colors">
+              <span className="inline-flex items-center gap-2 text-primary font-medium group-hover:text-accent transition-colors">
                 Read Article <ArrowRight size={16} />
               </span>
             </div>
@@ -119,11 +119,11 @@ const Insights = () => {
                     <span className="text-secondary">{insight.date}</span>
                   </div>
                   
-                  <h3 className="text-xl font-medium group-hover:text-white transition-colors mb-4">
+                  <h3 className="text-xl font-medium text-primary group-hover:text-accent transition-colors mb-4">
                     {insight.title}
                   </h3>
                   
-                  <span className="inline-flex items-center gap-2 text-secondary text-sm font-medium group-hover:text-white transition-colors">
+                  <span className="inline-flex items-center gap-2 text-secondary text-sm font-medium group-hover:text-primary transition-colors">
                     Read <ArrowRight size={14} />
                   </span>
                 </div>

@@ -3,6 +3,7 @@ import { motion, useScroll, useSpring } from 'framer-motion';
 import Container from '../ui/Container';
 import SectionHeading from '../common/SectionHeading';
 import { Compass, Lightbulb, Code2, Rocket } from 'lucide-react';
+import { useTheme } from '../../context/ThemeContext';
 
 const steps = [
   {
@@ -45,6 +46,7 @@ const steps = [
 
 const Process = () => {
   const containerRef = useRef(null);
+  const { isDark } = useTheme();
 
   // Track scroll progress across this section
   const { scrollYProgress } = useScroll({
@@ -73,7 +75,9 @@ const Process = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 relative mt-20">
           {/* Desktop Connecting Line Background */}
-          <div className="hidden lg:block absolute top-14 left-[12%] right-[12%] h-[2px] bg-white/10 z-0" />
+          <div className={`hidden lg:block absolute top-14 left-[12%] right-[12%] h-[2px] z-0 ${
+            isDark ? 'bg-white/10' : 'bg-neutral-200'
+          }`} />
 
           {/* Desktop Animated Color Gradient Progress Line */}
           <motion.div 
@@ -98,9 +102,11 @@ const Process = () => {
               >
                 {/* Step Circle with Color and Glow */}
                 <div 
-                  className="w-28 h-28 rounded-full bg-[#0E0E12] border border-white/10 flex flex-col items-center justify-center mb-6 relative transition-all duration-500 group-hover:scale-105 shadow-xl"
+                  className={`w-28 h-28 rounded-full border flex flex-col items-center justify-center mb-6 relative transition-all duration-500 group-hover:scale-105 shadow-xl ${
+                    isDark ? 'bg-[#0E0E12] border-white/10' : 'bg-white border-neutral-200 shadow-neutral-200/50'
+                  }`}
                   style={{
-                    borderColor: 'rgba(255, 255, 255, 0.12)',
+                    borderColor: isDark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.08)',
                   }}
                 >
                   {/* Subtle color ring on hover */}
@@ -146,7 +152,7 @@ const Process = () => {
                 </span>
                 
                 {/* Step Title */}
-                <h3 className="text-xl font-display font-semibold mb-3 text-white group-hover:text-white transition-colors">
+                <h3 className="text-xl font-display font-semibold mb-3 text-primary transition-colors">
                   {step.title}
                 </h3>
                 

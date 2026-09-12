@@ -18,7 +18,7 @@ const Layout = () => {
   }, [location.pathname]);
 
   return (
-    <div className="flex flex-col min-h-screen" style={{ backgroundColor: '#050505' }}>
+    <div className="flex flex-col min-h-screen bg-background text-primary transition-colors duration-300">
       
       {/* Neon scroll progress bar */}
       <motion.div
@@ -31,7 +31,7 @@ const Layout = () => {
       {/* Render outlet directly — no AnimatePresence wrapper here.
           Each page has its own PageTransition for the enter animation.
           Removing mode="wait" eliminates the black flash between pages. */}
-      <main className="flex-grow" style={{ backgroundColor: '#050505' }}>
+      <main className="flex-grow bg-background text-primary transition-colors duration-300">
         <Outlet />
       </main>
 

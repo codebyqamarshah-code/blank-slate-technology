@@ -8,15 +8,15 @@ import CTA from '../components/home/CTA';
 const InsightsPage = () => {
   return (
     <PageTransition>
-      <div className="w-full pt-16">
+      <div className="w-full pt-16 bg-background text-primary transition-colors duration-300">
         <Container className="py-16 max-w-4xl">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-5xl md:text-7xl font-display font-medium mb-8 text-balance"
+            className="text-5xl md:text-7xl font-display font-medium mb-8 text-balance text-primary"
           >
-            Insights & <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-secondary">Perspectives.</span>
+            Insights & <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Perspectives.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

@@ -3,9 +3,11 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { Award, ExternalLink, CheckCircle2, Sparkles, ShieldCheck } from 'lucide-react';
 import Container from '../ui/Container';
 import TiltCard from '../ui/TiltCard';
+import { useTheme } from '../../context/ThemeContext';
 
 const FreeCertification = () => {
   const containerRef = useRef(null);
+  const { isDark } = useTheme();
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -23,7 +25,7 @@ const FreeCertification = () => {
   ];
 
   return (
-    <section ref={containerRef} className="relative py-20 md:py-32 overflow-hidden bg-[#050505]">
+    <section ref={containerRef} className="relative py-20 md:py-32 overflow-hidden bg-background transition-colors duration-300">
       {/* Ambient Golden Halo Lighting */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-yellow-500/5 rounded-full blur-[100px] pointer-events-none" />
@@ -31,7 +33,11 @@ const FreeCertification = () => {
       <Container>
         <motion.div
           style={{ y, opacity }}
-          className="relative rounded-[2.5rem] border border-amber-500/25 bg-gradient-to-b from-[#14120c]/90 via-[#0c0c10]/95 to-[#060608] p-8 md:p-12 lg:p-16 overflow-hidden backdrop-blur-xl shadow-[0_0_80px_-20px_rgba(245,158,11,0.25)]"
+          className={`relative rounded-[2.5rem] border p-8 md:p-12 lg:p-16 overflow-hidden backdrop-blur-xl transition-all duration-500 ${
+            isDark
+              ? 'border-amber-500/25 bg-gradient-to-b from-[#14120c]/90 via-[#0c0c10]/95 to-[#060608] shadow-[0_0_80px_-20px_rgba(245,158,11,0.25)]'
+              : 'border-amber-400/40 bg-gradient-to-b from-amber-50/95 via-orange-50/40 to-white shadow-[0_20px_60px_-15px_rgba(245,158,11,0.15)]'
+          }`}
         >
           {/* Decorative golden ambient corners */}
           <div className="absolute -top-24 -right-24 w-80 h-80 bg-amber-500/15 rounded-full blur-[90px] pointer-events-none" />
@@ -57,10 +63,12 @@ const FreeCertification = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-3xl md:text-4xl lg:text-5xl font-display font-semibold text-white mb-6 leading-tight"
+                className={`text-3xl md:text-4xl lg:text-5xl font-display font-semibold mb-6 leading-tight ${
+                  isDark ? 'text-white' : 'text-neutral-900'
+                }`}
               >
                 Prove your skills. <br/> 
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFF0BD] via-[#F59E0B] to-[#D97706] drop-shadow-sm">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F59E0B] via-[#D97706] to-[#B45309] drop-shadow-sm">
                   Earn a Free Certificate.
                 </span>
               </motion.h2>
@@ -70,7 +78,9 @@ const FreeCertification = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-neutral-300 text-base md:text-lg mb-8 max-w-lg leading-relaxed font-sans"
+                className={`text-base md:text-lg mb-8 max-w-lg leading-relaxed font-sans ${
+                  isDark ? 'text-neutral-300' : 'text-neutral-700'
+                }`}
               >
                 Take our comprehensive online technical assessment. Pass the evaluation to receive a verified, tamper-proof digital credential recognized across modern technology ecosystems.
               </motion.p>
@@ -84,8 +94,10 @@ const FreeCertification = () => {
                 className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-9"
               >
                 {highlights.map((item) => (
-                  <div key={item} className="flex items-start gap-2.5 text-xs md:text-sm text-neutral-300">
-                    <CheckCircle2 size={16} className="text-amber-400 shrink-0 mt-0.5" />
+                  <div key={item} className={`flex items-start gap-2.5 text-xs md:text-sm ${
+                    isDark ? 'text-neutral-300' : 'text-neutral-700 font-medium'
+                  }`}>
+                    <CheckCircle2 size={16} className="text-amber-500 shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </div>
                 ))}
@@ -108,8 +120,8 @@ const FreeCertification = () => {
                   <ExternalLink size={16} />
                 </a>
 
-                <div className="flex items-center gap-2 text-xs text-amber-300/80 font-mono">
-                  <ShieldCheck size={16} className="text-amber-400" />
+                <div className="flex items-center gap-2 text-xs text-amber-600 dark:text-amber-300/80 font-mono font-medium">
+                  <ShieldCheck size={16} className="text-amber-500" />
                   <span>Instant Verification</span>
                 </div>
               </motion.div>
@@ -121,7 +133,11 @@ const FreeCertification = () => {
                 <motion.div
                   animate={{ y: [0, -12, 0] }}
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                  className="relative w-full aspect-square rounded-[2rem] border border-amber-500/30 bg-gradient-to-b from-[#18150d]/80 via-[#100f14]/90 to-[#09080c] p-6 sm:p-8 flex flex-col items-center justify-center backdrop-blur-xl shadow-[0_0_50px_rgba(245,158,11,0.2)] group overflow-hidden"
+                  className={`relative w-full aspect-square rounded-[2rem] border p-6 sm:p-8 flex flex-col items-center justify-center backdrop-blur-xl group overflow-hidden ${
+                    isDark
+                      ? 'border-amber-500/30 bg-gradient-to-b from-[#18150d]/80 via-[#100f14]/90 to-[#09080c] shadow-[0_0_50px_rgba(245,158,11,0.2)]'
+                      : 'border-amber-400/50 bg-gradient-to-b from-amber-100/70 via-orange-50/60 to-white shadow-[0_15px_40px_rgba(245,158,11,0.15)]'
+                  }`}
                 >
                   {/* Rotating Concentric Golden Dashed Ring */}
                   <motion.div 
@@ -149,12 +165,16 @@ const FreeCertification = () => {
                   <motion.div 
                     animate={{ y: [0, 8, 0] }}
                     transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                    className="absolute -bottom-3 -right-2 sm:bottom-4 sm:right-2 bg-[#0d0c0a]/95 border border-amber-500/40 px-5 py-2.5 rounded-2xl shadow-[0_15px_30px_rgba(0,0,0,0.9)] flex items-center gap-2.5 backdrop-blur-md"
+                    className={`absolute -bottom-3 -right-2 sm:bottom-4 sm:right-2 border px-5 py-2.5 rounded-2xl flex items-center gap-2.5 backdrop-blur-md ${
+                      isDark
+                        ? 'bg-[#0d0c0a]/95 border-amber-500/40 shadow-[0_15px_30px_rgba(0,0,0,0.9)]'
+                        : 'bg-white/95 border-amber-400/60 shadow-[0_10px_25px_rgba(0,0,0,0.1)]'
+                    }`}
                   >
-                    <Award size={18} className="text-amber-400" />
+                    <Award size={18} className="text-amber-500" />
                     <div>
-                      <span className="block text-xs font-bold text-white tracking-wide">100% FREE</span>
-                      <span className="text-[10px] text-amber-400 font-mono tracking-wider uppercase">Verified Seal</span>
+                      <span className={`block text-xs font-bold tracking-wide ${isDark ? 'text-white' : 'text-neutral-900'}`}>100% FREE</span>
+                      <span className="text-[10px] text-amber-600 dark:text-amber-400 font-mono tracking-wider uppercase font-semibold">Verified Seal</span>
                     </div>
                   </motion.div>
 
@@ -162,10 +182,16 @@ const FreeCertification = () => {
                   <motion.div 
                     animate={{ y: [0, -8, 0] }}
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                    className="absolute -top-2 -left-2 sm:top-4 sm:left-2 bg-[#0d0c0a]/95 border border-amber-500/40 px-4 py-2 rounded-2xl shadow-[0_15px_30px_rgba(0,0,0,0.9)] flex items-center gap-2 backdrop-blur-md"
+                    className={`absolute -top-2 -left-2 sm:top-4 sm:left-2 border px-4 py-2 rounded-2xl flex items-center gap-2 backdrop-blur-md ${
+                      isDark
+                        ? 'bg-[#0d0c0a]/95 border-amber-500/40 shadow-[0_15px_30px_rgba(0,0,0,0.9)]'
+                        : 'bg-white/95 border-amber-400/60 shadow-[0_10px_25px_rgba(0,0,0,0.1)]'
+                    }`}
                   >
-                    <span className="text-amber-400 text-xs font-bold">★ 5.0</span>
-                    <span className="text-[10px] text-neutral-300 font-mono uppercase tracking-wider">Accredited</span>
+                    <span className="text-amber-500 text-xs font-bold">★ 5.0</span>
+                    <span className={`text-[10px] font-mono uppercase tracking-wider font-semibold ${
+                      isDark ? 'text-neutral-300' : 'text-neutral-600'
+                    }`}>Accredited</span>
                   </motion.div>
                 </motion.div>
               </TiltCard>

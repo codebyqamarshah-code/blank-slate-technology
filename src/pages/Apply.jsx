@@ -35,15 +35,15 @@ const Field = ({ label, icon: Icon, type = 'text', value, onChange, required, pl
   const isActive = focused || (value && value.length > 0) || type === 'date';
 
   const baseInputClass = `
-    w-full bg-transparent text-white outline-none transition-all duration-300
+    w-full bg-transparent text-primary outline-none transition-all duration-300
     border-0 border-b-2 py-3 pl-9 text-sm
-    ${focused ? 'border-[#3366ff]' : 'border-white/10 hover:border-white/25'}
+    ${focused ? 'border-[#3366ff]' : 'border-border hover:border-primary/30'}
   `;
 
   return (
     <div className="relative pt-4">
       {/* Icon */}
-      <div className="absolute left-0 bottom-3 text-[#6b6b6c]" style={{ transition: 'color .25s', color: focused ? '#3366ff' : undefined }}>
+      <div className="absolute left-0 bottom-3 text-secondary transition-colors" style={{ color: focused ? '#3366ff' : undefined }}>
         <Icon size={15} />
       </div>
 
@@ -52,7 +52,7 @@ const Field = ({ label, icon: Icon, type = 'text', value, onChange, required, pl
         animate={{
           y: isActive ? -20 : 0,
           fontSize: isActive ? '10px' : '13px',
-          color: isActive ? (focused ? '#3366ff' : '#ADADAE') : '#6b6b6c',
+          color: isActive ? (focused ? '#3366ff' : 'var(--text-muted)') : 'var(--text-muted)',
         }}
         transition={{ type: 'spring', stiffness: 280, damping: 28 }}
         className="absolute left-9 top-[18px] pointer-events-none font-medium tracking-wide"
@@ -73,7 +73,7 @@ const Field = ({ label, icon: Icon, type = 'text', value, onChange, required, pl
         >
           <option value="" disabled hidden></option>
           {options.map((o) => (
-            <option key={o} value={o} className="bg-[#0a0a12] text-white">{o}</option>
+            <option key={o} value={o} className="bg-surface text-primary">{o}</option>
           ))}
         </select>
       ) : (
@@ -112,9 +112,9 @@ const StepIndicator = ({ current }) => (
           <div className="flex flex-col items-center">
             <motion.div
               animate={{
-                background: done || active ? '#3366ff' : 'rgba(255,255,255,0.06)',
+                background: done || active ? '#3366ff' : 'var(--border-main)',
                 scale: active ? 1.15 : 1,
-                borderColor: done || active ? '#3366ff' : 'rgba(255,255,255,0.1)',
+                borderColor: done || active ? '#3366ff' : 'var(--border-main)',
               }}
               transition={{ duration: 0.35 }}
               className="w-10 h-10 rounded-full border-2 flex items-center justify-center mb-2"
@@ -122,10 +122,10 @@ const StepIndicator = ({ current }) => (
               {done ? (
                 <CheckCircle size={16} className="text-white" />
               ) : (
-                <step.icon size={16} className={active ? 'text-white' : 'text-[#6b6b6c]'} />
+                <step.icon size={16} className={active ? 'text-white' : 'text-secondary'} />
               )}
             </motion.div>
-            <span className={`text-[10px] uppercase tracking-widest font-medium whitespace-nowrap ${active ? 'text-white' : 'text-[#6b6b6c]'}`}>
+            <span className={`text-[10px] uppercase tracking-widest font-medium whitespace-nowrap ${active ? 'text-primary font-semibold' : 'text-secondary'}`}>
               {step.label}
             </span>
           </div>
@@ -133,7 +133,7 @@ const StepIndicator = ({ current }) => (
           {i < STEPS.length - 1 && (
             <motion.div
               className="h-[2px] w-16 sm:w-24 mb-5 rounded-full"
-              animate={{ background: current > step.id ? '#3366ff' : 'rgba(255,255,255,0.08)' }}
+              animate={{ background: current > step.id ? '#3366ff' : 'var(--border-main)' }}
               transition={{ duration: 0.4 }}
             />
           )}
@@ -200,7 +200,7 @@ const Apply = () => {
 
   return (
     <PageTransition>
-      <div className="relative min-h-screen pt-24 pb-24 overflow-hidden bg-[#050505]">
+      <div className="relative min-h-screen pt-24 pb-24 overflow-hidden bg-background text-primary transition-colors duration-300">
 
         {/* Ambient glow */}
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-[#3366ff]/5 rounded-full blur-[160px] pointer-events-none" />
@@ -211,7 +211,7 @@ const Apply = () => {
             <motion.p
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-xs uppercase tracking-widest text-[#ADADAE] mb-3"
+              className="text-xs uppercase tracking-widest text-secondary mb-3"
             >
               Blank Slate Tech Institute
             </motion.p>
@@ -219,7 +219,7 @@ const Apply = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl font-display font-medium text-white mb-4"
+              className="text-4xl md:text-5xl font-display font-medium text-primary mb-4"
             >
               Apply for Admission
             </motion.h1>
@@ -227,7 +227,7 @@ const Apply = () => {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.18 }}
-              className="text-[#ADADAE] text-sm max-w-md mx-auto"
+              className="text-secondary text-sm max-w-md mx-auto"
             >
               Fill out the form below to secure your spot. Our team will contact you within 24 hours.
             </motion.p>
@@ -239,13 +239,7 @@ const Apply = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.22 }}
-              className="relative rounded-3xl p-8 md:p-12"
-              style={{
-                background: 'rgba(255,255,255,0.03)',
-                backdropFilter: 'blur(24px)',
-                border: '1px solid rgba(255,255,255,0.07)',
-                boxShadow: '0 40px 100px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.07)',
-              }}
+              className="relative rounded-3xl p-8 md:p-12 bg-surface/90 border border-border shadow-2xl backdrop-blur-xl"
             >
               {/* Accent glow */}
               <div className="absolute -inset-px rounded-3xl bg-gradient-to-br from-[#3366ff]/15 via-transparent to-transparent pointer-events-none" />
@@ -285,7 +279,7 @@ const Apply = () => {
                       initial={{ opacity: 0, y: 16 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.25 }}
-                      className="text-3xl font-display font-medium text-white mb-3"
+                      className="text-3xl font-display font-medium text-primary mb-3"
                     >
                       Application Submitted!
                     </motion.h2>
@@ -293,9 +287,9 @@ const Apply = () => {
                       initial={{ opacity: 0, y: 12 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.35 }}
-                      className="text-[#ADADAE] max-w-sm text-sm leading-relaxed"
+                      className="text-secondary max-w-sm text-sm leading-relaxed"
                     >
-                      Thank you, <span className="text-white font-medium">{form.name}</span>! Your application has been received. Our admissions team will reach out to you at <span className="text-white font-medium">{form.phone}</span> within 24 hours.
+                      Thank you, <span className="text-primary font-semibold">{form.name}</span>! Your application has been received. Our admissions team will reach out to you at <span className="text-primary font-semibold">{form.phone}</span> within 24 hours.
                     </motion.p>
                     <motion.div
                       initial={{ opacity: 0, y: 12 }}
@@ -326,7 +320,7 @@ const Apply = () => {
                             transition={{ duration: 0.35, ease: 'easeInOut' }}
                             className="space-y-6"
                           >
-                            <h3 className="text-lg font-medium text-white mb-6 flex items-center gap-2">
+                            <h3 className="text-lg font-medium text-primary mb-6 flex items-center gap-2">
                               <User size={16} className="text-[#3366ff]" /> Personal Information
                             </h3>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -361,7 +355,7 @@ const Apply = () => {
                             transition={{ duration: 0.35, ease: 'easeInOut' }}
                             className="space-y-6"
                           >
-                            <h3 className="text-lg font-medium text-white mb-6 flex items-center gap-2">
+                            <h3 className="text-lg font-medium text-primary mb-6 flex items-center gap-2">
                               <Phone size={16} className="text-[#3366ff]" /> Contact Details
                             </h3>
                             <Field label="Email Address" icon={Mail} type="email" value={form.email} onChange={set('email')} required placeholder="you@example.com" />
@@ -396,13 +390,13 @@ const Apply = () => {
                             transition={{ duration: 0.35, ease: 'easeInOut' }}
                             className="space-y-6"
                           >
-                            <h3 className="text-lg font-medium text-white mb-6 flex items-center gap-2">
+                            <h3 className="text-lg font-medium text-primary mb-6 flex items-center gap-2">
                               <GraduationCap size={16} className="text-[#3366ff]" /> Program Selection
                             </h3>
 
                             {/* Program grid selection */}
                             <div>
-                              <p className="text-[10px] uppercase tracking-widest text-[#6b6b6c] mb-4">Select a Program <span className="text-[#3366ff]">*</span></p>
+                              <p className="text-[10px] uppercase tracking-widest text-secondary mb-4">Select a Program <span className="text-[#3366ff]">*</span></p>
                               <div className="grid grid-cols-2 gap-3">
                                 {PROGRAMS.map((p) => (
                                   <motion.button
@@ -412,11 +406,11 @@ const Apply = () => {
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
                                     animate={{
-                                      borderColor: form.program === p ? 'rgba(51,102,255,0.8)' : 'rgba(255,255,255,0.07)',
-                                      background: form.program === p ? 'rgba(51,102,255,0.12)' : 'rgba(255,255,255,0.03)',
+                                      borderColor: form.program === p ? 'rgba(51,102,255,0.8)' : 'var(--border-main)',
+                                      background: form.program === p ? 'rgba(51,102,255,0.12)' : 'var(--bg-surface)',
                                     }}
-                                    className="relative text-left p-3 rounded-xl border text-xs font-medium transition-colors"
-                                    style={{ color: form.program === p ? '#fff' : '#ADADAE' }}
+                                    className="relative text-left p-3 rounded-xl border text-xs font-medium transition-colors shadow-sm"
+                                    style={{ color: form.program === p ? '#3366ff' : 'var(--text-main)' }}
                                   >
                                     {form.program === p && (
                                       <motion.div
@@ -455,7 +449,7 @@ const Apply = () => {
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
                             whileHover={{ x: -3 }}
-                            className="flex items-center gap-2 px-6 py-3 rounded-xl border border-white/10 text-[#ADADAE] hover:text-white hover:border-white/25 text-sm transition-all"
+                            className="flex items-center gap-2 px-6 py-3 rounded-xl border border-border text-secondary hover:text-primary hover:border-primary/30 text-sm transition-all"
                           >
                             <ArrowLeft size={15} /> Back
                           </motion.button>
@@ -467,10 +461,10 @@ const Apply = () => {
                             onClick={next}
                             whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.97 }}
-                            className="relative flex-1 py-3.5 rounded-xl font-semibold text-sm tracking-widest uppercase text-white overflow-hidden"
+                            className="relative flex-1 py-3.5 rounded-xl font-semibold text-sm tracking-widest uppercase text-white overflow-hidden shadow-md"
                             style={{
                               background: 'linear-gradient(135deg, #1a2fff 0%, #0a1acc 100%)',
-                              boxShadow: '0 0 30px rgba(51,102,255,0.3), 0 8px 32px rgba(0,0,0,0.35)',
+                              boxShadow: '0 0 30px rgba(51,102,255,0.3), 0 8px 32px rgba(0,0,0,0.2)',
                             }}
                           >
                             <motion.div
@@ -490,12 +484,12 @@ const Apply = () => {
                               disabled={!form.program || loading}
                               whileHover={{ scale: (form.program && !loading) ? 1.03 : 1 }}
                               whileTap={{ scale: (form.program && !loading) ? 0.97 : 1 }}
-                              className="relative w-full py-3.5 rounded-xl font-semibold text-sm tracking-widest uppercase text-white overflow-hidden"
+                              className="relative w-full py-3.5 rounded-xl font-semibold text-sm tracking-widest uppercase text-white overflow-hidden shadow-md"
                               style={{
                                 background: form.program
                                   ? 'linear-gradient(135deg, #1a2fff 0%, #0a1acc 100%)'
-                                  : 'rgba(255,255,255,0.05)',
-                                boxShadow: form.program ? '0 0 30px rgba(51,102,255,0.3), 0 8px 32px rgba(0,0,0,0.35)' : 'none',
+                                  : 'var(--border-main)',
+                                boxShadow: form.program ? '0 0 30px rgba(51,102,255,0.3), 0 8px 32px rgba(0,0,0,0.2)' : 'none',
                                 cursor: (form.program && !loading) ? 'pointer' : 'not-allowed',
                                 opacity: loading ? 0.7 : 1,
                               }}
@@ -509,7 +503,7 @@ const Apply = () => {
                               <motion.p
                                 initial={{ opacity: 0, y: 6 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="text-center text-xs text-red-400 mt-2"
+                                className="text-center text-xs text-red-500 mt-2"
                               >
                                 {error}
                               </motion.p>
@@ -519,7 +513,7 @@ const Apply = () => {
                       </div>
 
                       {/* Step counter */}
-                      <p className="text-center text-[10px] text-[#444] uppercase tracking-widest mt-5">
+                      <p className="text-center text-[10px] text-secondary uppercase tracking-widest mt-5">
                         Step {step} of {STEPS.length}
                       </p>
                     </form>

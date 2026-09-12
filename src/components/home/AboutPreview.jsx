@@ -5,9 +5,11 @@ import { ArrowRight } from 'lucide-react';
 import Container from '../ui/Container';
 import Button from '../ui/Button';
 import TiltCard from '../ui/TiltCard';
+import { useTheme } from '../../context/ThemeContext';
 
 const AboutPreview = () => {
   const sectionRef = useRef(null);
+  const { isDark } = useTheme();
   
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -32,7 +34,9 @@ const AboutPreview = () => {
               className="relative w-full max-w-[380px] lg:max-w-[420px] mx-auto lg:mx-0 z-10 will-change-transform"
             >
               <TiltCard intensity={12} glare={true} className="rounded-3xl">
-                <div className="relative rounded-3xl overflow-hidden aspect-[4/4.8] w-full bg-surface shadow-2xl shadow-black/60 border border-white/10 group">
+                <div className={`relative rounded-3xl overflow-hidden aspect-[4/4.8] w-full bg-surface shadow-2xl border group ${
+                  isDark ? 'shadow-black/60 border-white/10' : 'shadow-neutral-300/60 border-neutral-200'
+                }`}>
                   <img 
                     src="/images/digital-growth.jpg" 
                     alt="Digital growth and innovation at Blank Slate" 
@@ -41,7 +45,9 @@ const AboutPreview = () => {
                   />
                   {/* Subtle inner gradient shadow for depth */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-                  <div className="absolute inset-0 border border-white/10 rounded-3xl z-20 pointer-events-none" />
+                  <div className={`absolute inset-0 border rounded-3xl z-20 pointer-events-none ${
+                    isDark ? 'border-white/10' : 'border-black/5'
+                  }`} />
                 </div>
               </TiltCard>
             </motion.div>
@@ -61,7 +67,7 @@ const AboutPreview = () => {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              className="inline-block text-cyan-400 font-semibold tracking-[0.2em] uppercase text-xs mb-2.5"
+              className="inline-block text-cyan-500 font-semibold tracking-[0.2em] uppercase text-xs mb-2.5"
             >
               Who We Are
             </motion.span>
@@ -71,10 +77,14 @@ const AboutPreview = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ delay: 0.1, duration: 0.8 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-[50px] font-display font-medium mb-4 text-balance leading-[1.08] tracking-tight text-white"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[50px] font-display font-medium mb-4 text-balance leading-[1.08] tracking-tight text-primary"
             >
               Pioneering digital <br className="hidden sm:inline" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-secondary">
+              <span className={`text-transparent bg-clip-text ${
+                isDark
+                  ? 'bg-gradient-to-r from-white via-white to-secondary'
+                  : 'bg-gradient-to-r from-neutral-950 via-neutral-800 to-neutral-500'
+              }`}>
                 growth and innovation.
               </span>
             </motion.h2>
@@ -101,7 +111,7 @@ const AboutPreview = () => {
               transition={{ delay: 0.3, duration: 0.8 }}
             >
               <Link to="/about">
-                <Button variant="outline" className="group border-white/20 hover:border-white !py-2.5 !px-6 text-sm" icon={ArrowRight}>
+                <Button variant="outline" className="group !py-2.5 !px-6 text-sm" icon={ArrowRight}>
                   Discover Our Story
                 </Button>
               </Link>

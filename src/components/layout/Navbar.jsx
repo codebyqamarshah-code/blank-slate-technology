@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, ArrowRight, Globe } from 'lucide-react';
+import { Menu, X, ChevronDown, ArrowRight, Globe, Sun, Moon } from 'lucide-react';
 import Container from '../ui/Container';
 import Button from '../ui/Button';
 import { allServices } from '../../data/servicesData';
+import { useTheme } from '../../context/ThemeContext';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -14,8 +15,10 @@ const Navbar = () => {
   const timeoutRef = useRef(null);
   const location = useLocation();
 
-  // On /work (or light pages), navbar should always display light theme
-  const isLightNav = isScrolled || location.pathname === '/work';
+  const { theme, toggleTheme, isDark } = useTheme();
+
+  // In light mode, navbar is always light. In dark mode, it turns light on scroll or on /work.
+  const isLightNav = !isDark || isScrolled || location.pathname === '/work';
 
   // Create a quick lookup map for services by slug
   const serviceMap = useMemo(() => {
@@ -241,6 +244,31 @@ const Navbar = () => {
               })}
             </div>
 
+            {/* Theme Toggle Button */}
+            <button
+              type="button"
+              onClick={toggleTheme}
+              aria-label={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+              title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+              className={`p-2 rounded-full transition-all duration-300 flex items-center justify-center cursor-pointer ${
+                isLightNav
+                  ? 'bg-neutral-100 hover:bg-neutral-200 text-neutral-800 border border-neutral-200 shadow-sm'
+                  : 'bg-white/10 hover:bg-white/20 text-yellow-400 border border-white/10'
+              }`}
+            >
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={isDark ? 'dark' : 'light'}
+                  initial={{ y: -8, opacity: 0, rotate: -40 }}
+                  animate={{ y: 0, opacity: 1, rotate: 0 }}
+                  exit={{ y: 8, opacity: 0, rotate: 40 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {isDark ? <Sun size={18} className="text-amber-400" /> : <Moon size={18} className="text-neutral-700" />}
+                </motion.div>
+              </AnimatePresence>
+            </button>
+
             <Link to="/contact" onClick={closeAllMenus}>
               <Button
                 variant="primary"
@@ -387,15 +415,33 @@ const Navbar = () => {
             )}
           </AnimatePresence>
 
-          {/* Mobile Menu Toggle */}
-          <button
-            className={`md:hidden relative z-50 p-2 -mr-2 transition-colors ${
-              isMobileMenuOpen ? 'text-white' : isLightNav ? 'text-black' : 'text-white'
-            }`}
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile Menu Controls */}
+          <div className="flex md:hidden items-center gap-2 relative z-50">
+            <button
+              type="button"
+              onClick={toggleTheme}
+              aria-label={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+              className={`p-2 rounded-full transition-all duration-300 flex items-center justify-center cursor-pointer ${
+                isLightNav && !isMobileMenuOpen
+                  ? 'bg-neutral-100 text-neutral-800 border border-neutral-200 shadow-sm'
+                  : 'bg-white/10 text-yellow-400 border border-white/10'
+              }`}
+            >
+              {isDark ? <Sun size={18} className="text-amber-400" /> : <Moon size={18} className="text-neutral-700" />}
+            </button>
+
+            <button
+              className={`p-2 -mr-2 transition-colors cursor-pointer ${
+                isMobileMenuOpen
+                  ? isDark ? 'text-white' : 'text-neutral-900'
+                  : isLightNav ? 'text-neutral-900' : 'text-white'
+              }`}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </Container>
       </header>
 
@@ -407,7 +453,9 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl pt-24 px-6 md:hidden flex flex-col overflow-y-auto"
+            className={`fixed inset-0 z-40 backdrop-blur-xl pt-24 px-6 md:hidden flex flex-col overflow-y-auto ${
+              isDark ? 'bg-[#050505]/95 text-white' : 'bg-white/98 text-neutral-900'
+            }`}
           >
             <div className="flex flex-col gap-4 text-2xl font-display">
               {navLinks.map((link, i) => {
@@ -420,22 +468,24 @@ const Navbar = () => {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.08 }}
-                      className="border-b border-white/10 pb-3"
+                      className={`border-b pb-3 ${isDark ? 'border-white/10' : 'border-neutral-200'}`}
                     >
                       <button
                         type="button"
                         onClick={() => setIsMobileServicesOpen((prev) => !prev)}
                         className={`w-full flex items-center justify-between pl-4 text-left border-l-2 transition-all cursor-pointer ${
                           isServicesActive
-                            ? 'text-white border-[#3366ff]'
-                            : 'text-white/70 hover:text-white border-transparent'
+                            ? isDark ? 'text-white border-[#3366ff]' : 'text-black border-neutral-900 font-semibold'
+                            : isDark ? 'text-white/70 hover:text-white border-transparent' : 'text-neutral-600 hover:text-black border-transparent'
                         }`}
                       >
                         <span>{link.label}</span>
                         <ChevronDown
                           size={20}
-                          className={`transition-transform duration-200 text-white/50 ${
-                            isMobileServicesOpen ? 'rotate-180 text-cyan-400' : ''
+                          className={`transition-transform duration-200 ${
+                            isMobileServicesOpen
+                              ? isDark ? 'rotate-180 text-cyan-400' : 'rotate-180 text-blue-600'
+                              : isDark ? 'text-white/50' : 'text-neutral-400'
                           }`}
                         />
                       </button>
@@ -456,7 +506,11 @@ const Navbar = () => {
                                   key={service.slug}
                                   to={`/services/${service.slug}`}
                                   onClick={closeAllMenus}
-                                  className="flex items-center gap-3 py-2 px-2.5 rounded-lg hover:bg-white/5 text-sm text-white/80 hover:text-white transition-colors"
+                                  className={`flex items-center gap-3 py-2 px-2.5 rounded-lg text-sm transition-colors ${
+                                    isDark
+                                      ? 'hover:bg-white/5 text-white/80 hover:text-white'
+                                      : 'hover:bg-neutral-100 text-neutral-700 hover:text-black'
+                                  }`}
                                 >
                                   <div
                                     className="w-7 h-7 rounded-md flex items-center justify-center shrink-0"
@@ -468,11 +522,15 @@ const Navbar = () => {
                                     <Icon size={14} />
                                   </div>
                                   <div className="min-w-0 flex-1">
-                                    <div className="truncate font-medium text-xs text-white/90">
+                                    <div className={`truncate font-medium text-xs ${
+                                      isDark ? 'text-white/90' : 'text-neutral-900'
+                                    }`}>
                                       {service.title}
                                     </div>
                                     {service.badge && (
-                                      <div className="text-[10px] text-white/40 truncate">
+                                      <div className={`text-[10px] truncate ${
+                                        isDark ? 'text-white/40' : 'text-neutral-500'
+                                      }`}>
                                         {service.badge}
                                       </div>
                                     )}
@@ -499,7 +557,11 @@ const Navbar = () => {
                         href={link.path}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block pl-4 border-l-2 transition-all text-white/60 hover:text-white border-transparent"
+                        className={`block pl-4 border-l-2 transition-all ${
+                          isDark
+                            ? 'text-white/60 hover:text-white border-transparent'
+                            : 'text-neutral-600 hover:text-black border-transparent'
+                        }`}
                         onClick={closeAllMenus}
                       >
                         {link.label}
@@ -521,8 +583,8 @@ const Navbar = () => {
                       to={link.path}
                       className={`block pl-4 border-l-2 transition-all ${
                         isActive
-                          ? 'text-white border-[#3366ff]'
-                          : 'text-white/60 hover:text-white border-transparent'
+                          ? isDark ? 'text-white border-[#3366ff]' : 'text-black border-neutral-900 font-semibold'
+                          : isDark ? 'text-white/60 hover:text-white border-transparent' : 'text-neutral-600 hover:text-black border-transparent'
                       }`}
                       onClick={closeAllMenus}
                     >

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Rocket, Zap, Sparkles, Target, Users, Compass, Heart, ShieldCheck } from 'lucide-react';
 import Container from '../ui/Container';
+import { useTheme } from '../../context/ThemeContext';
 
 const values = [
   { 
@@ -56,6 +57,7 @@ const values = [
 
 const Values = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const { isDark } = useTheme();
 
   return (
     <section className="py-20 md:py-28 relative overflow-hidden">
@@ -68,7 +70,7 @@ const Values = () => {
             <span className="text-xs uppercase tracking-widest text-accent font-medium block mb-2">
               Our Principles
             </span>
-            <h2 className="text-3xl md:text-5xl font-semibold mb-6 text-white font-display">
+            <h2 className="text-3xl md:text-5xl font-semibold mb-6 text-primary font-display">
               Our Core Values
             </h2>
             <p className="text-secondary leading-relaxed text-base">
@@ -96,11 +98,15 @@ const Values = () => {
                       transition={{ delay: i * 0.05, duration: 0.4 }}
                       className="px-5 py-3.5 rounded-full border transition-all duration-300 cursor-pointer flex items-center gap-2.5 relative select-none"
                       style={{
-                        backgroundColor: isHovered ? `${val.color}15` : 'rgba(255, 255, 255, 0.03)',
-                        borderColor: isHovered ? val.color : `${val.color}30`,
+                        backgroundColor: isHovered
+                          ? `${val.color}15`
+                          : (isDark ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.04)'),
+                        borderColor: isHovered
+                          ? val.color
+                          : (isDark ? `${val.color}30` : `${val.color}50`),
                         boxShadow: isHovered 
                           ? `0 0 25px ${val.color}40, inset 0 0 15px ${val.color}15` 
-                          : 'none',
+                          : (isDark ? 'none' : '0 2px 8px rgba(0,0,0,0.03)'),
                         transform: isHovered ? 'translateY(-2px)' : 'translateY(0)',
                       }}
                     >
@@ -122,7 +128,9 @@ const Values = () => {
                       <span 
                         className="font-medium text-sm md:text-base transition-colors duration-300"
                         style={{
-                          color: isHovered ? '#FFFFFF' : 'rgba(255, 255, 255, 0.85)',
+                          color: isHovered
+                            ? (isDark ? '#FFFFFF' : val.color)
+                            : (isDark ? 'rgba(255, 255, 255, 0.85)' : '#1e293b'),
                         }}
                       >
                         {val.title}
@@ -137,10 +145,12 @@ const Values = () => {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 8, scale: 0.96 }}
                           transition={{ duration: 0.18 }}
-                          className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3.5 w-64 md:w-72 p-4 rounded-2xl bg-[#0F0F14] border shadow-2xl z-30 pointer-events-none"
+                          className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-3.5 w-64 md:w-72 p-4 rounded-2xl border shadow-2xl z-30 pointer-events-none ${
+                            isDark ? 'bg-[#0F0F14]' : 'bg-white shadow-xl'
+                          }`}
                           style={{
                             borderColor: `${val.color}60`,
-                            boxShadow: `0 15px 35px -5px rgba(0,0,0,0.8), 0 0 25px ${val.color}25`
+                            boxShadow: `0 15px 35px -5px rgba(0,0,0,${isDark ? '0.8' : '0.15'}), 0 0 25px ${val.color}25`
                           }}
                         >
                           {/* Colorful top accent bar */}
@@ -148,7 +158,9 @@ const Values = () => {
                             className="h-1 w-12 rounded-full mb-2.5" 
                             style={{ backgroundColor: val.color }} 
                           />
-                          <p className="text-xs md:text-sm text-gray-300 leading-relaxed font-sans">
+                          <p className={`text-xs md:text-sm leading-relaxed font-sans ${
+                            isDark ? 'text-gray-300' : 'text-neutral-700'
+                          }`}>
                             {val.desc}
                           </p>
                           {/* Arrow */}

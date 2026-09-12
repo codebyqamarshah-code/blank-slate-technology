@@ -2,14 +2,34 @@
 
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root, html.light {
+  --bg-main: #ffffff;
+  --bg-surface: #f8fafc;
+  --bg-surface-hover: #f1f5f9;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-main: #e2e8f0;
+}
+
+html.dark {
+  --bg-main: #050505;
+  --bg-surface: #121212;
+  --bg-surface-hover: #1e1e1e;
+  --text-main: #ffffff;
+  --text-muted: #a1a1aa;
+  --border-main: #27272a;
+}
+
 @theme {
-  --color-background: #050505;
-  --color-surface: #121212;
-  --color-surfaceHover: #1e1e1e;
-  --color-primary: #ffffff;
-  --color-secondary: #a1a1aa;
+  --color-background: var(--bg-main);
+  --color-surface: var(--bg-surface);
+  --color-surfaceHover: var(--bg-surface-hover);
+  --color-primary: var(--text-main);
+  --color-secondary: var(--text-muted);
   --color-accent: #3b82f6;
-  --color-border: #27272a;
+  --color-border: var(--border-main);
 
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-display: 'Outfit', 'Inter', system-ui, sans-serif;
@@ -17,17 +37,15 @@
 
 @layer base {
   html {
-    /* Prevent white flash during page transitions */
-    background-color: #050505;
     scroll-behavior: smooth;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   body {
     @apply bg-background text-primary antialiased selection:bg-accent selection:text-white;
-    background-color: #050505 !important;
-    /* Remove any default margin/padding that causes white gaps */
     margin: 0;
     padding: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
   
   /* Hide default cursor on non-touch devices except when hovering interactive/clickable elements */
@@ -101,17 +119,17 @@
   }
 }
 
-/* Hide scrollbar for clean aesthetic */
+/* Clean aesthetic scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #050505; 
+  background: var(--bg-surface); 
 }
 ::-webkit-scrollbar-thumb {
-  background: #27272a; 
+  background: var(--border-main); 
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46; 
+  background: var(--text-muted); 
 }

@@ -13,7 +13,7 @@ const TrustStrip = () => {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-2xl md:text-3xl font-medium leading-relaxed text-balance text-white/90">
+            <h2 className="text-2xl md:text-3xl font-medium leading-relaxed text-balance text-primary">
               We partner with ambitious startups, brands, and businesses to transform ideas into meaningful digital experiences.
             </h2>
           </motion.div>
@@ -33,7 +33,7 @@ const TrustStrip = () => {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="flex flex-col"
               >
-                <span className="text-4xl md:text-5xl font-display font-semibold text-white mb-2">
+                <span className="text-4xl md:text-5xl font-display font-semibold text-primary mb-2">
                   {stat.value}
                 </span>
                 <span className="text-secondary text-sm font-medium uppercase tracking-wider">

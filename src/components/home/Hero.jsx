@@ -6,6 +6,7 @@ import Container from '../ui/Container';
 import Button from '../ui/Button';
 import HeroScrollAnimation from './HeroScrollAnimation';
 import TypewriterText from '../ui/TypewriterText';
+import { useTheme } from '../../context/ThemeContext';
 
 // Detect OS reduced-motion preference
 const prefersReducedMotion =
@@ -30,25 +31,32 @@ const itemVariants = {
 const Hero = () => {
   const leftRef = useRef(null);
   const isInView = useInView(leftRef, { amount: 0.3, once: true });
+  const { isDark } = useTheme();
 
   return (
     <section className="relative w-full min-h-screen flex flex-col overflow-hidden pt-20">
 
-      {/* Background: full dark base + dot grid */}
+      {/* Background: full theme base + dot grid */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 bg-background" />
-        <div className="absolute inset-0 bg-[radial-gradient(#ffffff09_1px,transparent_1px)] bg-[size:34px_34px]" />
+        <div className="absolute inset-0 bg-background transition-colors duration-300" />
+        <div className={`absolute inset-0 bg-[size:34px_34px] ${
+          isDark ? 'bg-[radial-gradient(#ffffff09_1px,transparent_1px)]' : 'bg-[radial-gradient(#0000000d_1px,transparent_1px)]'
+        }`} />
         {/* Ambient left glow */}
         <motion.div
           animate={{ opacity: [0.1, 0.2, 0.1], scale: [1, 1.1, 1] }}
           transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-1/3 -left-40 w-[480px] h-[480px] rounded-full bg-accent/15 blur-[120px]"
+          className={`absolute top-1/3 -left-40 w-[480px] h-[480px] rounded-full blur-[120px] ${
+            isDark ? 'bg-accent/15' : 'bg-blue-400/10'
+          }`}
         />
         {/* Ambient right glow */}
         <motion.div
           animate={{ opacity: [0.06, 0.14, 0.06], scale: [1, 1.18, 1] }}
           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 1.8 }}
-          className="absolute bottom-1/4 -right-40 w-[400px] h-[400px] rounded-full bg-purple-500/10 blur-[110px]"
+          className={`absolute bottom-1/4 -right-40 w-[400px] h-[400px] rounded-full blur-[110px] ${
+            isDark ? 'bg-purple-500/10' : 'bg-purple-400/10'
+          }`}
         />
       </div>
 
@@ -75,12 +83,16 @@ const Hero = () => {
             {/* Main headline */}
             <motion.h1
               variants={itemVariants}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-[4.5rem] font-display font-medium text-white tracking-tight leading-[1.1] mb-5"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-[4.5rem] font-display font-medium text-primary tracking-tight leading-[1.1] mb-5"
             >
               Empowered by <br />
               <span
                 className="inline-block bg-clip-text text-transparent"
-                style={{ backgroundImage: 'linear-gradient(90deg, #ffffff 0%, #B9B9BA 60%, #7a7a7c 100%)' }}
+                style={{
+                  backgroundImage: isDark
+                    ? 'linear-gradient(90deg, #ffffff 0%, #B9B9BA 60%, #7a7a7c 100%)'
+                    : 'linear-gradient(90deg, #0f172a 0%, #334155 60%, #64748b 100%)'
+                }}
               >
                 <TypewriterText words={['Innovation.', 'Learning.', 'Digital Skills.']} typingSpeed={60} pauseTime={2500} />
               </span>
@@ -128,7 +140,9 @@ const Hero = () => {
           <span className="text-[9px] text-secondary/60 uppercase tracking-[0.3em] font-medium drop-shadow-md">
             Explore
           </span>
-          <div className="w-[26px] h-[42px] rounded-full border border-white/20 flex justify-center pt-2 backdrop-blur-sm bg-white/5 shadow-lg">
+          <div className={`w-[26px] h-[42px] rounded-full border flex justify-center pt-2 backdrop-blur-sm shadow-lg ${
+            isDark ? 'border-white/20 bg-white/5' : 'border-neutral-300 bg-neutral-100/60'
+          }`}>
             <motion.div
               animate={{ y: [0, 14, 0], opacity: [1, 0.2, 1] }}
               transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}

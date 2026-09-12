@@ -21,7 +21,7 @@ function getStageColor(p) {
 }
 
 // ─── TechCore ─────────────────────────────────────────────────────────────────
-function TechCore({ progressRef, autoRotRef, dragRef, prefersReducedMotion, isMobile }) {
+function TechCore({ progressRef, autoRotRef, dragRef, prefersReducedMotion, isMobile, isDark }) {
   const coreRef       = useRef();
   const outerRef      = useRef();
   const innerRef      = useRef();
@@ -77,16 +77,16 @@ function TechCore({ progressRef, autoRotRef, dragRef, prefersReducedMotion, isMo
     if (coreRef.current?.material) {
       coreRef.current.material.color.copy(col);
       coreRef.current.material.emissive.copy(col);
-      coreRef.current.material.emissiveIntensity = 0.18 + p * 0.55;
+      coreRef.current.material.emissiveIntensity = isDark ? (0.18 + p * 0.55) : (0.08 + p * 0.3);
     }
     if (outerRef.current?.material) {
       outerRef.current.material.color.copy(col);
-      outerRef.current.material.opacity = 0.1 + Math.sin(p * Math.PI) * 0.18;
+      outerRef.current.material.opacity = (isDark ? 0.1 : 0.35) + Math.sin(p * Math.PI) * (isDark ? 0.18 : 0.2);
     }
     if (ring1Ref.current?.children[0]?.material) ring1Ref.current.children[0].material.color.copy(col);
     if (pointLightRef.current) {
       pointLightRef.current.color.copy(col);
-      pointLightRef.current.intensity = 2 + p * 3;
+      pointLightRef.current.intensity = (isDark ? 2 : 1.5) + p * 3;
     }
   });
 
@@ -98,35 +98,35 @@ function TechCore({ progressRef, autoRotRef, dragRef, prefersReducedMotion, isMo
       <mesh ref={coreRef}>
         <icosahedronGeometry args={[1.5, 1]} />
         <meshPhysicalMaterial
-          color="#3b82f6" emissive="#3b82f6" emissiveIntensity={0.18}
-          roughness={0.08} metalness={0.65} transparent opacity={0.88} clearcoat={1}
+          color="#3b82f6" emissive="#3b82f6" emissiveIntensity={isDark ? 0.18 : 0.08}
+          roughness={0.08} metalness={isDark ? 0.65 : 0.35} transparent opacity={isDark ? 0.88 : 0.95} clearcoat={1}
         />
       </mesh>
 
       {/* Outer wireframe shell */}
       <mesh ref={outerRef}>
         <icosahedronGeometry args={[1.5, 1]} />
-        <meshBasicMaterial color="#3b82f6" wireframe transparent opacity={0.1}
-          blending={THREE.AdditiveBlending} depthWrite={false} />
+        <meshBasicMaterial color="#3b82f6" wireframe transparent opacity={isDark ? 0.1 : 0.35}
+          blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending} depthWrite={false} />
       </mesh>
 
       {/* Inner octahedron */}
       <mesh ref={innerRef}>
         <octahedronGeometry args={[1.5, 0]} />
-        <meshBasicMaterial color="#ffffff" wireframe transparent opacity={0.2}
-          blending={THREE.AdditiveBlending} depthWrite={false} />
+        <meshBasicMaterial color={isDark ? "#ffffff" : "#2563eb"} wireframe transparent opacity={isDark ? 0.2 : 0.45}
+          blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending} depthWrite={false} />
       </mesh>
 
       {/* Ring 1 — equatorial */}
       <group ref={ring1Ref}>
         <mesh>
           <torusGeometry args={[3.2, 0.013, 16, 120]} />
-          <meshBasicMaterial color="#3b82f6" transparent opacity={0.15} depthWrite={false} />
+          <meshBasicMaterial color={isDark ? "#3b82f6" : "#2563eb"} transparent opacity={isDark ? 0.15 : 0.35} depthWrite={false} />
         </mesh>
         {[0, Math.PI * 0.5, Math.PI, Math.PI * 1.5].map((a, i) => (
           <mesh key={i} position={[Math.cos(a) * 3.2, Math.sin(a) * 3.2, 0]}>
             <sphereGeometry args={[0.07, 10, 10]} />
-            <meshBasicMaterial color="#ffffff" />
+            <meshBasicMaterial color={isDark ? "#ffffff" : "#2563eb"} />
           </mesh>
         ))}
       </group>
@@ -135,12 +135,12 @@ function TechCore({ progressRef, autoRotRef, dragRef, prefersReducedMotion, isMo
       <group ref={ring2Ref} rotation={[Math.PI / 3, Math.PI / 4, 0]}>
         <mesh>
           <torusGeometry args={[4.5, 0.018, 16, 120]} />
-          <meshBasicMaterial color="#ffffff" transparent opacity={0.06} depthWrite={false} />
+          <meshBasicMaterial color={isDark ? "#ffffff" : "#3b82f6"} transparent opacity={isDark ? 0.06 : 0.25} depthWrite={false} />
         </mesh>
         {[0, Math.PI].map((a, i) => (
           <mesh key={i} position={[Math.cos(a) * 4.5, Math.sin(a) * 4.5, 0]}>
             <sphereGeometry args={[0.09, 10, 10]} />
-            <meshBasicMaterial color="#ffffff" />
+            <meshBasicMaterial color={isDark ? "#ffffff" : "#2563eb"} />
           </mesh>
         ))}
       </group>
@@ -149,7 +149,7 @@ function TechCore({ progressRef, autoRotRef, dragRef, prefersReducedMotion, isMo
       <group ref={ring3Ref} rotation={[Math.PI / 2, 0, Math.PI / 5]}>
         <mesh>
           <torusGeometry args={[5.5, 0.009, 12, 100]} />
-          <meshBasicMaterial color="#ffffff" transparent opacity={0.04} depthWrite={false} />
+          <meshBasicMaterial color={isDark ? "#ffffff" : "#6366f1"} transparent opacity={isDark ? 0.04 : 0.2} depthWrite={false} />
         </mesh>
       </group>
     </group>
@@ -183,7 +183,7 @@ function CameraRig({ progressRef, dragRef, prefersReducedMotion }) {
 }
 
 // ─── Particles ────────────────────────────────────────────────────────────────
-function Particles({ progressRef, count }) {
+function Particles({ progressRef, count, isDark }) {
   const meshRef = useRef();
   const dummy   = useMemo(() => new THREE.Object3D(), []);
   const data    = useMemo(() => Array.from({ length: count }, () => ({
@@ -217,26 +217,31 @@ function Particles({ progressRef, count }) {
   return (
     <instancedMesh ref={meshRef} args={[null, null, count]}>
       <circleGeometry args={[0.06, 6]} />
-      <meshBasicMaterial color="#ffffff" transparent opacity={0.22}
-        depthWrite={false} blending={THREE.AdditiveBlending} />
+      <meshBasicMaterial
+        color={isDark ? "#ffffff" : "#3b82f6"}
+        transparent
+        opacity={isDark ? 0.22 : 0.45}
+        depthWrite={false}
+        blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending}
+      />
     </instancedMesh>
   );
 }
 
 // ─── Inner Scene ──────────────────────────────────────────────────────────────
-function Scene({ progressRef, autoRotRef, dragRef, prefersReducedMotion, isMobile, particleCount }) {
+function Scene({ progressRef, autoRotRef, dragRef, prefersReducedMotion, isMobile, particleCount, isDark }) {
   return (
     <>
-      <color attach="background" args={['#060608']} />
-      <ambientLight intensity={0.6} />
-      <directionalLight position={[10, 10, 5]}  intensity={1.1} color="#ffffff" />
-      <directionalLight position={[-8, -8, -4]} intensity={0.5} color="#8b5cf6" />
+      {isDark && <color attach="background" args={['#060608']} />}
+      <ambientLight intensity={isDark ? 0.6 : 0.9} />
+      <directionalLight position={[10, 10, 5]}  intensity={isDark ? 1.1 : 1.3} color="#ffffff" />
+      <directionalLight position={[-8, -8, -4]} intensity={isDark ? 0.5 : 0.6} color="#8b5cf6" />
       <CameraRig progressRef={progressRef} dragRef={dragRef} prefersReducedMotion={prefersReducedMotion} />
       <Float speed={prefersReducedMotion ? 0 : 1.4} rotationIntensity={0} floatIntensity={prefersReducedMotion ? 0 : 0.3}>
         <TechCore progressRef={progressRef} autoRotRef={autoRotRef} dragRef={dragRef}
-          prefersReducedMotion={prefersReducedMotion} isMobile={isMobile} />
+          prefersReducedMotion={prefersReducedMotion} isMobile={isMobile} isDark={isDark} />
       </Float>
-      {!prefersReducedMotion && <Particles progressRef={progressRef} count={particleCount} />}
+      {!prefersReducedMotion && <Particles progressRef={progressRef} count={particleCount} isDark={isDark} />}
     </>
   );
 }
@@ -248,8 +253,8 @@ class ErrorBoundary extends React.Component {
   componentDidCatch(e) { console.warn('3D scene (non-fatal):', e); }
   render() {
     if (this.state.err) return (
-      <div className="absolute inset-0 z-0 flex items-center justify-center bg-[#060608]">
-        <div className="w-64 h-64 rounded-full border border-white/10 bg-white/[0.03] animate-pulse" />
+      <div className={`absolute inset-0 z-0 flex items-center justify-center ${this.props.isDark ? 'bg-[#060608]' : 'bg-transparent'}`}>
+        <div className={`w-64 h-64 rounded-full border animate-pulse ${this.props.isDark ? 'border-white/10 bg-white/[0.03]' : 'border-black/10 bg-black/[0.02]'}`} />
       </div>
     );
     return this.props.children;
@@ -257,7 +262,7 @@ class ErrorBoundary extends React.Component {
 }
 
 // ─── Public Export ────────────────────────────────────────────────────────────
-export default function HeroScene3D({ smoothProgress, prefersReducedMotion }) {
+export default function HeroScene3D({ smoothProgress, prefersReducedMotion, isDark }) {
   const progressRef = useRef(0);
   useEffect(() => {
     const unsub = smoothProgress.on('change', v => { progressRef.current = v; });
@@ -313,7 +318,7 @@ export default function HeroScene3D({ smoothProgress, prefersReducedMotion }) {
   const onPointerLeave = useCallback(() => { hoverRef.current = false; dragRef.current.isDragging = false; }, []);
 
   return (
-    <ErrorBoundary>
+    <ErrorBoundary isDark={isDark}>
       <div
         className="absolute inset-0 z-0 select-none"
         style={{ cursor: dragRef.current.isDragging ? 'grabbing' : 'grab' }}
@@ -336,6 +341,7 @@ export default function HeroScene3D({ smoothProgress, prefersReducedMotion }) {
               prefersReducedMotion={prefersReducedMotion}
               isMobile={isMobile}
               particleCount={particleCount}
+              isDark={isDark}
             />
           </React.Suspense>
         </Canvas>

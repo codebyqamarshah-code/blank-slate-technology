@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 
-// PageTransition — always dark, never shows white background
 const PageTransition = ({ children }) => {
   const location = useLocation();
 
@@ -13,8 +12,7 @@ const PageTransition = ({ children }) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.35, ease: 'easeOut' }}
-      className="w-full"
-      style={{ backgroundColor: '#050505' }}
+      className="w-full bg-background text-primary transition-colors duration-300"
     >
       {children}
     </motion.div>

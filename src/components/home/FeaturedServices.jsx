@@ -7,6 +7,7 @@ import Container from '../ui/Container';
 import SectionHeading from '../common/SectionHeading';
 import TiltCard from '../ui/TiltCard';
 import { additionalEnterpriseServices } from '../../data/servicesData';
+import { useTheme } from '../../context/ThemeContext';
 
 const coreServices = [
   {
@@ -49,6 +50,7 @@ const coreServices = [
 
 const CoreServiceCard = ({ service, index }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const { isDark } = useTheme();
   const Icon = service.icon;
 
   return (
@@ -65,11 +67,15 @@ const CoreServiceCard = ({ service, index }) => {
         <div
           className="h-full p-7 md:p-8 rounded-3xl border transition-all duration-500 flex flex-col justify-between group relative overflow-hidden"
           style={{
-            backgroundColor: isHovered ? 'rgba(16, 16, 22, 0.85)' : 'rgba(255, 255, 255, 0.02)',
-            borderColor: isHovered ? `${service.brandColor}80` : 'rgba(255, 255, 255, 0.08)',
+            backgroundColor: isDark
+              ? (isHovered ? 'rgba(16, 16, 22, 0.85)' : 'rgba(255, 255, 255, 0.02)')
+              : (isHovered ? '#ffffff' : 'rgba(255, 255, 255, 0.9)'),
+            borderColor: isHovered
+              ? `${service.brandColor}80`
+              : (isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)'),
             boxShadow: isHovered
-              ? `0 0 40px -5px ${service.brandColor}40, 0 12px 30px -5px rgba(0,0,0,0.6), inset 0 0 25px -8px ${service.brandColor}20`
-              : 'none',
+              ? `0 0 40px -5px ${service.brandColor}35, 0 12px 30px -5px rgba(0,0,0,${isDark ? '0.6' : '0.1'}), inset 0 0 25px -8px ${service.brandColor}20`
+              : (isDark ? 'none' : '0 4px 20px -2px rgba(0, 0, 0, 0.05)'),
           }}
         >
           {/* Ambient Side and Background Halo Glow */}
@@ -99,9 +105,15 @@ const CoreServiceCard = ({ service, index }) => {
               <span
                 className="text-[11px] font-mono uppercase tracking-wider px-2.5 py-1 rounded-full border transition-colors duration-300"
                 style={{
-                  backgroundColor: isHovered ? `${service.brandColor}15` : 'rgba(255, 255, 255, 0.04)',
-                  borderColor: isHovered ? `${service.brandColor}40` : 'rgba(255, 255, 255, 0.1)',
-                  color: isHovered ? '#FFFFFF' : 'rgba(255, 255, 255, 0.7)',
+                  backgroundColor: isHovered
+                    ? `${service.brandColor}15`
+                    : (isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.04)'),
+                  borderColor: isHovered
+                    ? `${service.brandColor}40`
+                    : (isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'),
+                  color: isHovered
+                    ? (isDark ? '#FFFFFF' : service.brandColor)
+                    : (isDark ? 'rgba(255, 255, 255, 0.7)' : '#475569'),
                 }}
               >
                 {service.badge}
@@ -111,7 +123,7 @@ const CoreServiceCard = ({ service, index }) => {
             {/* Service Category */}
             <span
               className="text-xs uppercase tracking-widest font-medium block mb-2 transition-colors duration-300"
-              style={{ color: isHovered ? service.brandColor : 'rgba(255, 255, 255, 0.6)' }}
+              style={{ color: isHovered ? service.brandColor : (isDark ? 'rgba(255, 255, 255, 0.6)' : '#64748b') }}
             >
               {service.category}
             </span>
@@ -119,7 +131,7 @@ const CoreServiceCard = ({ service, index }) => {
             {/* Service Title */}
             <h3
               className="text-2xl font-display font-medium mb-3 leading-snug transition-colors duration-300"
-              style={{ color: isHovered ? '#FFFFFF' : 'rgba(255, 255, 255, 0.95)' }}
+              style={{ color: isHovered ? (isDark ? '#FFFFFF' : service.brandColor) : (isDark ? 'rgba(255, 255, 255, 0.95)' : '#0f172a') }}
             >
               {service.title}
             </h3>
@@ -136,9 +148,15 @@ const CoreServiceCard = ({ service, index }) => {
                   key={tag}
                   className="text-xs px-2.5 py-1 rounded-lg border font-mono transition-colors duration-300"
                   style={{
-                    backgroundColor: isHovered ? `${service.brandColor}10` : 'rgba(255, 255, 255, 0.03)',
-                    borderColor: isHovered ? `${service.brandColor}30` : 'rgba(255, 255, 255, 0.08)',
-                    color: isHovered ? '#FFFFFF' : 'rgba(255, 255, 255, 0.75)',
+                    backgroundColor: isHovered
+                      ? `${service.brandColor}10`
+                      : (isDark ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.03)'),
+                    borderColor: isHovered
+                      ? `${service.brandColor}30`
+                      : (isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)'),
+                    color: isHovered
+                      ? (isDark ? '#FFFFFF' : '#0f172a')
+                      : (isDark ? 'rgba(255, 255, 255, 0.75)' : '#475569'),
                   }}
                 >
                   {tag}
@@ -151,17 +169,21 @@ const CoreServiceCard = ({ service, index }) => {
           <div
             className="relative z-10 pt-5 border-t flex items-center justify-between transition-colors duration-300"
             style={{
-              borderTopColor: isHovered ? `${service.brandColor}30` : 'rgba(255, 255, 255, 0.08)',
+              borderTopColor: isHovered ? `${service.brandColor}30` : (isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)'),
             }}
           >
             <Link
               to={`/services/${service.slug}`}
               className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-xl border font-medium text-sm transition-all duration-300 w-full justify-center group/btn shadow-lg"
               style={{
-                backgroundColor: isHovered ? `${service.brandColor}20` : 'rgba(255, 255, 255, 0.05)',
-                borderColor: isHovered ? service.brandColor : 'rgba(255, 255, 255, 0.1)',
-                color: '#FFFFFF',
-                boxShadow: isHovered ? `0 0 20px ${service.brandColor}30` : 'none',
+                backgroundColor: isHovered
+                  ? service.brandColor
+                  : (isDark ? 'rgba(255, 255, 255, 0.05)' : '#f1f5f9'),
+                borderColor: isHovered
+                  ? service.brandColor
+                  : (isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)'),
+                color: isHovered ? '#FFFFFF' : (isDark ? '#FFFFFF' : '#0f172a'),
+                boxShadow: isHovered ? `0 0 20px ${service.brandColor}35` : 'none',
               }}
             >
               <span>View More</span>
@@ -179,6 +201,7 @@ const CoreServiceCard = ({ service, index }) => {
 
 const EnterpriseServiceCard = ({ item, index }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const { isDark } = useTheme();
   const ItemIcon = item.icon;
 
   return (
@@ -194,11 +217,15 @@ const EnterpriseServiceCard = ({ item, index }) => {
         onMouseLeave={() => setIsHovered(false)}
         className="group block p-7 md:p-8 rounded-3xl border transition-all duration-500 relative overflow-hidden h-full flex flex-col justify-between"
         style={{
-          backgroundColor: isHovered ? 'rgba(16, 16, 22, 0.85)' : 'rgba(255, 255, 255, 0.02)',
-          borderColor: isHovered ? `${item.brandColor}80` : 'rgba(255, 255, 255, 0.08)',
+          backgroundColor: isDark
+            ? (isHovered ? 'rgba(16, 16, 22, 0.85)' : 'rgba(255, 255, 255, 0.02)')
+            : (isHovered ? '#ffffff' : 'rgba(255, 255, 255, 0.9)'),
+          borderColor: isHovered
+            ? `${item.brandColor}80`
+            : (isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)'),
           boxShadow: isHovered
-            ? `0 0 40px -5px ${item.brandColor}35, 0 12px 30px -5px rgba(0,0,0,0.6), inset 0 0 25px -8px ${item.brandColor}18`
-            : 'none',
+            ? `0 0 40px -5px ${item.brandColor}35, 0 12px 30px -5px rgba(0,0,0,${isDark ? '0.6' : '0.1'}), inset 0 0 25px -8px ${item.brandColor}18`
+            : (isDark ? 'none' : '0 4px 20px -2px rgba(0, 0, 0, 0.05)'),
         }}
       >
         {/* Ambient Side and Background Halo Glow */}
@@ -227,9 +254,15 @@ const EnterpriseServiceCard = ({ item, index }) => {
             <span
               className="text-[11px] font-mono px-3 py-1 rounded-full border transition-colors duration-300"
               style={{
-                backgroundColor: isHovered ? `${item.brandColor}15` : 'rgba(255, 255, 255, 0.04)',
-                borderColor: isHovered ? `${item.brandColor}40` : 'rgba(255, 255, 255, 0.1)',
-                color: isHovered ? '#FFFFFF' : 'rgba(255, 255, 255, 0.7)',
+                backgroundColor: isHovered
+                  ? `${item.brandColor}15`
+                  : (isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.04)'),
+                borderColor: isHovered
+                  ? `${item.brandColor}40`
+                  : (isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'),
+                color: isHovered
+                  ? (isDark ? '#FFFFFF' : item.brandColor)
+                  : (isDark ? 'rgba(255, 255, 255, 0.7)' : '#475569'),
               }}
             >
               {item.badge}
@@ -239,7 +272,7 @@ const EnterpriseServiceCard = ({ item, index }) => {
           <h4
             className="text-xl md:text-2xl font-display font-medium mb-3 transition-colors duration-300"
             style={{
-              color: isHovered ? item.brandColor : '#FFFFFF',
+              color: isHovered ? item.brandColor : (isDark ? '#FFFFFF' : '#0f172a'),
             }}
           >
             {item.title}
@@ -253,8 +286,8 @@ const EnterpriseServiceCard = ({ item, index }) => {
         <div
           className="relative z-10 pt-4 border-t flex items-center justify-between text-sm font-medium transition-colors duration-300"
           style={{
-            borderTopColor: isHovered ? `${item.brandColor}30` : 'rgba(255, 255, 255, 0.06)',
-            color: isHovered ? item.brandColor : 'rgba(255, 255, 255, 0.85)',
+            borderTopColor: isHovered ? `${item.brandColor}30` : (isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.08)'),
+            color: isHovered ? item.brandColor : (isDark ? 'rgba(255, 255, 255, 0.85)' : '#475569'),
           }}
         >
           <span>Explore Technical Architecture</span>
@@ -291,7 +324,7 @@ const FeaturedServices = () => {
 
           <Link
             to="/services"
-            className="shrink-0 inline-flex items-center gap-2 text-sm text-secondary hover:text-white transition-colors group"
+            className="shrink-0 inline-flex items-center gap-2 text-sm text-secondary hover:text-primary transition-colors group"
           >
             <span>Explore All Services</span>
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -308,13 +341,13 @@ const FeaturedServices = () => {
         {/* =========================================================
             2. ADDITIONAL 6 ENTERPRISE SERVICES
         ========================================================= */}
-        <div className="mt-20 md:mt-28 pt-16 border-t border-white/10">
+        <div className="mt-20 md:mt-28 pt-16 border-t border-border">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
             <div>
               <span className="text-xs uppercase tracking-widest text-accent font-medium block mb-2">
                 Specialized Offerings
               </span>
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-display font-medium text-white">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-display font-medium text-primary">
                 Enterprise & Application Services
               </h3>
             </div>
