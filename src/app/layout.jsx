@@ -10,7 +10,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/fab icon.png" />
+        <link rel="icon" href="/images/fab icon.png" />
       </head>
       <body suppressHydrationWarning>
         <ClientProviders>
