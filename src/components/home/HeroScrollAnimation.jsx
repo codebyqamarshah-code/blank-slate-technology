@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from 'react';
 import { motion, useSpring, AnimatePresence } from 'framer-motion';
 import HeroScene3D from './HeroScene3D';
@@ -56,7 +57,7 @@ const ProgressDots = ({ currentIndex, onDotClick, isDark }) => (
           <motion.div 
             initial={false}
             animate={{ 
-              backgroundColor: index === currentIndex ? s.accent : 'transparent',
+              backgroundColor: index === currentIndex ? s.accent : 'rgba(0,0,0,0)',
               opacity: index === currentIndex ? 1 : 0
             }}
             className="w-full h-full rounded-full transition-all duration-300"

@@ -1,5 +1,6 @@
+"use client";
 import React, { useRef } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Container from '../ui/Container';
@@ -110,7 +111,7 @@ const AboutPreview = () => {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ delay: 0.3, duration: 0.8 }}
             >
-              <Link to="/about">
+              <Link href="/about">
                 <Button variant="primary" className="group !py-3 !px-7 text-sm !bg-black !text-white hover:!bg-neutral-800 border-none shadow-lg hover:scale-105 transition-all duration-300" icon={ArrowRight}>
                   Discover Our Story
                 </Button>

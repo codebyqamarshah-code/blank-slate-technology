@@ -1,6 +1,7 @@
+"use client";
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import Container from '../ui/Container';
 import Button from '../ui/Button';
 import { ArrowRight, Download } from 'lucide-react';
@@ -9,7 +10,7 @@ import { instituteStats } from '../../data/institute';
 
 const InstituteHero = () => {
   const containerRef = useRef(null);
-  const navigate = useNavigate();
+  const router = useRouter();
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -66,7 +67,7 @@ const InstituteHero = () => {
               transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
             >
-              <Button variant="primary" icon={ArrowRight} className="justify-between sm:justify-center" onClick={() => navigate('/apply')}>
+              <Button variant="primary" icon={ArrowRight} className="justify-between sm:justify-center" onClick={() => router.push('/apply')}>
                 Apply Now
               </Button>
               <Button variant="outline" icon={Download} className="justify-between sm:justify-center">

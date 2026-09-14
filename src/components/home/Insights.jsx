@@ -1,7 +1,8 @@
+"use client";
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Calendar } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import Container from '../ui/Container';
 import SectionHeading from '../common/SectionHeading';
 import Button from '../ui/Button';
@@ -20,7 +21,7 @@ const Insights = () => {
             title="Thoughts, ideas, and perspectives."
             className="mb-0 max-w-xl"
           />
-          <Link to="/insights">
+          <Link href="/insights">
             <Button variant="ghost" className="shrink-0" icon={ArrowRight}>
               View All Articles
             </Button>
@@ -29,7 +30,7 @@ const Insights = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Featured Article */}
-          <Link to={`/blog/${featuredInsight.slug}`} className="block">
+          <Link href={`/blog/${featuredInsight.slug}`} className="block">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -74,7 +75,7 @@ const Insights = () => {
           {/* Secondary Articles */}
           <div className="flex flex-col gap-8">
             {regularInsights.map((insight, i) => (
-              <Link key={insight.id} to={`/blog/${insight.slug}`} className="block">
+              <Link key={insight.id} href={`/blog/${insight.slug}`} className="block">
                 <motion.div 
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}

@@ -1,21 +1,20 @@
+"use client";
 import React, { useEffect } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+
 import { motion, useScroll, useSpring } from 'framer-motion';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import FloatingWhatsApp from '../ui/FloatingWhatsApp';
 
-const Layout = () => {
-  const location = useLocation();
+const Layout = ({ children }) => {
+  
 
   // Smooth scroll-driven progress bar
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 200, damping: 40 });
 
   // Scroll to top on route change
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
+  
 
   return (
     <div className="flex flex-col min-h-screen bg-background text-primary transition-colors duration-300">
@@ -32,7 +31,7 @@ const Layout = () => {
           Each page has its own PageTransition for the enter animation.
           Removing mode="wait" eliminates the black flash between pages. */}
       <main className="flex-grow bg-background text-primary transition-colors duration-300">
-        <Outlet />
+        {children}
       </main>
 
       {/* Floating WhatsApp Quick Action Button */}

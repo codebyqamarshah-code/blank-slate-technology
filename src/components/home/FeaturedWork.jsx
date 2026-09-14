@@ -1,7 +1,8 @@
+"use client";
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, ArrowRight, MessageCircle } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import Container from '../ui/Container';
 import SectionHeading from '../common/SectionHeading';
 import Button from '../ui/Button';
@@ -206,7 +207,7 @@ const FeaturedWork = ({ showAll = false, showHeading = true, limit = 4, theme })
               className="mb-0 max-w-xl"
             />
             {!showAll && (
-              <Link to="/work" className="shrink-0 mb-2 md:mb-0">
+              <Link href="/work" className="shrink-0 mb-2 md:mb-0">
                 <Button variant="ghost" icon={ArrowRight}>
                   View All Projects
                 </Button>

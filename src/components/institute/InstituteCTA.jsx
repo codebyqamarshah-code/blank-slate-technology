@@ -1,12 +1,13 @@
+"use client";
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Container from '../ui/Container';
 import Button from '../ui/Button';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 const InstituteCTA = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return (
     <section className="py-24 md:py-32 bg-[#050505] relative overflow-hidden border-t border-white/5">
@@ -52,7 +53,7 @@ const InstituteCTA = () => {
             <Button 
               variant="outline" 
               className="w-full sm:w-auto !px-8 !py-4 text-base"
-              onClick={() => navigate('/apply')}
+              onClick={() => router.push('/apply')}
             >
               Apply Now
             </Button>

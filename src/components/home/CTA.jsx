@@ -1,8 +1,9 @@
+"use client";
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, CheckCircle } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa6';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import Container from '../ui/Container';
 import Button from '../ui/Button';
 import { useTheme } from '../../context/ThemeContext';
@@ -75,7 +76,7 @@ const CTA = ({ theme, className = '' }) => {
             transition={{ delay: 0.35 }}
             className="flex flex-wrap items-center justify-center gap-4"
           >
-            <Link to="/contact">
+            <Link href="/contact">
               <Button
                 variant="primary"
                 icon={ArrowRight}

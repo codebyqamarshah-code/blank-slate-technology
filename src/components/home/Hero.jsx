@@ -1,7 +1,8 @@
+"use client";
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import Container from '../ui/Container';
 import Button from '../ui/Button';
 import HeroScrollAnimation from './HeroScrollAnimation';
@@ -105,12 +106,12 @@ const Hero = () => {
 
             {/* CTA Buttons */}
             <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-4 sm:gap-5 mb-10">
-              <Link to="/contact">
+              <Link href="/contact">
                 <Button variant="primary" icon={ArrowRight} className="group !px-6 !py-3">
                   Start a Project
                 </Button>
               </Link>
-              <Link to="/work">
+              <Link href="/work">
                 <Button variant="outline" className="!px-6 !py-3">Explore Our Work</Button>
               </Link>
             </motion.div>

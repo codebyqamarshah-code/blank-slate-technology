@@ -1,3 +1,4 @@
+"use client";
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Lightbulb, Hammer, Code, Rocket, TrendingUp } from 'lucide-react';

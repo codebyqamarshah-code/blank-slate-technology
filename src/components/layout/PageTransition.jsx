@@ -1,9 +1,10 @@
+"use client";
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useLocation } from 'react-router-dom';
+import { usePathname } from 'next/navigation';
 
 const PageTransition = ({ children }) => {
-  const location = useLocation();
+  const pathname = usePathname(); const location = { pathname };
 
   return (
     <motion.div

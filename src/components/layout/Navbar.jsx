@@ -1,5 +1,7 @@
+"use client";
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown, ArrowRight, Globe, Sun, Moon } from 'lucide-react';
 import Container from '../ui/Container';
@@ -13,7 +15,7 @@ const Navbar = () => {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const timeoutRef = useRef(null);
-  const location = useLocation();
+  const pathname = usePathname(); const location = { pathname };
 
   const { theme, toggleTheme, isDark } = useTheme();
 
@@ -135,7 +137,7 @@ const Navbar = () => {
       >
         <Container className="relative flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" onClick={closeAllMenus} className="relative z-50 flex items-center">
+          <Link href="/" onClick={closeAllMenus} className="relative z-50 flex items-center">
             <img
               src={isLightNav ? '/images/logo-dark.png' : '/images/Blank Slate IT Logo-02.png'}
               alt="Blank Slate Technologies"
@@ -217,7 +219,7 @@ const Navbar = () => {
                 return (
                   <Link
                     key={link.label}
-                    to={link.path}
+                    href={link.path}
                     className={`relative transition-colors ${
                       isActive
                         ? isLightNav ? 'text-black font-semibold' : 'text-white'
@@ -269,7 +271,7 @@ const Navbar = () => {
               </AnimatePresence>
             </button>
 
-            <Link to="/contact" onClick={closeAllMenus}>
+            <Link href="/contact" onClick={closeAllMenus}>
               <Button
                 variant="primary"
                 className={`!px-6 !py-2.5 text-sm transition-all duration-300 ${
@@ -334,7 +336,7 @@ const Navbar = () => {
                             return (
                               <Link
                                 key={service.slug}
-                                to={`/services/${service.slug}`}
+                                href={`/services/${service.slug}`}
                                 onClick={closeAllMenus}
                                 className={`group/item flex items-center gap-3 p-2.5 rounded-2xl border transition-all duration-200 ${
                                   isLightNav
@@ -398,7 +400,7 @@ const Navbar = () => {
                       <span className="font-medium">End-to-End Enterprise Architecture & Agile Engineering</span>
                     </div>
                     <Link
-                      to="/contact"
+                      href="/contact"
                       onClick={closeAllMenus}
                       className={`font-semibold flex items-center gap-2 transition-colors group/cta ${
                         isLightNav
@@ -504,7 +506,7 @@ const Navbar = () => {
                               return (
                                 <Link
                                   key={service.slug}
-                                  to={`/services/${service.slug}`}
+                                  href={`/services/${service.slug}`}
                                   onClick={closeAllMenus}
                                   className={`flex items-center gap-3 py-2 px-2.5 rounded-lg text-sm transition-colors ${
                                     isDark
@@ -580,7 +582,7 @@ const Navbar = () => {
                     transition={{ delay: i * 0.08 }}
                   >
                     <Link
-                      to={link.path}
+                      href={link.path}
                       className={`block pl-4 border-l-2 transition-all ${
                         isActive
                           ? isDark ? 'text-white border-[#3366ff]' : 'text-black border-neutral-900 font-semibold'
@@ -601,7 +603,7 @@ const Navbar = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
             >
-              <Link to="/contact" onClick={closeAllMenus}>
+              <Link href="/contact" onClick={closeAllMenus}>
                 <Button variant="primary" className="w-full">
                   Let's Talk
                 </Button>

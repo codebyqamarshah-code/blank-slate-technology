@@ -1,5 +1,6 @@
+"use client";
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn, FaTiktok } from 'react-icons/fa6';
 import Container from '../ui/Container';
 import { useTheme } from '../../context/ThemeContext';
@@ -20,7 +21,7 @@ const Footer = () => {
       <Container>
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 xl:gap-24 mb-16">
           <div className="w-full lg:max-w-[340px] shrink-0">
-            <Link to="/" className="inline-block mb-6">
+            <Link href="/" className="inline-block mb-6">
               <img 
                 src={isDark ? '/images/Blank Slate IT Logo-02.png' : '/images/logo-dark.png'} 
                 alt="Blank Slate Technologies" 
@@ -59,22 +60,22 @@ const Footer = () => {
             <div className="flex-1 min-w-[140px]">
               <h4 className="text-primary font-semibold mb-6">Company</h4>
               <ul className="space-y-4 text-sm text-secondary">
-                <li><Link to="/about" className="hover:text-primary transition-colors">About Us</Link></li>
-                <li><Link to="/services" className="hover:text-primary transition-colors">Services</Link></li>
-                <li><Link to="/work" className="hover:text-primary transition-colors">Work</Link></li>
+                <li><Link href="/about" className="hover:text-primary transition-colors">About Us</Link></li>
+                <li><Link href="/services" className="hover:text-primary transition-colors">Services</Link></li>
+                <li><Link href="/work" className="hover:text-primary transition-colors">Work</Link></li>
                 <li><a href="https://blankslateinstitute.pk/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Institute</a></li>
-                <li><Link to="/insights" className="hover:text-primary transition-colors">Insights</Link></li>
-                <li><Link to="/contact" className="hover:text-primary transition-colors">Contact</Link></li>
+                <li><Link href="/insights" className="hover:text-primary transition-colors">Insights</Link></li>
+                <li><Link href="/contact" className="hover:text-primary transition-colors">Contact</Link></li>
               </ul>
             </div>
 
             <div className="flex-1 min-w-[140px]">
               <h4 className="text-primary font-semibold mb-6">Services</h4>
               <ul className="space-y-4 text-sm text-secondary">
-                <li><Link to="/services" className="hover:text-primary transition-colors">Custom Development</Link></li>
-                <li><Link to="/services" className="hover:text-primary transition-colors">Advanced Technology</Link></li>
-                <li><Link to="/services" className="hover:text-primary transition-colors">Design & Creative</Link></li>
-                <li><Link to="/services" className="hover:text-primary transition-colors">Digital Growth</Link></li>
+                <li><Link href="/services" className="hover:text-primary transition-colors">Custom Development</Link></li>
+                <li><Link href="/services" className="hover:text-primary transition-colors">Advanced Technology</Link></li>
+                <li><Link href="/services" className="hover:text-primary transition-colors">Design & Creative</Link></li>
+                <li><Link href="/services" className="hover:text-primary transition-colors">Digital Growth</Link></li>
               </ul>
             </div>
 
@@ -92,8 +93,8 @@ const Footer = () => {
         <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-secondary">
           <p>© {new Date().getFullYear()} Blank Slate Technology Pvt. Ltd. All rights reserved.</p>
           <div className="flex gap-6">
-            <Link to="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
-            <Link to="/terms" className="hover:text-primary transition-colors">Terms of Service</Link>
+            <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-primary transition-colors">Terms of Service</Link>
           </div>
         </div>
       </Container>

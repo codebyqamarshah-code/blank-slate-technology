@@ -1,5 +1,6 @@
+"use client";
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { SiJavascript, SiReact, SiNodedotjs, SiMongodb, SiPython } from 'react-icons/si';
@@ -186,7 +187,7 @@ const CoreServiceCard = ({ service, index }) => {
             }}
           >
             <Link
-              to={`/services/${service.slug}`}
+              href={`/services/${service.slug}`}
               className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-xl border font-medium text-sm transition-all duration-300 w-full justify-center group/btn"
               style={{
                 backgroundColor: isHovered
@@ -231,7 +232,7 @@ const FeaturedServices = () => {
           />
 
           <Link
-            to="/services"
+            href="/services"
             className="shrink-0 inline-flex items-center gap-2 text-sm text-secondary hover:text-primary transition-colors group"
           >
             <span>Explore All Services</span>

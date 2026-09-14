@@ -1,6 +1,7 @@
+"use client";
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { ArrowRight, Code, Layers, PenTool, Terminal, Smartphone, BrainCircuit, BarChart, Megaphone, Clock, Award } from 'lucide-react';
 import Container from '../ui/Container';
 import { programs } from '../../data/institute';
@@ -11,7 +12,7 @@ const iconMap = {
 
 const ProgramCard = ({ program, index }) => {
   const IconComponent = iconMap[program.icon] || Code;
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return (
     <motion.div
@@ -54,7 +55,7 @@ const ProgramCard = ({ program, index }) => {
 
         {/* Footer/Link */}
         <button
-          onClick={() => navigate('/apply')}
+          onClick={() => router.push('/apply')}
           className="flex items-center gap-2 text-sm font-medium text-white group-hover:text-[#3366ff] transition-colors mt-auto"
         >
           <span>Enroll Now</span>

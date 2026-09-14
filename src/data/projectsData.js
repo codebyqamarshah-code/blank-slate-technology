@@ -1,10 +1,9 @@
 export const portfolioCategories = [
   'All',
-  'Web & App Development',
-  'E-Commerce & Fashion',
-  'Healthcare & Medical',
-  'Architecture & Systems',
-  'Education & Corporate',
+  'E-Commerce',
+  'Branding & Design',
+  'Digital Marketing',
+  'Integrations'
 ];
 
 export const portfolioProjects = [
@@ -12,7 +11,7 @@ export const portfolioProjects = [
     id: '01',
     title: 'Eatiz – Digital Restaurant Platform',
     client: 'Eatiz Pakistan',
-    category: 'Web & App Development',
+    category: 'E-Commerce',
     headline: 'Your Ultimate Digital Companion – Eatiz',
     description: "Pakistan's high-performance restaurant discovery and food ordering ecosystem. Engineered with multi-vendor menu exploration, instant table reservations, live order dispatch, and merchant business portals.",
     image: '/images/projects/eatiz.jpeg',
@@ -24,7 +23,7 @@ export const portfolioProjects = [
     id: '02',
     title: 'Ilaj Bil Ghiza – Clinical Health Portal',
     client: 'Ilaj Bil Ghiza',
-    category: 'Healthcare & Medical',
+    category: 'Digital Marketing',
     headline: "Your Body's Natural Defense in a Modern Era",
     description: 'A holistic digital healthcare intelligence platform providing personalized medical diet plans, disease-specific natural nutrition therapy, certified practitioner access, and organic wellness guides.',
     image: '/images/projects/ilaj-bil-ghiza.jpeg',
@@ -36,7 +35,7 @@ export const portfolioProjects = [
     id: '03',
     title: 'Aqba Zahid – Luxury Haute Couture',
     client: 'Aqba Zahid Couture',
-    category: 'E-Commerce & Fashion',
+    category: 'E-Commerce',
     headline: 'Elegance Redefined by Aqba Zahid',
     description: 'An elite fashion boutique and pret commerce experience. Built with ultra-responsive interactive lookbooks, multi-currency international shopping, bespoke sizing consultations, and frictionless checkout.',
     image: '/images/projects/aqba-zahid.jpeg',
@@ -48,7 +47,7 @@ export const portfolioProjects = [
     id: '04',
     title: 'ARAEN – Facade & Shading Systems',
     client: 'ARAEN Architecture',
-    category: 'Architecture & Systems',
+    category: 'Branding & Design',
     headline: 'Modern Facades & Bioclimatic Pergolas',
     description: 'A contemporary digital showcase for high-end architectural facades and bioclimatic shading systems. Highlights precision engineering specs, outdoor climate comfort solutions, and architectural project catalogs.',
     image: '/images/projects/araen.jpeg',
@@ -60,7 +59,7 @@ export const portfolioProjects = [
     id: '05',
     title: 'LUMIN (ALU) – European Window Systems',
     client: 'LUMIN European Systems',
-    category: 'Architecture & Systems',
+    category: 'Branding & Design',
     headline: 'Precision Minimal Glazing & Slimline Windows',
     description: 'Premium European-engineered window and facade systems portal. Showcases ultra-slim aluminum profiles, maximum light penetration technologies, thermal insulation benchmarks, and structural case studies.',
     image: '/images/projects/lumin.jpeg',
@@ -72,7 +71,7 @@ export const portfolioProjects = [
     id: '06',
     title: 'Pak Royal College – Academic Portal',
     client: 'Pak Royal College',
-    category: 'Education & Corporate',
+    category: 'Integrations',
     headline: 'FSC Federal Board Admissions & Student Hub',
     description: 'A comprehensive educational institution portal facilitating online FSC admissions, academic faculty overviews, prospectus distribution, pre-medical & pre-engineering student registrations, and campus notices.',
     image: '/images/projects/pak-royal-college.jpeg',
@@ -84,14 +83,14 @@ export const portfolioProjects = [
     id: '07',
     title: 'Dawley – PTE Center & Corporate Setup',
     client: 'Dawley Group',
-    category: 'Education & Corporate',
+    category: 'Integrations',
     headline: 'Trusted Pearson PTE Center & UAE Company Setup',
     description: 'An authorized Pearson PTE Academic test preparation and testing center registration portal, coupled with an end-to-end UAE Free Zone corporate incorporation, tax registration, and visa consultancy engine.',
     image: '/images/projects/dawley.jpeg',
     tags: ['Pearson PTE Center', 'UAE Business Setup', 'Booking Flow', 'WhatsApp Integration'],
     stats: 'Official Test Center • UAE Free Zone Incorporation',
     featured: false,
-  },
+  }
 ];
 
 export const getFeaturedProjects = (limit = 4) => {
